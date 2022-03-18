@@ -38,7 +38,7 @@ def upload_file():
       f.save(secure_filename(f.filename))
       print(f.filename)
       # conf_thres=0.75 important good conf
-      detect.run(source=f.filename,save_crop=True,classes= 5,conf_thres=0.5
+      detect.run(source=f.filename,save_crop=True,classes= 0,conf_thres=0.5
       ,save_txt=True,view_img=True
       ,imgsz=(384,640))
       return 200,'file uploaded and convert to classes successfully'
