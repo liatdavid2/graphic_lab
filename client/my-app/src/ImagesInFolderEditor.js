@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React from 'react';
+import {Component} from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -7,7 +9,27 @@ import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function ImagesInFolderEditor() {
+
+export default class ImagesInFolderEditor extends Component {
+    constructor() {
+        super();
+        this.state = {
+            imagesFromFolder: [],
+          };
+    }
+    
+// Similar to componentDidMount and componentDidUpdate:
+ //useEffect(() => {
+    // Update the document title using the browser API
+
+   // axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+
+     //imagesFromFolder = useState(resp.data.images_from_folder);
+   // console.log(imagesFromFolder);
+   // });
+    //axios.get("http://localhost:5000/get_images_list_from_folder", formData);
+  //});
+
     /*function importAll(r) {
         let images = {};
         r.keys().map(item => { images[item.replace('./', '')] = r(item); });
@@ -16,15 +38,29 @@ export default function ImagesInFolderEditor() {
     }
     
     const images = importAll(require.context('./assets', false, '/\.jpg/'));*/
+    componentWillMount(){
+      
+     axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+
+     //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+     this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
+     console.log(this.state.imagesFromFolder)
+        
+    });
+    }
+  render() {
+    console.log(this.state.imagesFromFolder);
   return (
-    <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-        {itemData.map((item) => (
-            <ImageListItem key={item.img}>
+      
+    this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
+      <Box sx={{ width: 1500, height: 450, overflowY: 'scroll' }}>
+        <ImageList sx={{ width: 500, height: 450 }} cols={6} rowHeight={164}>
+        {this.state.imagesFromFolder.map((item) => (
+            <ImageListItem key={item}>
             <img
-                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
+                src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={item}
                 loading="lazy"
             />
             <ImageListItemBar
@@ -46,8 +82,9 @@ export default function ImagesInFolderEditor() {
             
         ))}
         </ImageList>
-    </Box>
+    </Box>:null
   );
+ }
 }
 
 const itemData = [

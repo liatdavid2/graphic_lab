@@ -1,12 +1,15 @@
 #from flask import Flask
 #Import necessary libraries
 from flask import Flask, render_template, Response, request
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 import splitfolders
 import cv2
 import detect
 import torch
+import glob
+import os  
 
 # number of classes
 nc: 80
@@ -23,6 +26,7 @@ new_var = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train',
         'teddy bear', 'hair drier', 'toothbrush']
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/split_to_folders')
 def hello_world():    
@@ -30,6 +34,20 @@ def hello_world():
     return 'split_to_folders colmplete!'
     
 
+@app.route('/get_images_list_from_folder')
+def get_images_list_from_folder():  
+    res = {} 
+    images_from_folder = []
+    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\person'): 
+        for filename in files:
+            fname = os.path.join(dirpath,filename)
+            if fname.endswith('.jpg'):
+                print(fname)
+                images_from_folder.append('../../assets/person/'+fname.split('\\')[-1])
+    #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
+    #print(files)
+    res['images_from_folder'] = images_from_folder
+    return res
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
