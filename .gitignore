@@ -1,1 +1,4 @@
 server/flask_yolo5/yolov5
+
+# exception to the rule
+!server/flask_yolo5/yolov5/app.py.gitkeep 
