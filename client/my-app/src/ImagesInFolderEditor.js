@@ -53,8 +53,8 @@ export default class ImagesInFolderEditor extends Component {
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: 1500, height: 450, overflowY: 'scroll' }}>
-        <ImageList sx={{ width: 500, height: 450 }} cols={6} rowHeight={164}>
+      <Box sx={{ width: 1200, height: 450, overflowY: 'scroll' }}>
+        <ImageList sx={{ width: 1200, height: 450 }} cols={6} rowHeight={164}>
         {this.state.imagesFromFolder.map((item) => (
             <ImageListItem key={item}>
             <img
@@ -73,7 +73,7 @@ export default class ImagesInFolderEditor extends Component {
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox {...label} />
+                <Checkbox {...item} />
                 </IconButton>
               }
               actionPosition="left"
