@@ -39,14 +39,14 @@ export default class ImagesInFolderEditor extends Component {
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: 1000, height: 450, overflowY: 'scroll' }}>
+      <Box sx={{ width: 1000, height: 450, overflowY: 'regular' }}>
           <button>delete</button>
-        <ImageList sx={{ width: 1000, height: 450 }} cols={6} rowHeight={164}>
+        <ImageList sx={{ width: 1000, height: 450 }} cols={8} rowHeight={164}>
         {this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
             <img
-                src={`../../assets/person/${item}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`../../assets/person/${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={`../../assets/person/${item}?w=50&h=50&fit=crop&auto=format`}
+                srcSet={`../../assets/person/${item}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
                 alt={777}
                 loading="lazy"
             />
@@ -60,7 +60,7 @@ export default class ImagesInFolderEditor extends Component {
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox  key={index} name={''+index+''}  onChange={e => this.handleChange(e)}/>
+                <Checkbox  key={index} name={item}  onChange={e => this.handleChange(e)}/>
                 </IconButton>
               }
               actionPosition="left"
