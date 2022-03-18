@@ -3,6 +3,7 @@
 from flask import Flask, render_template, Response, request
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
+import splitfolders
 import cv2
 import detect
 import torch
@@ -23,36 +24,11 @@ new_var = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train',
 
 app = Flask(__name__)
 
-"""def gen_frames():
-    camera = cv2.VideoCapture(0)
-    '''
-    for ip camera use - rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp' 
-    for local webcam use cv2.VideoCapture(0)
-    '''
-    while True:
-        success, frame = camera.read()  # read the camera frame
-        if not success:
-            break
-    else:
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
-        yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/video_feed')
-def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')"""
-
-@app.route('/')
-def hello_world():
-    # conf_thres=0.75 important good conf
-    detect.run(source='bus27.mp4',save_crop=True,classes= 5,conf_thres=0.5
-    ,imgsz=(384,640))
-    return 'complete! '
+@app.route('/split_to_folders')
+def hello_world():    
+    splitfolders.ratio('runs\detect\exp3\crops', output="runs\detect\exp3\classes", seed=1337, ratio=(0.7, 0.2,0.1)) 
+    return 'split_to_folders colmplete!'
+    
 
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
@@ -64,7 +40,7 @@ def upload_file():
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= 5,conf_thres=0.5
       ,imgsz=(384,640))
-      return 'file uploaded successfully'
+      return 200,'file uploaded and convert to classes successfully'
 
 
 if __name__ == '__main__':
