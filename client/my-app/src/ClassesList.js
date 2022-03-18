@@ -9,6 +9,7 @@ export default function ClassesList() {
     <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
+        onChange={(event, value) => console.log(value)} // prints the selected value
         id="tags-standard"
         options={classes_names}
         getOptionLabel={(option) => option}
