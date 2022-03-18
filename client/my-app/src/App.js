@@ -78,7 +78,7 @@ class App extends Component {
     return (
       <div>
           <h1>
-            GeeksforGeeks
+            Video to Classified data!
           </h1>
           <h3>
             File Upload using React!
