@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import logo from './logo.svg';
+import ClassesList from './ClassesList';
 import './App.css';
 import axios from 'axios';
 class App extends Component {
@@ -88,6 +89,7 @@ class App extends Component {
               <button onClick={this.onFileUpload}>
                 Upload!
               </button>
+              <ClassesList/>
           </div>
         {this.fileData()}
       </div>
