@@ -8,6 +8,14 @@ import Checkbox from '@mui/material/Checkbox';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function ImagesInFolderEditor() {
+    /*function importAll(r) {
+        let images = {};
+        r.keys().map(item => { images[item.replace('./', '')] = r(item); });
+        console.log(images)
+        return images;
+    }
+    
+    const images = importAll(require.context('./assets', false, '/\.jpg/'));*/
   return (
     <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
         <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
@@ -44,13 +52,13 @@ export default function ImagesInFolderEditor() {
 
 const itemData = [
   {
-    img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-    title: 'Bed',
+    img: '../../assets/person/gaga725.jpg',
+    title: 'gaga725',
     author: 'swabdesign',
   },
   {
-    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    title: 'Books',
+    img: '../../assets/person/gaga7410.jpg',
+    title: 'gaga7410',
     author: 'Pavel Nekoranec',
   },
   {
