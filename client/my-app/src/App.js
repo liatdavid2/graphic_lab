@@ -27,7 +27,7 @@ class App extends Component {
   
     // Update the formData object
     formData.append(
-      "myFile",
+      "video_file",
       this.state.selectedFile,
       this.state.selectedFile.name
     );
@@ -37,7 +37,7 @@ class App extends Component {
   
     // Request made to the backend api
     // Send formData object
-    axios.post("api/uploadfile", formData);
+    axios.post("http://127.0.0.1:5000/upload_video", formData);
   };
   
   // File content to be displayed after
