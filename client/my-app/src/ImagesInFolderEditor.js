@@ -18,26 +18,7 @@ export default class ImagesInFolderEditor extends Component {
           };
     }
     
-// Similar to componentDidMount and componentDidUpdate:
- //useEffect(() => {
-    // Update the document title using the browser API
-
-   // axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
-
-     //imagesFromFolder = useState(resp.data.images_from_folder);
-   // console.log(imagesFromFolder);
-   // });
-    //axios.get("http://localhost:5000/get_images_list_from_folder", formData);
-  //});
-
-    /*function importAll(r) {
-        let images = {};
-        r.keys().map(item => { images[item.replace('./', '')] = r(item); });
-        console.log(images)
-        return images;
-    }
-    
-    const images = importAll(require.context('./assets', false, '/\.jpg/'));*/
+ 
     componentWillMount(){
       
      axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
@@ -48,19 +29,25 @@ export default class ImagesInFolderEditor extends Component {
         
     });
     }
+    handleChange(e) {
+      console.log(e.target.name)
+      // let isChecked = e.target.checked;
+      // do whatever you want with isChecked value
+    }
   render() {
     console.log(this.state.imagesFromFolder);
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: 1200, height: 450, overflowY: 'scroll' }}>
-        <ImageList sx={{ width: 1200, height: 450 }} cols={6} rowHeight={164}>
-        {this.state.imagesFromFolder.map((item) => (
-            <ImageListItem key={item}>
+      <Box sx={{ width: 1000, height: 450, overflowY: 'scroll' }}>
+          <button>delete</button>
+        <ImageList sx={{ width: 1000, height: 450 }} cols={6} rowHeight={164}>
+        {this.state.imagesFromFolder.map((item, index) => (
+            <ImageListItem key={index}>
             <img
-                src={`${item}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item}
+                src={`../../assets/person/${item}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`../../assets/person/${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={777}
                 loading="lazy"
             />
             <ImageListItemBar
@@ -69,11 +56,11 @@ export default class ImagesInFolderEditor extends Component {
                   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
                   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
               }}
-              title={item.title}
+              title={item}
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox {...item} />
+                <Checkbox  key={index} name={''+index+''}  onChange={e => this.handleChange(e)}/>
                 </IconButton>
               }
               actionPosition="left"

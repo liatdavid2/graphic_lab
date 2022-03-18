@@ -43,7 +43,7 @@ def get_images_list_from_folder():
             fname = os.path.join(dirpath,filename)
             if fname.endswith('.jpg'):
                 print(fname)
-                images_from_folder.append('../../assets/person/'+fname.split('\\')[-1])
+                images_from_folder.append(fname.split('\\')[-1])
     #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
     #print(files)
     res['images_from_folder'] = images_from_folder
