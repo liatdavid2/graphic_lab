@@ -39,7 +39,7 @@ export default class ImagesInFolderEditor extends Component {
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: 1000, height: 450, overflowY: 'regular' }}>
+      <Box sx={{ width: '100%', height: 400, overflowY: 'regular' }}>
           <button>delete</button>
         <ImageList sx={{ width: 1000, height: 450 }} cols={8} rowHeight={164}>
         {this.state.imagesFromFolder.map((item, index) => (

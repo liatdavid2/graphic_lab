@@ -126,7 +126,7 @@ class App extends Component {
              
              
           </div>
-        {this.fileData()}
+        {/*this.fileData()*/}
       </div>
     );
   }
