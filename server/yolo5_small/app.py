@@ -56,7 +56,7 @@ def upload_file():
    if request.method == 'POST':
       f = request.files['video_file']
       f.save(secure_filename(f.filename))
-      print(f.filename)
+      print(f.filename,request.form.get('classesList'))
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= 0,conf_thres=0.5
       ,save_txt=True,view_img=True

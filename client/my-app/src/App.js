@@ -50,7 +50,11 @@ class App extends Component {
     formData.append(
       "video_file",
       this.state.selectedFile,
-      this.state.selectedFile.name
+      this.state.selectedFile.name,
+    );
+    formData.append(
+      "classesList",
+      this.state.classesList
     );
   
     // Details of the uploaded file
