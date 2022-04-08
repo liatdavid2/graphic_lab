@@ -96,7 +96,7 @@ class App extends Component {
           <h3>
             File Upload using React!
           </h3>
-          <Card sx={{ minWidth: 275 }}>
+          <Card style={{margin: "10px"}} sx={{ margin: '10px' }}>
           <CardContent>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
