@@ -65,6 +65,7 @@ export default class ImageList extends PureComponent {
   }
 
   handleSelectItem(e) {
+    
     const { value } = e.target;
     const nextValue = this.getNextValue(value);
 
@@ -72,6 +73,7 @@ export default class ImageList extends PureComponent {
   }
 
   getNextValue(value) {
+    console.log(value)
     const { isShiftDown, selectedItems } = this.state;
     const hasBeenSelected = !selectedItems.includes(value);
 
@@ -83,7 +85,7 @@ export default class ImageList extends PureComponent {
       if (!hasBeenSelected) {
         return selections.filter(item => !newSelectedItems.includes(item));
       }
-
+      console.log(selections)
       return selections;
     }
 
@@ -112,6 +114,7 @@ export default class ImageList extends PureComponent {
     const { imagesFromFolder, selectedItems } = this.state;
     // console.log(imagesFromFolder,this.state.imagesFromFolder)
     console.log(selectedItems)
+    console.log(this.state.imagesFromFolder.filter(item =>selectedItems.includes(item.id)))
     return this.state.imagesFromFolder.map((item)  => {
       const { id, label,image } = item;
       return (

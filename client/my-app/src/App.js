@@ -126,7 +126,6 @@ class App extends Component {
           </Grid>
           <Grid item xs={12}>
           <ImageList/>
-            <ImagesInFolderEditor/>
             </Grid>
           </Grid>
           </CardContent>
