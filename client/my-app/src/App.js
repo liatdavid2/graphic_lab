@@ -90,7 +90,7 @@ class App extends Component {
   
     return (
       <div>
-         <Grid container spacing={2} style={{marginRight: "10px",marginLeft: "10px"}} >
+         <Grid container style={{marginRight: "10px",marginLeft: "10px"}} >
            <Grid item xs={12}><h1> Video to Classified data! </h1> </Grid>
            <Grid item xs={12}><h3>  File Upload using React! </h3> </Grid>
           </Grid>
