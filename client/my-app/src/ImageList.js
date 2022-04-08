@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { generateItems } from "./utils";
+import axios from 'axios';
 
 export default class ImageList extends PureComponent {
   constructor() {
@@ -9,7 +10,8 @@ export default class ImageList extends PureComponent {
       items: generateItems(120),
       isShiftDown: false,
       selectedItems: [],
-      lastSelectedItem: null
+      lastSelectedItem: null,
+      imagesFromFolder: []
     };
 
     this.listEl = null;
@@ -20,6 +22,17 @@ export default class ImageList extends PureComponent {
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
 
+  componentWillMount(){
+    // images =getAssets().list("images");
+    //listImages = new ArrayList<String>(Arrays.asList(images));
+   axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+
+   //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+   this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
+   console.log(this.state.imagesFromFolder)
+      
+  });
+  }
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp, false);
     document.addEventListener("keydown", this.handleKeyDown, false);
@@ -97,9 +110,9 @@ export default class ImageList extends PureComponent {
 
   renderItems() {
     const { items, selectedItems } = this.state;
-    console.log(selectedItems)
-    return items.map(item => {
-      const { id, label } = item;
+    console.log(items,this.state.imagesFromFolder)
+    return this.state.imagesFromFolder.map((item)  => {
+      const { id, label,image } = item;
       return (
         <li key={id}>
           <input
@@ -110,7 +123,11 @@ export default class ImageList extends PureComponent {
             id={`item-${id}`}
           />
           <label htmlFor={`item-${id}`}>{label}</label>
-          <img src ="../../assets/yes/cocomelon7.jpg"></img>
+          <img
+                src={`../../assets/yes/${image}?w=50&h=50&fit=crop&auto=format`}
+                srcSet={`../../assets/yes/${image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
+                loading="lazy"
+            />
         </li>
       );
     });

@@ -37,13 +37,15 @@ def hello_world():
 @app.route('/get_images_list_from_folder')
 def get_images_list_from_folder():  
     res = {} 
+    i = 0
     images_from_folder = []
     for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\yes'): 
         for filename in files:
             fname = os.path.join(dirpath,filename)
             if fname.endswith('.jpg'):
                 print(fname)
-                images_from_folder.append(fname.split('\\')[-1])
+                images_from_folder.append({"label":fname.split('\\')[-1],"id":'value-'+str(i),"image":fname.split('\\')[-1]})
+                i+=1
     #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
     #print(files)
     res['images_from_folder'] = images_from_folder
