@@ -119,7 +119,10 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",padding:'0px'}} >
           <CardContent>
           <Grid container spacing={0}>
-          <Grid item xs={12}><h4> Select images that not in class preson: </h4> </Grid>
+          <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
+            Select all images not in classes: preson</button>
+          
+          </Grid>
           <Grid item xs={12}><ImagesInFolderEditor/></Grid>
           </Grid>
           </CardContent>

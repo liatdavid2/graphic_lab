@@ -39,9 +39,9 @@ export default class ImagesInFolderEditor extends Component {
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: '100%', height: 400, overflowY: 'regular' }}>
-          <button>not preson</button>
-        <ImageList sx={{  height: 450 }} cols={8} rowHeight={164}
+      <Box sx={{ width: '100%', overflowY: 'regular' }}>
+         
+        <ImageList sx={{  height: 350 }} cols={8} rowHeight={80}
         style={{width: "100%"}}>
         {this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
