@@ -50,3 +50,6 @@ button{
 button:hover{
   background: rgb(2, 2, 107);
 }
+button:disabled{
+  background: gray;
+}

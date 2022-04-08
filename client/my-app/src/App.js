@@ -24,7 +24,8 @@ class App extends Component {
   state = {
 
     // Initially, no file is selected
-    selectedFile: null
+    selectedFile: null,
+    Upload_disable:false,
   };
   
   // On file select (from the pop up)
@@ -34,6 +35,9 @@ class App extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   
   };
+  handleCallback = (childData) =>{
+    this.setState({Upload_disable: childData})
+}
   
   // On file upload (click the upload button)
   onFileUpload = () => {
@@ -107,10 +111,12 @@ class App extends Component {
                <input type="file" onChange={this.onFileChange} />
             </Grid>
             <Grid item xs={12} md={8}>
-              <ClassesList/>
+              <ClassesList parentCallback={this.handleCallback}/>
             </Grid>
             <Grid item xs={12} md={2}>            
-                <button variant="contained" onClick={this.onFileUpload}>
+                <button variant="contained"
+                disabled={this.state.selectedFile === null}
+                 onClick={this.onFileUpload}>
                 Upload!
               </button>             
             </Grid>

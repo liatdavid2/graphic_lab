@@ -126,7 +126,7 @@ export default class ImageList extends PureComponent {
             value={id}
             id={`item-${id}`}
           />
-          <label htmlFor={`item-${id}`}>{label}</label>
+          <label htmlFor={`item-${id}`}>{}</label>
           <img
                 src={`../../assets/yes/${image}?w=50&h=50&fit=crop&auto=format`}
                 srcSet={`../../assets/yes/${image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
