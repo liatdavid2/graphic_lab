@@ -38,7 +38,7 @@ def hello_world():
 def get_images_list_from_folder():  
     res = {} 
     images_from_folder = []
-    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\person'): 
+    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\yes'): 
         for filename in files:
             fname = os.path.join(dirpath,filename)
             if fname.endswith('.jpg'):
