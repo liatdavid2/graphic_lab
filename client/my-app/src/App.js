@@ -1,11 +1,25 @@
 
 import React,{Component} from 'react';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import logo from './logo.svg';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
 
 import './App.css';
 import axios from 'axios';
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 class App extends Component {
   
   state = {
@@ -53,12 +67,8 @@ class App extends Component {
         <div>
           <h2>File Details:</h2>
            
-<p>File Name: {this.state.selectedFile.name}</p>
-
-           
-<p>File Type: {this.state.selectedFile.type}</p>
-
-           
+<p>File Name: {this.state.selectedFile.name}</p>           
+<p>File Type: {this.state.selectedFile.type}</p>          
 <p>
             Last Modified:{" "}
             {this.state.selectedFile.lastModifiedDate.toDateString()}
@@ -86,12 +96,29 @@ class App extends Component {
           <h3>
             File Upload using React!
           </h3>
-          <div>
-              <input type="file" onChange={this.onFileChange} />
-              <button onClick={this.onFileUpload}>
+          <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+               <input type="file" onChange={this.onFileChange} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <ClassesList/>
+            </Grid>
+            <Grid item xs={12} md={2}>
+              
+                <button onClick={this.onFileUpload}>
                 Upload!
               </button>
-              <ClassesList/>
+             
+            </Grid>
+          </Grid>
+          </CardContent></Card>
+          <div>
+             
+              
+
+             
               <ImagesInFolderEditor/>
           </div>
         {this.fileData()}
