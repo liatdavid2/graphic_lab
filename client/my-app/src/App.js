@@ -90,14 +90,16 @@ class App extends Component {
   
     return (
       <div>
-         <Grid container style={{marginRight: "10px",marginLeft: "10px"}} >
-           <Grid item xs={12}><h1> Video to Classified data! </h1> </Grid>
-           <Grid item xs={12}><h3>  File Upload using React! </h3> </Grid>
+         <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
+         spacing={0} >
+           <Grid item xs={12}><h2> Video to Classified data! </h2> </Grid>
+          
           </Grid>
           
-          <Card style={{margin: "10px"}} >
+          <Card style={{marginRight: "10px",marginLeft: "10px"}} >
           <CardContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
+          <Grid item xs={12}><h5>  File Upload using React! </h5> </Grid>
             <Grid item xs={12} md={4}>
                <input type="file" onChange={this.onFileChange} />
             </Grid>
@@ -113,10 +115,16 @@ class App extends Component {
           </CardContent></Card>
           <div>
              
-              
+          <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",padding:'0px'}} >
+          <CardContent>
+          <Grid container spacing={0}>
+          <ImagesInFolderEditor/>
+          </Grid>
+          </CardContent>
+          </Card>
 
              
-              <ImagesInFolderEditor/>
+             
           </div>
         {this.fileData()}
       </div>
