@@ -39,10 +39,11 @@ export default class ImagesInFolderEditor extends Component {
   return (
       
     this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: '100%', overflowY: 'regular' }}>
-         
+      <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
+        
         <ImageList sx={{  height: 350 }} cols={8} rowHeight={80}
-        style={{width: "100%"}}>
+        gap={0}
+        style={{width: "100%",marginTop: "10px"}}>
         {this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
             <img
@@ -57,7 +58,7 @@ export default class ImagesInFolderEditor extends Component {
                   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
                   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
               }}
-              title={item}
+          
               position="top"
               actionIcon={
                 <IconButton>

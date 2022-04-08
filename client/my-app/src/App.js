@@ -134,7 +134,7 @@ class App extends Component {
           <CardContent>
           <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
          spacing={0} >
-           <Grid item xs={12}><h4> Edit data: </h4> </Grid>
+           <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
            </Grid>
           </CardContent>
           </Card>
