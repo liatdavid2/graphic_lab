@@ -109,9 +109,9 @@ class App extends Component {
               <ClassesList/>
             </Grid>
             <Grid item xs={12} md={2}>            
-                <Button variant="contained" onClick={this.onFileUpload}>
+                <button variant="contained" onClick={this.onFileUpload}>
                 Upload!
-              </Button>             
+              </button>             
             </Grid>
           </Grid>
           </CardContent></Card>
@@ -119,7 +119,8 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",padding:'0px'}} >
           <CardContent>
           <Grid container spacing={0}>
-          <ImagesInFolderEditor/>
+          <Grid item xs={12}><h4> Select images that not in class preson: </h4> </Grid>
+          <Grid item xs={12}><ImagesInFolderEditor/></Grid>
           </Grid>
           </CardContent>
           </Card>
@@ -130,7 +131,7 @@ class App extends Component {
           <CardContent>
           <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
          spacing={0} >
-           <Grid item xs={12}><h3> Edit data: </h3> </Grid>
+           <Grid item xs={12}><h4> Edit data: </h4> </Grid>
            </Grid>
           </CardContent>
           </Card>

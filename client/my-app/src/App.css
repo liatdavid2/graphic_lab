@@ -41,9 +41,12 @@
   padding-top: 0 !important;
 }
 button{
-    margin-left: 10px;
     margin-bottom: 10px;
-    border-radius: 0;
+    padding: 10px;
+    border: none;
+    color:white;
     background: darkblue;
-    box-shadow: none;
+}
+button:hover{
+  background: rgb(2, 2, 107);
 }
