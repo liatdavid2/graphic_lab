@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
+import ImageList from './ImageList';
 
 import './App.css';
 import axios from 'axios';
@@ -120,10 +121,13 @@ class App extends Component {
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
-            Select all images not in classes: preson</button>
+            Select all images not in class</button>
           
           </Grid>
-          <Grid item xs={12}><ImagesInFolderEditor/></Grid>
+          <Grid item xs={12}>
+          <ImageList/>
+            <ImagesInFolderEditor/>
+            </Grid>
           </Grid>
           </CardContent>
           </Card>
