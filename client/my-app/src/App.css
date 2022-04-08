@@ -40,3 +40,10 @@
   padding-bottom: 0 !important;
   padding-top: 0 !important;
 }
+button{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 0;
+    background: darkblue;
+    box-shadow: none;
+}

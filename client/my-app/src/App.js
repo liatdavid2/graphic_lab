@@ -1,13 +1,11 @@
 
 import React,{Component} from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
-import logo from './logo.svg';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
 
@@ -99,17 +97,20 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px"}} >
           <CardContent>
           <Grid container spacing={0}>
-          <Grid item xs={12}><h5>  File Upload using React! </h5> </Grid>
-            <Grid item xs={12} md={4}>
+          <Grid item xs={12}>
+            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  File Upload using React! </h4> 
+
+            </Grid>
+            <Grid item xs={12} md={2}>
                <input type="file" onChange={this.onFileChange} />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={8}>
               <ClassesList/>
             </Grid>
             <Grid item xs={12} md={2}>            
-                <button onClick={this.onFileUpload}>
+                <Button variant="contained" onClick={this.onFileUpload}>
                 Upload!
-              </button>             
+              </Button>             
             </Grid>
           </Grid>
           </CardContent></Card>
