@@ -4,6 +4,7 @@ from flask import Flask, render_template, Response, request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
+from distutils.dir_util import copy_tree
 import splitfolders
 import cv2
 import detect
@@ -54,7 +55,7 @@ def get_images_list_from_folder():
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
-      f = request.files['video_file']
+      """f = request.files['video_file']
       f.save(secure_filename(f.filename))
       print(f.filename,request.form.get('classesList'))
       classesList = request.form.get('classesList').split(",")
@@ -64,7 +65,9 @@ def upload_file():
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
       ,save_txt=True,view_img=True
-      ,imgsz=(384,640))
+      ,imgsz=(384,640))"""
+      copy_tree('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//runs//detect//exp22//crops//', 'C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets//')
+      print(77)
       return 200,'file uploaded and convert to classes successfully'
 
 
