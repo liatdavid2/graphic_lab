@@ -90,13 +90,12 @@ class App extends Component {
   
     return (
       <div>
-          <h1>
-            Video to Classified data!
-          </h1>
-          <h3>
-            File Upload using React!
-          </h3>
-          <Card style={{margin: "10px"}} sx={{ margin: '10px' }}>
+         <Grid container spacing={2} style={{marginRight: "10px",marginLeft: "10px"}} >
+           <Grid item xs={12}><h1> Video to Classified data! </h1> </Grid>
+           <Grid item xs={12}><h3>  File Upload using React! </h3> </Grid>
+          </Grid>
+          
+          <Card style={{margin: "10px"}} >
           <CardContent>
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
@@ -105,12 +104,10 @@ class App extends Component {
             <Grid item xs={12} md={6}>
               <ClassesList/>
             </Grid>
-            <Grid item xs={12} md={2}>
-              
+            <Grid item xs={12} md={2}>            
                 <button onClick={this.onFileUpload}>
                 Upload!
-              </button>
-             
+              </button>             
             </Grid>
           </Grid>
           </CardContent></Card>
