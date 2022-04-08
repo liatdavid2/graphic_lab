@@ -57,8 +57,12 @@ def upload_file():
       f = request.files['video_file']
       f.save(secure_filename(f.filename))
       print(f.filename,request.form.get('classesList'))
+      classesList = request.form.get('classesList').split(",")
+      classesListIndexes = []
+      for i in range(len(classesList)):
+          classesListIndexes.append(class_names.index(classesList[i])) 
       # conf_thres=0.75 important good conf
-      detect.run(source=f.filename,save_crop=True,classes= 0,conf_thres=0.5
+      detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
       ,save_txt=True,view_img=True
       ,imgsz=(384,640))
       return 200,'file uploaded and convert to classes successfully'
