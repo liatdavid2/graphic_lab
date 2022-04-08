@@ -4,19 +4,17 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
 import CardContent from '@mui/material/CardContent';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
 import ImageList from './ImageList';
 
-import { makeStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import FolderIcon from '@material-ui/icons/Folder';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import './App.css';
 import axios from 'axios';
@@ -28,6 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 class App extends Component {
+  
   
   state = {
 
@@ -106,14 +105,30 @@ class App extends Component {
   
     return (
       <div>
-         <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
-         spacing={0} >
-           <Grid item xs={12}><h2> Video to Classified data! </h2> </Grid>
-          
+      <AppBar position="static" style={{backgroundColor: "#080862",marginBottom: "10px"}} >
+        <Toolbar>
+        <Grid container>
+        <Grid item xs={1} > 
+        <MenuIcon />
+        <IconButton edge="start"  color="inherit" aria-label="menu">         
+           </IconButton>
+        </Grid>
+        <Grid item xs={7} >
+
+          <Typography variant="h6" >
+          Video to Classified data!
+          </Typography> 
+        </Grid>
+        </Grid>
+        <Grid item xs={4} >
+          <Button color="inherit" style={{float:"right"}}>Login</Button>
           </Grid>
+        </Toolbar>
+      </AppBar>
+    
           <Grid container>
           <Grid item xs={12} md={9}>
-          <Card style={{marginRight: "10px",marginLeft: "10px"}} >
+          <Card style={{marginRight: "10px",marginLeft: "10px",borderRadius: 0}} >
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}>
@@ -136,7 +151,7 @@ class App extends Component {
           </Grid>
           </CardContent></Card>
 
-          <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",padding:'0px'}} >
+          <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",borderRadius: 0,padding:'0px',height:"425px"}} >
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
@@ -152,7 +167,7 @@ class App extends Component {
           </Grid>
 
           <Grid item xs={12} md={3}>
-          <Card style={{marginRight: "10px",marginLeft: "10px",padding:'0px'}} >
+          <Card style={{marginRight: "10px",marginLeft: "10px",padding:'0px',borderRadius: 0,height:"520px"}} >
           <CardContent>
           <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
          spacing={0} >

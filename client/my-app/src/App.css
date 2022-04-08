@@ -45,10 +45,10 @@ button{
     padding: 10px;
     border: none;
     color:white;
-    background: darkblue;
+    background: #080862;
 }
 button:hover{
-  background: rgb(2, 2, 107);
+  background: #070732;
 }
 button:disabled{
   background: gray;
