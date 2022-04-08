@@ -6,9 +6,9 @@ import Stack from '@mui/material/Stack';
 
 export default function ClassesList() {
   return (
-    <Stack spacing={0} >
-      <Autocomplete style={{paddingBottom: "10px"}}
-        multiple
+    <Stack spacing={2} >
+      <Autocomplete style={{padding:"5px",paddingBottom: "10px"}}
+        multiple  sx={{ width: 400,marginLeft:"20px" }}
         onChange={(event, value) => console.log(value)} // prints the selected value
         id="tags-standard"
         options={classes_names}
