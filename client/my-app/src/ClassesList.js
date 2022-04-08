@@ -4,14 +4,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
-export default function ClassesList() {
+export default function ClassesList(props) {
   return (
     <Stack spacing={2} >
       <Autocomplete style={{padding:"5px",paddingBottom: "10px"}}
         multiple  sx={{ width: 400,marginLeft:"20px" }}
         onChange={(event, value) => {console.log(value);
         
-          this.props.parentCallback(value);}} // prints the selected value
+          props.parentCallback(value);}} // prints the selected value
         id="tags-standard"
         options={classes_names}
         getOptionLabel={(option) => option}

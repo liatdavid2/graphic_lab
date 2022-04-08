@@ -26,6 +26,7 @@ class App extends Component {
     // Initially, no file is selected
     selectedFile: null,
     Upload_disable:false,
+    classesList:[],
   };
   
   // On file select (from the pop up)
@@ -36,7 +37,7 @@ class App extends Component {
   
   };
   handleCallback = (childData) =>{
-    this.setState({Upload_disable: childData})
+    this.setState({classesList: childData})
 }
   
   // On file upload (click the upload button)
@@ -115,7 +116,7 @@ class App extends Component {
             </Grid>
             <Grid item xs={12} md={2}>            
                 <button variant="contained"
-                disabled={this.state.selectedFile === null}
+                disabled={this.state.selectedFile === null || this.state.classesList.length === 0}
                  onClick={this.onFileUpload}>
                 Upload!
               </button>             
