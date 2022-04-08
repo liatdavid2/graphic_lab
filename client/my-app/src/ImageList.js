@@ -7,7 +7,7 @@ export default class ImageList extends PureComponent {
     super();
 
     this.state = {
-      items: generateItems(120),
+      // items: generateItems(120),
       isShiftDown: false,
       selectedItems: [],
       lastSelectedItem: null,
@@ -94,13 +94,13 @@ export default class ImageList extends PureComponent {
   }
 
   getNewSelectedItems(value) {
-    const { lastSelectedItem, items } = this.state;
-    const currentSelectedIndex = items.findIndex(item => item.id === value);
-    const lastSelectedIndex = items.findIndex(
+    const { lastSelectedItem, imagesFromFolder } = this.state;
+    const currentSelectedIndex = imagesFromFolder.findIndex(item => item.id === value);
+    const lastSelectedIndex = imagesFromFolder.findIndex(
       item => item.id === lastSelectedItem
     );
 
-    return items
+    return imagesFromFolder
       .slice(
         Math.min(lastSelectedIndex, currentSelectedIndex),
         Math.max(lastSelectedIndex, currentSelectedIndex) + 1
@@ -109,8 +109,9 @@ export default class ImageList extends PureComponent {
   }
 
   renderItems() {
-    const { items, selectedItems } = this.state;
-    console.log(items,this.state.imagesFromFolder)
+    const { imagesFromFolder, selectedItems } = this.state;
+    // console.log(imagesFromFolder,this.state.imagesFromFolder)
+    console.log(selectedItems)
     return this.state.imagesFromFolder.map((item)  => {
       const { id, label,image } = item;
       return (
