@@ -53,3 +53,6 @@ button:hover{
 button:disabled{
   background: gray;
 }
+/*li{
+  display: flex;
+}*/

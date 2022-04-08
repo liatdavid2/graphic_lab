@@ -136,9 +136,9 @@ class App extends Component {
 
             </Grid>
             <Grid item xs={12} md={2}>
-               <input type="file" onChange={this.onFileChange} />
+               <input type="file" style={{marginTop: "12px"}} onChange={this.onFileChange} />
             </Grid>
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={6}>
               <ClassesList parentCallback={this.handleCallback}/>
             </Grid>
             <Grid item xs={12} md={2}>            
