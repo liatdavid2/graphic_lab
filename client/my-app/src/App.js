@@ -10,6 +10,14 @@ import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
 import ImageList from './ImageList';
 
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FolderIcon from '@material-ui/icons/Folder';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+
 import './App.css';
 import axios from 'axios';
 const Item = styled(Paper)(({ theme }) => ({
@@ -163,6 +171,7 @@ class App extends Component {
              
           </div>
         {/*this.fileData()*/}
+
       </div>
     );
   }
