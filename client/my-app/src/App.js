@@ -93,7 +93,8 @@ class App extends Component {
            <Grid item xs={12}><h2> Video to Classified data! </h2> </Grid>
           
           </Grid>
-          
+          <Grid container>
+          <Grid item xs={12} md={9}>
           <Card style={{marginRight: "10px",marginLeft: "10px"}} >
           <CardContent>
           <Grid container spacing={0}>
@@ -114,8 +115,7 @@ class App extends Component {
             </Grid>
           </Grid>
           </CardContent></Card>
-          <div>
-             
+
           <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",padding:'0px'}} >
           <CardContent>
           <Grid container spacing={0}>
@@ -123,6 +123,23 @@ class App extends Component {
           </Grid>
           </CardContent>
           </Card>
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+          <Card style={{marginRight: "10px",marginLeft: "10px",padding:'0px'}} >
+          <CardContent>
+          <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
+         spacing={0} >
+           <Grid item xs={12}><h2> Edit data! </h2> </Grid>
+           </Grid>
+          </CardContent>
+          </Card>
+          </Grid>
+          </Grid>    
+
+          <div>
+             
+
 
              
              
