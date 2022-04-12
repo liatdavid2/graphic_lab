@@ -5,5 +5,5 @@
 18.3.22   21 hours of run yolo5 from flask.react start client-side. handle git errors with all this files.test yolo5 on diffrent videos. <br /><br/>
 24.3.22   8 hours of working on upload video from client to server and split data to test/train/validation folders . <br /><br/>
 31.3.22   8 hours of working on client & server of show images in folder and select them . <br /><br/>
-8.4.22   16 hours of working on building prove case - train vgg16 cnn from images generated from video. <br /><br/>
+8.4.22   20 hours of working on building prove case - train vgg16 cnn from images generated from video. <br /><br/>
 
