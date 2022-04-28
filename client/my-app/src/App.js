@@ -120,9 +120,7 @@ class App extends Component {
           </Typography> 
         </Grid>
         </Grid>
-        <Grid item xs={4} >
-          <Button color="inherit" style={{float:"right"}}>Login</Button>
-          </Grid>
+
         </Toolbar>
       </AppBar>
     
