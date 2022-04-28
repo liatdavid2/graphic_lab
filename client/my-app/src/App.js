@@ -152,13 +152,17 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",borderRadius: 0,padding:'0px',height:"425px"}} >
           <CardContent>
           <Grid container spacing={0}>
-          <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
-            Select all images not in class</button>
-          
-          </Grid>
+          <Grid item xs={12}>
+            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> 
+
+            </Grid>
+
           <Grid item xs={12}>
           <ImageList/>
             </Grid>
+            <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
+            Select</button>          
+          </Grid>
           </Grid>
           </CardContent>
           </Card>
