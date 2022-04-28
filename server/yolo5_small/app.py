@@ -40,7 +40,7 @@ def get_images_list_from_folder():
     res = {} 
     i = 0
     images_from_folder = []
-    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\yes'): 
+    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\yes\\'): 
         for filename in files:
             fname = os.path.join(dirpath,filename)
             if fname.endswith('.jpg'):
@@ -64,7 +64,7 @@ def upload_file():
           classesListIndexes.append(class_names.index(classesList[i])) 
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-      ,save_txt=True,view_img=True
+      ,save_txt=True,view_img=True,project='C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets',name='yes'
       ,imgsz=(384,640))
       #copy_tree('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//runs//detect//exp22//crops//', 'C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets//')
       print(77)
