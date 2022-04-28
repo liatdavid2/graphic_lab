@@ -40,12 +40,12 @@ def get_images_list_from_folder():
     res = {} 
     i = 0
     images_from_folder = []
-    for dirpath, dirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\yes\\'): 
+    for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
         for filename in files:
-            fname = os.path.join(dirpath,filename)
+            fname = os.path.join(path, filename)
             if fname.endswith('.jpg'):
-                print(fname)
-                images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-1]})
+                print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
+                images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                 i+=1
     #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
     #print(files)
@@ -64,7 +64,7 @@ def upload_file():
           classesListIndexes.append(class_names.index(classesList[i])) 
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-      ,save_txt=True,view_img=True,project='C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets',name='yes'
+      ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets',name='yes'
       ,imgsz=(384,640))
       #copy_tree('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//runs//detect//exp22//crops//', 'C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets//')
       print(77)
