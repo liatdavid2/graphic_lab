@@ -22,7 +22,7 @@ export default class ImageList extends PureComponent {
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
   // On file upload (click the upload button)
-  onFileUpload = (e) => {
+  showImagesFromAssets = (e) => {
     e.preventDefault();
     console.log("refresh prevented");
     axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
@@ -152,7 +152,8 @@ export default class ImageList extends PureComponent {
   render() {
 
     return  (<div>
-    <button  onClick={this.onFileUpload}>click to see images that created till now from video!</button>
+    <button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
+    <button  onClick={this.copyImagesToAssets}>get images till now!</button>
 
     <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
 
