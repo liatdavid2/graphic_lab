@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import Grid from '@mui/material/Grid';
+import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -153,7 +154,7 @@ class App extends Component {
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}>
-            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> 
+            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> <CircularProgress />
 
             </Grid>
 
