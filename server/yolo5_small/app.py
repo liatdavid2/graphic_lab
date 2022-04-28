@@ -6,6 +6,8 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from distutils.dir_util import copy_tree
 import splitfolders
+import shutil
+import os
 import cv2
 import detect
 import torch
@@ -40,6 +42,14 @@ def get_images_list_from_folder():
     res = {} 
     i = 0
     images_from_folder = []
+    """files = glob.glob('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\')
+    for f in files:
+        os.remove(f)"""
+    """for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
+        for subdir in subdirs:
+            src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
+            dest_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'+subdir
+            shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)"""
     for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
         for filename in files:
             fname = os.path.join(path, filename)
@@ -64,7 +74,7 @@ def upload_file():
           classesListIndexes.append(class_names.index(classesList[i])) 
       # conf_thres=0.75 important good conf
       detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-      ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets',name='yes'
+      ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//images',name='yes'
       ,imgsz=(384,640))
       #copy_tree('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//runs//detect//exp22//crops//', 'C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets//')
       print(77)

@@ -22,7 +22,9 @@ export default class ImageList extends PureComponent {
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
   // On file upload (click the upload button)
-  onFileUpload = () => {
+  onFileUpload = (e) => {
+    e.preventDefault();
+    console.log("refresh prevented");
     axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
       //imagesFromFolder = [...useState(resp.data.images_from_folder)]
@@ -31,7 +33,7 @@ export default class ImageList extends PureComponent {
          
      });
   };
-  /*componentWillMount(){
+  componentWillMount(){
     // images =getAssets().list("images");
     //listImages = new ArrayList<String>(Arrays.asList(images));
    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
@@ -41,7 +43,7 @@ export default class ImageList extends PureComponent {
    console.log(this.state.imagesFromFolder)
       
   });
-  }*/
+  }
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp, false);
     document.addEventListener("keydown", this.handleKeyDown, false);
