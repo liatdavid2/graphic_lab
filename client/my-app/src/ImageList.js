@@ -21,8 +21,17 @@ export default class ImageList extends PureComponent {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
+  // On file upload (click the upload button)
+  onFileUpload = () => {
+    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-  componentWillMount(){
+      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
+      console.log(this.state.imagesFromFolder)
+         
+     });
+  };
+  /*componentWillMount(){
     // images =getAssets().list("images");
     //listImages = new ArrayList<String>(Arrays.asList(images));
    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
@@ -32,7 +41,7 @@ export default class ImageList extends PureComponent {
    console.log(this.state.imagesFromFolder)
       
   });
-  }
+  }*/
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp, false);
     document.addEventListener("keydown", this.handleKeyDown, false);
@@ -118,7 +127,7 @@ export default class ImageList extends PureComponent {
     return this.state.imagesFromFolder.map((item)  => {
       const { id, label,image } = item;
       return (
-        <li key={id}>
+         <li key={id}>
           <input
             onChange={this.handleSelectItem}
             type="checkbox"
@@ -133,14 +142,19 @@ export default class ImageList extends PureComponent {
                 loading="lazy"
             />
         </li>
+      
       );
     });
   }
 
   render() {
-    return <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
+
+    return  (<div>
+    <button  onClick={this.onFileUpload}>click to see images that created till now from video!</button>
+
+    <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
 
      ref={node => (this.listEl = node)}>{this.renderItems()
-     }</ul>;
+     }</ul></div>);
   }
 }
