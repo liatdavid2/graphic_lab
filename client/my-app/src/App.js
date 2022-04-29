@@ -31,6 +31,7 @@ class App extends Component {
     selectedFile: null,
     Upload_disable:false,
     classesList:[],
+    data_augmentation_types_selected:[],
     imagesFromFolder: [],
     value: [50,70, 80],
     data_augmentation_types :['Rotate','scale','Rotate2','scale2','Rotate3','scale3'],
@@ -53,12 +54,46 @@ class App extends Component {
   
   };
   handleCallback = (childData) =>{
-    this.setState({classesList: childData})
+    if(childData.includes('Rotate')){
+      console.log(childData)
+      this.setState({data_augmentation_types_selected: childData})
+    }else{
+      console.log(childData)
+      this.setState({classesList: childData})
+    }
+    
 }
+  selectDataAugmentation= () => {
+    
+    /*let types_selected = this.state.data_augmentation_types_selected
+    console.log(types_selected)*/
+
+    const formData = new FormData();
+
+    formData.append(
+      "types_selected",
+      this.state.data_augmentation_types_selected
+    );
+  
+    // Request made to the backend api
+    // Send formData object
+    axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
+      console.log(resp)
+    })
+    /*axios.get("http://127.0.0.1:5000/data_augmentation"
+    , { params:{types_selected:types_selected} }).then(
+      res => {
+        console.log(res)
+      }
+      )*/
+
+  }
   Split = () => {
     axios.get("http://127.0.0.1:5000/crop_split_to_folders"
-    , { params: { train: 80/100 ,validation:10/100,test:10/100} }).then(resp => {
-
+    , { params: { train: (this.state.value[0])/100 
+    ,validation:(this.state.value[1]-this.state.value[0])/100,
+    test:(100 - (this.state.value[0]+(this.state.value[1]-this.state.value[0])))/100
+      } }).then(resp => {
     })
   }
   // On file upload (click the upload button)
@@ -234,7 +269,7 @@ class App extends Component {
             <Grid item xs={12} md={12}>            
                 <button variant="contained" 
                
-                 onClick={this.onFileUpload}>
+                 onClick={this.selectDataAugmentation}>
                 Select Data Augmentation Types
               </button>             
             </Grid>

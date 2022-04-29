@@ -55,13 +55,18 @@ def rotateImages(rotationAmt):
                 # close the image
                 img.close()
 
-@app.route('/data_augmentation')
+@app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
-    # examples of use
-    rotateImages(90)
-    rotateImages(180)
-    rotateImages(270)
-    return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+    if request.method == 'POST':
+        #types_selected = request.args.getlist("types_selected") 
+        types_selected = request.form.get('types_selected')
+        print(types_selected)
+        return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+        # examples of use
+        """rotateImages(5)
+        rotateImages(10)
+        rotateImages(15)
+        return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')"""
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      
