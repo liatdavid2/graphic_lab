@@ -31,36 +31,11 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
 app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
-@app.route('/split_to_folders')
-def hello_world():    
+@app.route('/crop_split_to_folders')
+def crop_split_to_folders():    
     splitfolders.ratio('runs\detect\exp3\crops', output="runs\detect\exp3\classes", seed=1337, ratio=(0.7, 0.2,0.1)) 
     return 'split_to_folders colmplete!'
     
-
-"""@app.route('/get_images_list_from_folder')
-def get_images_list_from_folder():  
-    res = {} 
-    i = 0
-    images_from_folder = []
-    #files = glob.glob('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\')
-    #for f in files:
-    #    os.remove(f)
-    for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
-        for subdir in subdirs:
-            src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
-            dest_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'+subdir
-            shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
-    for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
-        for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg'):
-                print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
-                images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
-                i+=1
-    #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
-    #print(files)
-    res['images_from_folder'] = images_from_folder
-    return res"""
 
 
 
