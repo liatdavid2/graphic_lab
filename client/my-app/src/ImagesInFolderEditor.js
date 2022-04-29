@@ -18,7 +18,13 @@ export default class ImagesInFolderEditor extends Component {
             imagesFromFolder: [],
           };
     }
-    
+    componentWillReceiveProps(nextProps) {
+      // You don't have to do this check first, but it can help prevent an unneeded render
+      if (nextProps.imagesFromFolder !== this.state.imagesFromFolder) {
+        console.log(nextProps.imagesFromFolder,this.state.imagesFromFolder)
+        this.setState({ imagesFromFolder: nextProps.imagesFromFolder });
+      }
+    }
  
     componentWillMount(){
       // images =getAssets().list("images");
@@ -27,7 +33,7 @@ export default class ImagesInFolderEditor extends Component {
 
      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
-     console.log(this.props.imagesFromFolder)
+     console.log(this.state.imagesFromFolder)
         
     });*/
     }
@@ -54,15 +60,20 @@ export default class ImagesInFolderEditor extends Component {
       );
       axios.post("http://127.0.0.1:5000/delete_selected", formData).then(resp => {
         console.log(resp)
+        this.setState({selectedImages:[]})
+        this.setState({imagesFromFolder:[]})
+ 
         this.setState({imagesFromFolder:resp.data.images_from_folder})
         console.log(this.state.imagesFromFolder)
+        
+ 
       })
     }
   render() {
-    // console.log(this.props.imagesFromFolder);
+    // console.log(this.state.imagesFromFolder);
   return (
       
-    this.props.imagesFromFolder && this.props.imagesFromFolder.length > 0 ?
+    this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
           <button style={{marginTop: "10px",marginBottom: "0px"}}
           onClick={this.DeleteSelected}>
@@ -70,7 +81,7 @@ export default class ImagesInFolderEditor extends Component {
         <ImageList sx={{  height: 280 }} cols={8} rowHeight={80}
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
-        {this.props.imagesFromFolder.map((item, index) => (
+        {this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
             <img
                 src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
