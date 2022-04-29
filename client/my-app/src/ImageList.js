@@ -45,12 +45,12 @@ export default class ImageList extends PureComponent {
      });
   };
   componentWillMount(){
-   /*axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+   //axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-   this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
+   this.setState({imagesFromFolder:[this.props.images]})
    console.log(this.state.imagesFromFolder)
       
-  });*/
+  //})
   }
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp, false);
@@ -132,10 +132,12 @@ export default class ImageList extends PureComponent {
   renderItems() {
     const { selectedItems } = this.state;
     // console.log(imagesFromFolder,this.state.imagesFromFolder)
-    console.log(selectedItems)
-    console.log(this.props.images.filter(item =>selectedItems.includes(item.id)))
+    //console.log(selectedItems)
+    //console.log(this.props.images.filter(item =>selectedItems.includes(item.id)))
+    console.log(this.props.images)
     this.props.images.map((item)  => {
-      const { id, label,image } = item;
+      const { id,image, label } = item;
+      console.log(image)
       return (
          <li key={id}>
           <input
@@ -147,9 +149,8 @@ export default class ImageList extends PureComponent {
           />
           <label htmlFor={`item-${id}`}>{}</label>
           <img
-                src={`../../assets/${image}?w=50&h=50&fit=crop&auto=format`}
-                srcSet={`../../assets/${image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
-                loading="lazy"
+                src={`${image}?w=50&h=50&fit=crop&auto=format`}
+                            
             />
         </li>
       
@@ -162,7 +163,7 @@ export default class ImageList extends PureComponent {
     return  (<div>
     {/*<button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
     <button  onClick={this.copyImagesToAssets}>get images till now!</button>*/}
-
+    <img src="http://127.0.0.1:5000/static/yes/bus_2_second.jpg"></img>
     <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
 
      ref={node => (this.listEl = node)}>{this.renderItems()
