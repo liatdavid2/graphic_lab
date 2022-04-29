@@ -161,7 +161,7 @@ class App extends Component {
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}>
-            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> <CircularProgress />
+            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> 
 
             </Grid>
 
