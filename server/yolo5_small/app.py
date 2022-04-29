@@ -60,13 +60,14 @@ def data_augmentation():
     if request.method == 'POST':
         #types_selected = request.args.getlist("types_selected") 
         types_selected = request.form.get('types_selected')
+        types_selected = types_selected.split(',')
+        
         print(types_selected)
-        return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
-        # examples of use
-        """rotateImages(5)
-        rotateImages(10)
-        rotateImages(15)
-        return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')"""
+        if 'Rotate' in types_selected:
+            rotateImages(5)
+            rotateImages(10)
+            rotateImages(15)
+    return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      
