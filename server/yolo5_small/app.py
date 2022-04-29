@@ -49,7 +49,7 @@ def rotateImages(rotationAmt):
                 print("//".join(splitPath[:-1]))
                 print("//".join(splitPath[:-1])+"//rotate_"+splitPath[-1])
                 #print("//".join(splitPath)[0:-1])
-                img.rotate(rotationAmt).save('rotate_'+fname)
+                img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+splitPath[-1])
                 # close the image
                 img.close()
 
@@ -59,7 +59,7 @@ def data_augmentation():
     rotateImages(90)
     rotateImages(180)
     rotateImages(270)
-    return True
+    return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      
