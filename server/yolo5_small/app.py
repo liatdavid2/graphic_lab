@@ -32,38 +32,11 @@ app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
 @app.route('/crop_split_to_folders')
-def crop_split_to_folders():   
-    """IMG_PATH = 'C://Users//liat//GitHub//graphic_lab//data'
-    os.chdir(IMG_PATH)
-    os.makedirs(os.path.join(IMG_PATH, 'Test'), exist_ok=True)
-    os.makedirs(os.path.join(IMG_PATH, 'Train'), exist_ok=True)
-    os.makedirs(os.path.join(IMG_PATH, 'Validation'), exist_ok=True)
-    os.makedirs(os.path.join(IMG_PATH, 'Test/YES/'), exist_ok=True)
-    os.makedirs(os.path.join(IMG_PATH, 'Train/YES/'), exist_ok=True)
-    os.makedirs(os.path.join(IMG_PATH, 'Validation/YES/'), exist_ok=True)
-    #mkdir TRAIN TEST VAL TRAIN/YES TRAIN/NO TEST/YES TEST/NO VAL/YES VAL/NO
-    # split the data by train/val/test
-    for CLASS in os.listdir(IMG_PATH):
-        print(CLASS)
-        if not CLASS.startswith('.'):
-            IMG_NUM = len(os.listdir(IMG_PATH  +'//'+ CLASS))
-            for (n, FILE_NAME) in enumerate(os.listdir(IMG_PATH +'//'+ CLASS)):
-                img = IMG_PATH +'//'+ CLASS + '//' + FILE_NAME
-                print(img)
-                if n < 0.1*IMG_NUM:
-                    shutil.copytree(img, './TEST/' + CLASS.upper() + '/' + FILE_NAME)
-                    #shutil.copy(img, './TEST/' + CLASS.upper() + '/' + FILE_NAME)
-                elif n < 0.8*IMG_NUM:
-                    shutil.copytree(img, './TRAIN/'+ CLASS.upper() + '/' + FILE_NAME)
-                    #shutil.copy(img, './TRAIN/'+ CLASS.upper() + '/' + FILE_NAME)
-                else:
-                    shutil.copytree(img, './VAL/'+ CLASS.upper() + '/' + FILE_NAME)
-                    #shutil.copy(img, './VAL/'+ CLASS.upper() + '/' + FILE_NAME)"""
-    
+def crop_split_to_folders():       
     splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
     output="C://Users//liat//GitHub//graphic_lab//data", 
     seed=1337, ratio=(0.7, 0.2,0.1)) 
-    return 'split_to_folders colmplete!'
+    return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
         
 
 
