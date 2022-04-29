@@ -63,7 +63,9 @@ export default class ImagesInFolderEditor extends Component {
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox  key={index} name={item}  onChange={e => this.handleChange(e)}/>
+                <Checkbox  key={index} name={item}
+                  onChange={e => this.handleChange(e)}
+                  style={{background:'#ffffff9e',color: '#080862'}}/>
                 </IconButton>
               }
               actionPosition="left"
