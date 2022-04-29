@@ -84,7 +84,8 @@ def delete_selected():
             if os.path.exists(imgPath):
                 os.remove(imgPath)
             #print(selectedImages)
-        return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+        return img_list_from_vid()
+        #return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 
 @app.route('/crop_split_to_folders')
@@ -100,6 +101,19 @@ def crop_split_to_folders():
     return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
         
 
+def img_list_from_vid():
+    res = {} 
+    i = 0
+    images_from_folder = []
+    for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg'):
+                print(777,'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
+                images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
+                i+=1
+    res['images_from_folder'] = images_from_folder
+    return res
 
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
@@ -120,7 +134,9 @@ def upload_file():
         ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
         ,imgsz=(384,640))
 
-        for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
+        return img_list_from_vid()
+
+        """for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
                 for filename in files:
                     fname = os.path.join(path, filename)
                     if fname.endswith('.jpg'):
@@ -128,7 +144,7 @@ def upload_file():
                         images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                         i+=1
         res['images_from_folder'] = images_from_folder
-        return res
+        return res"""
         #return Response(images_from_folder, status=200, mimetype='application/json')
         #return 200,'file uploaded and convert to classes successfully'
 

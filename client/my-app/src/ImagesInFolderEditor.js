@@ -54,6 +54,8 @@ export default class ImagesInFolderEditor extends Component {
       );
       axios.post("http://127.0.0.1:5000/delete_selected", formData).then(resp => {
         console.log(resp)
+        this.setState({imagesFromFolder:resp.data.images_from_folder})
+        console.log(this.state.imagesFromFolder)
       })
     }
   render() {
