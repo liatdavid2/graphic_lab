@@ -80,12 +80,6 @@ class App extends Component {
     axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
       console.log(resp)
     })
-    /*axios.get("http://127.0.0.1:5000/data_augmentation"
-    , { params:{types_selected:types_selected} }).then(
-      res => {
-        console.log(res)
-      }
-      )*/
 
   }
   Split = () => {
