@@ -130,11 +130,11 @@ export default class ImageList extends PureComponent {
   }
 
   renderItems() {
-    const { imagesFromFolder, selectedItems } = this.state;
+    const { selectedItems } = this.state;
     // console.log(imagesFromFolder,this.state.imagesFromFolder)
     console.log(selectedItems)
-    console.log(this.state.imagesFromFolder.filter(item =>selectedItems.includes(item.id)))
-    return this.state.imagesFromFolder.map((item)  => {
+    console.log(this.props.images.filter(item =>selectedItems.includes(item.id)))
+    this.props.images.map((item)  => {
       const { id, label,image } = item;
       return (
          <li key={id}>

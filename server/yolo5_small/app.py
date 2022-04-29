@@ -37,14 +37,14 @@ def hello_world():
     return 'split_to_folders colmplete!'
     
 
-@app.route('/get_images_list_from_folder')
+"""@app.route('/get_images_list_from_folder')
 def get_images_list_from_folder():  
     res = {} 
     i = 0
     images_from_folder = []
-    """files = glob.glob('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\')
-    for f in files:
-        os.remove(f)"""
+    #files = glob.glob('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\')
+    #for f in files:
+    #    os.remove(f)
     for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
         for subdir in subdirs:
             src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
@@ -60,7 +60,7 @@ def get_images_list_from_folder():
     #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
     #print(files)
     res['images_from_folder'] = images_from_folder
-    return res
+    return res"""
 
 
 
@@ -92,14 +92,14 @@ def upload_file():
                 for filename in files:
                     fname = os.path.join(path, filename)
                     if fname.endswith('.jpg'):
-                        print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
+                        print(777,'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
                         images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                         i+=1
         #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
         #print(files)
         res['images_from_folder'] = images_from_folder
-        #return res
-        return Response(res, status=200, mimetype='application/json')
+        return res
+        #return Response(images_from_folder, status=200, mimetype='application/json')
         #return 200,'file uploaded and convert to classes successfully'
 
 

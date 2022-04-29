@@ -166,7 +166,8 @@ class App extends Component {
             </Grid>
 
           <Grid item xs={12}>
-          <ImageList/>
+          {this.state.imagesFromFolder.length > 0 ?
+          <ImageList  images={this.state.imagesFromFolder} />:null}
           {/*<ImagesInFolderEditor/>*/}
             </Grid>
             <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
