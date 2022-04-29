@@ -223,6 +223,15 @@ class App extends Component {
            <ClassesList classes_names={this.state.data_augmentation_types} parentCallback={this.handleCallback}/>
 
             </Grid>
+            <Grid>
+            <Grid item xs={12} md={12}>            
+                <button variant="contained" 
+               
+                 onClick={this.onFileUpload}>
+                Select Data Augmentation Types
+              </button>             
+            </Grid>
+            </Grid>
 
           </Grid>
           </CardContent>
