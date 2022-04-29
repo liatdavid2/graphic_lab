@@ -27,20 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-const marks = [
-  {
-    value: 0,
-    label: 'Train',
-  },
-  {
-    value: 20,
-    label: 'Validation',
-  },
-  {
-    value: 37,
-    label: 'Test',
-  },
-];
+
 class App extends Component {
   
   
@@ -51,7 +38,7 @@ class App extends Component {
     Upload_disable:false,
     classesList:[],
     imagesFromFolder: [],
-    value: [20, 37]
+    value: [50,70, 80]
   };
   
   // On file select (from the pop up)
@@ -208,7 +195,7 @@ class App extends Component {
          spacing={0} >
           <Grid item xs={12}><h4> Train, Validation, Test split: </h4> </Grid>
           <Grid item xs={12}>
-              <Slider
+          <Slider style={{color: '#080862'}}
             getAriaLabel={() => 'Temperature range'}
             valueLabelDisplay="auto"
             value={this.state.value}
