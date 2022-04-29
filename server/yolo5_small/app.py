@@ -142,7 +142,10 @@ def upload_file():
         classesList = request.form.get('classesList').split(",")
         classesListIndexes = []
         for i in range(len(classesList)):
-            classesListIndexes.append(class_names.index(classesList[i])) 
+            classesListIndexes.append(class_names.index(classesList[i]))
+        folder_path = 'C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static//yes'
+        if os.path.exists(folder_path): 
+            shutil.rmtree(folder_path)
         # conf_thres=0.75 important good conf
         detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
         ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
