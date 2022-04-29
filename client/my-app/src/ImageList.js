@@ -21,29 +21,8 @@ export default class ImageList extends PureComponent {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
-  // On file upload (click the upload button)
-  copyImagesToAssets = (e) => {
-    e.preventDefault();
-    console.log("refresh prevented");
-    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
-      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
-      console.log(this.state.imagesFromFolder)
-         
-     });
-  };
-  showImagesFromAssets = (e) => {
-    e.preventDefault();
-    console.log("refresh prevented");
-    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
-      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
-      console.log(this.state.imagesFromFolder)
-         
-     });
-  };
   componentWillMount(){
    //axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
