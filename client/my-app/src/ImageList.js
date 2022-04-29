@@ -47,8 +47,8 @@ export default class ImageList extends PureComponent {
   componentWillMount(){
    //axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-   this.setState({imagesFromFolder:[this.props.images]})
-   console.log(this.state.imagesFromFolder)
+   // this.setState({imagesFromFolder:[this.props.images]})
+   // console.log(this.state.imagesFromFolder)
       
   //})
   }
@@ -134,13 +134,15 @@ export default class ImageList extends PureComponent {
     // console.log(imagesFromFolder,this.state.imagesFromFolder)
     //console.log(selectedItems)
     //console.log(this.props.images.filter(item =>selectedItems.includes(item.id)))
-    console.log(this.props.images)
-    this.props.images.map((item)  => {
+    console.log(this.props.imagesFromFolder)
+    this.props.imagesFromFolder.map((item)  => {
       const { id,image, label } = item;
-      console.log(image)
+      // console.log(image)
       return (
          <li key={id}>
-          <input
+           <h1>777</h1>
+          {console.log(image)
+          /*<input
             onChange={this.handleSelectItem}
             type="checkbox"
             checked={selectedItems.includes(id)}
@@ -151,7 +153,7 @@ export default class ImageList extends PureComponent {
           <img
                 src={`${image}?w=50&h=50&fit=crop&auto=format`}
                             
-            />
+            />*/}
         </li>
       
       );
@@ -159,7 +161,6 @@ export default class ImageList extends PureComponent {
   }
 
   render() {
-
     return  (<div>
     {/*<button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
     <button  onClick={this.copyImagesToAssets}>get images till now!</button>*/}

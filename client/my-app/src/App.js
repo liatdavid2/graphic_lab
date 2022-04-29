@@ -166,9 +166,10 @@ class App extends Component {
             </Grid>
 
           <Grid item xs={12}>
-          {this.state.imagesFromFolder.length > 0 ?
-          <ImageList  images={this.state.imagesFromFolder} />:null}
-          {/*<ImagesInFolderEditor/>*/}
+          {/*this.state.imagesFromFolder.length > 0 ?
+          <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}*/}
+        {this.state.imagesFromFolder.length > 0 ? 
+        <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : null}
             </Grid>
             <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
             Select</button>          

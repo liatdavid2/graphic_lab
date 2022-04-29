@@ -22,34 +22,34 @@ export default class ImagesInFolderEditor extends Component {
     componentWillMount(){
       // images =getAssets().list("images");
       //listImages = new ArrayList<String>(Arrays.asList(images));
-     axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+     /*axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
-     console.log(this.state.imagesFromFolder)
+     console.log(this.props.imagesFromFolder)
         
-    });
+    });*/
     }
     handleChange(e) {
-      console.log(e.target.name)
+      //console.log(e.target.name)
       // let isChecked = e.target.checked;
       // do whatever you want with isChecked value
     }
   render() {
-    console.log(this.state.imagesFromFolder);
+    console.log(this.props.imagesFromFolder);
   return (
       
-    this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
+    this.props.imagesFromFolder && this.props.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
         
         <ImageList sx={{  height: 350 }} cols={8} rowHeight={80}
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
-        {this.state.imagesFromFolder.map((item, index) => (
+        {this.props.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
             <img
-                src={`../../assets/yes/${item}?w=50&h=50&fit=crop&auto=format`}
-                srcSet={`../../assets/yes/${item}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
+                srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
                 alt={777}
                 loading="lazy"
             />
