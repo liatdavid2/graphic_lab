@@ -35,6 +35,7 @@ class App extends Component {
     selectedFile: null,
     Upload_disable:false,
     classesList:[],
+    imagesFromFolder: []
   };
   
   // On file select (from the pop up)
@@ -70,7 +71,13 @@ class App extends Component {
   
     // Request made to the backend api
     // Send formData object
-    axios.post("http://127.0.0.1:5000/upload_video", formData);
+    axios.post("http://127.0.0.1:5000/upload_video", formData).then(resp => {
+      console.log(resp)
+      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+      this.setState({imagesFromFolder:resp.data.images_from_folder})
+      console.log(this.state.imagesFromFolder)
+         
+     });
   };
   
   // File content to be displayed after

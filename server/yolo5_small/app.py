@@ -28,7 +28,7 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
         'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 
         'teddy bear', 'hair drier', 'toothbrush']
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
 @app.route('/split_to_folders')
@@ -62,6 +62,14 @@ def get_images_list_from_folder():
     res['images_from_folder'] = images_from_folder
     return res
 
+@app.route('/')
+def myapp():
+    """
+    Returns a random image directly through send_file
+    """
+    image = random_image()
+    return send_file(image, mimetype='image/png')
+
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
     res = {} 
@@ -93,12 +101,12 @@ def upload_file():
                         print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
                         images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                         i+=1
-    #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
-    #print(files)
-    res['images_from_folder'] = images_from_folder
-    return res
-    #return Response("file uploaded and convert to classes successfully!", status=200, mimetype='application/json')
-    #return 200,'file uploaded and convert to classes successfully'
+        #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
+        #print(files)
+        res['images_from_folder'] = images_from_folder
+        #return res
+        return Response(res, status=200, mimetype='application/json')
+        #return 200,'file uploaded and convert to classes successfully'
 
 
 if __name__ == '__main__':
