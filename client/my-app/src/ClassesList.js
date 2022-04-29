@@ -8,7 +8,7 @@ export default function ClassesList(props) {
   return (
     <Stack spacing={2} >
       <Autocomplete style={{padding:"5px",paddingBottom: "10px"}}
-        multiple  sx={{ width: 400,marginLeft:"20px" }}
+        multiple  sx={{ marginLeft:"20px" }}
         onChange={(event, value) => {console.log(value);
         
           props.parentCallback(value);}} // prints the selected value

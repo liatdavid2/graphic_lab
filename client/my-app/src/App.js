@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react';
 import Grid from '@mui/material/Grid';
+import Slider from '@mui/material/Slider';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -26,6 +27,20 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
+const marks = [
+  {
+    value: 0,
+    label: 'Train',
+  },
+  {
+    value: 20,
+    label: 'Validation',
+  },
+  {
+    value: 37,
+    label: 'Test',
+  },
+];
 class App extends Component {
   
   
@@ -35,7 +50,8 @@ class App extends Component {
     selectedFile: null,
     Upload_disable:false,
     classesList:[],
-    imagesFromFolder: []
+    imagesFromFolder: [],
+    value: [20, 37]
   };
   
   // On file select (from the pop up)
@@ -108,7 +124,13 @@ class App extends Component {
       );
     }
   };
-  
+   handleChange = (event, newValue) => {
+    // setValue(newValue);
+    this.setState({value:newValue})
+  };
+  valuetext(value) {
+    return `${value}°C`;
+  }
   render() {
   
     return (
@@ -141,13 +163,13 @@ class App extends Component {
             <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Upload file and select at least one class:  </h4> 
 
             </Grid>
-            <Grid item xs={12} md={2}>
+            <Grid item xs={12} md={3}>
                <input type="file" style={{marginTop: "12px"}} onChange={this.onFileChange} />
             </Grid>
             <Grid item xs={12} md={6}>
               <ClassesList parentCallback={this.handleCallback}/>
             </Grid>
-            <Grid item xs={12} md={2}>            
+            <Grid item xs={12} md={1}>            
                 <button variant="contained"
                 disabled={this.state.selectedFile === null || this.state.classesList.length === 0}
                  onClick={this.onFileUpload}>
@@ -184,6 +206,20 @@ class App extends Component {
           <CardContent>
           <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
          spacing={0} >
+          <Grid item xs={12}><h4> Train, Validation, Test split: </h4> </Grid>
+          <Grid item xs={12}>
+              <Slider
+            getAriaLabel={() => 'Temperature range'}
+            valueLabelDisplay="auto"
+            value={this.state.value}
+            onChange={this.handleChange}
+            getAriaValueText={this.valuetext}
+           
+          /></Grid>
+          <Grid item xs={12}>
+            Train: {this.state.value[0]}, Validation: {this.state.value[1]-this.state.value[0]} 
+            , Test: {100 - (this.state.value[0]+(this.state.value[1]-this.state.value[0]))}
+          </Grid>
            <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
            </Grid>
           </CardContent>
