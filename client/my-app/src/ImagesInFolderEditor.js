@@ -42,7 +42,7 @@ export default class ImagesInFolderEditor extends Component {
     this.props.imagesFromFolder && this.props.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
         
-        <ImageList sx={{  height: 345 }} cols={8} rowHeight={80}
+        <ImageList sx={{  height: 280 }} cols={8} rowHeight={80}
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
         {this.props.imagesFromFolder.map((item, index) => (
@@ -50,7 +50,7 @@ export default class ImagesInFolderEditor extends Component {
             <img
                 src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
                 srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
-                alt={777}
+                alt={item.label}
                 loading="lazy"
             />
             <ImageListItemBar

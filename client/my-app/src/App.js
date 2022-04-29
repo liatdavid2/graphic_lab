@@ -5,6 +5,7 @@ import Slider from '@mui/material/Slider';
 import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ClassesList from './ClassesList';
@@ -177,12 +178,13 @@ class App extends Component {
           <Grid item xs={12}>
           {/*this.state.imagesFromFolder.length > 0 ?
           <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}*/}
+              <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
+            Select</button>          
+          </Grid>
         {this.state.imagesFromFolder.length > 0 ? 
         <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : null}
             </Grid>
-            <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
-            Select</button>          
-          </Grid>
+     
           </Grid>
           </CardContent>
           </Card>
@@ -191,7 +193,7 @@ class App extends Component {
           <Grid item xs={12} md={3}>
           <Card style={{marginRight: "10px",marginLeft: "10px",padding:'0px',borderRadius: 0,height:"520px"}} >
           <CardContent>
-          <Grid container style={{marginRight: "10px",marginLeft: "10px"}}
+          <Grid container style={{marginRight: "10px",marginLeft: "0px"}}
          spacing={0} >
           <Grid item xs={12}><h4> Train, Validation, Test split: </h4> </Grid>
           <Grid item xs={12}>
@@ -200,13 +202,16 @@ class App extends Component {
             valueLabelDisplay="auto"
             value={this.state.value}
             onChange={this.handleChange}
-            getAriaValueText={this.valuetext}
-           
-          /></Grid>
+            getAriaValueText={this.valuetext}  /></Grid>
           <Grid item xs={12}>
             Train: {this.state.value[0]}, Validation: {this.state.value[1]-this.state.value[0]} 
             , Test: {100 - (this.state.value[0]+(this.state.value[1]-this.state.value[0]))}
           </Grid>
+          <Grid item xs={12}>
+            <button style={{marginTop: '10px'}}>Split</button>
+            <Divider />
+            </Grid>
+            
            <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
            </Grid>
           </CardContent>
