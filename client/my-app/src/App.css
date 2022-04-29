@@ -53,6 +53,18 @@ button:hover{
 button:disabled{
   background: gray;
 }
+.number{
+  display: inline;
+  background: #080862;
+  color: white;
+  border-radius: 35px;
+  padding-right: 7px;
+  padding-left: 5px;
+  
+  margin-right: 5px;
+  font-weight: bold;
+}
+
 /*li{
   display: flex;
 }*/

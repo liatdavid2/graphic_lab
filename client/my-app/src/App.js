@@ -184,8 +184,10 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px",borderRadius: 0}} >
           <CardContent>
           <Grid container spacing={0}>
-          <Grid item xs={12}>
-            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Upload file and select at least one class:  </h4> 
+          <Grid item xs={12} style={{marginTop: '8px'}}>
+            <div className='number'>1</div>
+            <h4 style={{marginTop: "8px",marginBottom: "8px",display: "inline"}}> 
+             Upload file and select at least one class:  </h4> 
 
             </Grid>
             <Grid item xs={12} md={3}>
@@ -212,7 +214,7 @@ class App extends Component {
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}>
-            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Select all images not in class:  </h4> 
+            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Delete all images not in class:  </h4> 
 
             </Grid>
 
@@ -220,7 +222,7 @@ class App extends Component {
           {/*this.state.imagesFromFolder.length > 0 ?
           <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}*/}
               <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
-            Select</button>          
+            Delete selected</button>          
           </Grid>
         {this.state.imagesFromFolder.length > 0 ? 
         <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : null}
