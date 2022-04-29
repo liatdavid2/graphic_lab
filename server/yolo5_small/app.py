@@ -74,8 +74,16 @@ def data_augmentation():
 def delete_selected(): 
     if request.method == 'POST':
         selectedImages = request.form.get('selectedImages')
-        selectedImages = selectedImages.split(',')
-        print(selectedImages)
+        selectedImages = selectedImages.split(',')        
+        for img in selectedImages:
+            splitPath = img.split("/")
+            print(img)
+            
+            imgPath = 'C:/Users/liat/GitHub/graphic_lab/server/yolo5_small/static' +'/'+ splitPath[-2]+'/'+splitPath[-1]
+            print(imgPath)
+            if os.path.exists(imgPath):
+                os.remove(imgPath)
+            #print(selectedImages)
         return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 
