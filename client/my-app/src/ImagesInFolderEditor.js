@@ -46,13 +46,24 @@ export default class ImagesInFolderEditor extends Component {
       // let isChecked = e.target.checked;
       // do whatever you want with isChecked value
     }
+    DeleteSelected= () => {
+      const formData = new FormData();
+      formData.append(
+        "selectedImages",
+        this.state.selectedImages
+      );
+      axios.post("http://127.0.0.1:5000/delete_selected", formData).then(resp => {
+        console.log(resp)
+      })
+    }
   render() {
-    console.log(this.props.imagesFromFolder);
+    // console.log(this.props.imagesFromFolder);
   return (
       
     this.props.imagesFromFolder && this.props.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
-          <button style={{marginTop: "10px",marginBottom: "0px"}}>
+          <button style={{marginTop: "10px",marginBottom: "0px"}}
+          onClick={this.DeleteSelected}>
             Delete selected</button> 
         <ImageList sx={{  height: 280 }} cols={8} rowHeight={80}
         gap={0}

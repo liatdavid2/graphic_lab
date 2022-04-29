@@ -69,6 +69,16 @@ def data_augmentation():
             rotateImages(15)
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
+
+@app.route('/delete_selected', methods = ['POST'])
+def delete_selected(): 
+    if request.method == 'POST':
+        selectedImages = request.form.get('selectedImages')
+        selectedImages = selectedImages.split(',')
+        print(selectedImages)
+        return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+
+
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      
     train = request.args.get('train') 

@@ -64,23 +64,14 @@ class App extends Component {
     
 }
   selectDataAugmentation= () => {
-    
-    /*let types_selected = this.state.data_augmentation_types_selected
-    console.log(types_selected)*/
-
     const formData = new FormData();
-
     formData.append(
       "types_selected",
       this.state.data_augmentation_types_selected
     );
-  
-    // Request made to the backend api
-    // Send formData object
     axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
       console.log(resp)
     })
-
   }
   Split = () => {
     axios.get("http://127.0.0.1:5000/crop_split_to_folders"
