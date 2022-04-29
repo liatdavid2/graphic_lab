@@ -14,6 +14,7 @@ export default class ImagesInFolderEditor extends Component {
     constructor() {
         super();
         this.state = {
+            selectedImages: [],
             imagesFromFolder: [],
           };
     }
@@ -31,7 +32,17 @@ export default class ImagesInFolderEditor extends Component {
     });*/
     }
     handleChange(e) {
-      //console.log(e.target.name)
+      console.log(e.target.name)
+      if(!this.state.selectedImages.includes(e.target.name)){
+        this.setState({
+          selectedImages: [...this.state.selectedImages
+            ,e.target.name]})
+      }else{
+        this.setState({selectedImages: this.state.selectedImages.filter(function(selectedImage) { 
+          return selectedImage !== e.target.name 
+      })});
+      }
+      
       // let isChecked = e.target.checked;
       // do whatever you want with isChecked value
     }
@@ -41,7 +52,8 @@ export default class ImagesInFolderEditor extends Component {
       
     this.props.imagesFromFolder && this.props.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
-        
+          <button style={{marginTop: "10px",marginBottom: "0px"}}>
+            Delete selected</button> 
         <ImageList sx={{  height: 280 }} cols={8} rowHeight={80}
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
@@ -63,7 +75,7 @@ export default class ImagesInFolderEditor extends Component {
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox  key={index} name={item}
+                <Checkbox  key={index} name={item.image}
                   onChange={e => this.handleChange(e)}
                   style={{background:'#ffffff9e',color: '#080862'}}/>
                 </IconButton>

@@ -221,10 +221,11 @@ class App extends Component {
 
           <Grid item xs={12}>
           {/*this.state.imagesFromFolder.length > 0 ?
-          <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}*/}
-              <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
+          <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}
+              <Grid item xs={12}>
+                <button style={{marginTop: "10px",marginBottom: "0px"}}>
             Delete selected</button>          
-          </Grid>
+          </Grid>*/}
         {this.state.imagesFromFolder.length > 0 ? 
         <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : null}
             </Grid>
