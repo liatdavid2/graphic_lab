@@ -55,7 +55,9 @@ class App extends Component {
   handleCallback = (childData) =>{
     this.setState({classesList: childData})
 }
-  
+  Split = () => {
+    
+  }
   // On file upload (click the upload button)
   onFileUpload = () => {
   
@@ -129,11 +131,11 @@ class App extends Component {
       <AppBar position="static" style={{backgroundColor: "#080862",marginBottom: "10px"}} >
         <Toolbar>
         <Grid container>
-        <Grid item xs={1} > 
+       
         <MenuIcon />
         <IconButton edge="start"  color="inherit" aria-label="menu">         
            </IconButton>
-        </Grid>
+       
         <Grid item xs={7} >
 
           <Typography variant="h6" >
@@ -214,7 +216,9 @@ class App extends Component {
             , Test: {100 - (this.state.value[0]+(this.state.value[1]-this.state.value[0]))}
           </Grid>
           <Grid item xs={12}>
-            <button style={{marginTop: '10px'}}>Split</button>
+            <button style={{marginTop: '10px'}} 
+             onClick={this.Split}
+            >Split</button>
             <Divider />
             </Grid>
             
@@ -246,7 +250,6 @@ class App extends Component {
              
              
           </div>
-        {/*this.fileData()*/}
 
       </div>
     );
