@@ -213,8 +213,9 @@ class App extends Component {
           <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",marginBottom: "10px",borderRadius: 0,padding:'0px',height:"425px"}} >
           <CardContent>
           <Grid container spacing={0}>
-          <Grid item xs={12}>
-            <h4 style={{marginTop: "8px",marginBottom: "8px"}}>  Delete all images not in class:  </h4> 
+          <Grid item xs={12} style={{marginTop: '8px'}}>
+          <div className='number'>2</div>
+            <h4 style={{marginTop: "8px",marginBottom: "8px",display: "inline"}}>  Delete all images not in class:  </h4> 
 
             </Grid>
 
@@ -238,7 +239,10 @@ class App extends Component {
           <CardContent>
           <Grid container style={{marginRight: "10px",marginLeft: "0px"}}
          spacing={0} >
-          <Grid item xs={12}><h4> Train, Validation, Test split: </h4> </Grid>
+          <Grid item xs={12} style={{marginTop: '8px'}}>
+          <div className='number'>3</div>
+            <h4 style={{display: "inline"}}> Train, Validation, Test split: </h4>
+             </Grid>
           <Grid item xs={12}>
           <Slider style={{color: '#080862'}}
          
