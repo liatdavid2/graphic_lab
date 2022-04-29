@@ -6,6 +6,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from distutils.dir_util import copy_tree
+import skimage
 import splitfolders
 from PIL import Image
 import shutil
@@ -44,6 +45,7 @@ def rotateImages(rotationAmt):
             if fname.endswith('.jpg'):
                 # open the image
                 img = Image.open(fname)
+                #gimg = skimage.util.random_noise(img, mode="gaussian")
                 # rotate and save the image with the same filename
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1]))
