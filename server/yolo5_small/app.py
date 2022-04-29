@@ -45,11 +45,11 @@ def get_images_list_from_folder():
     """files = glob.glob('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\')
     for f in files:
         os.remove(f)"""
-    """for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
+    for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
         for subdir in subdirs:
             src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
             dest_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'+subdir
-            shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)"""
+            shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
     for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
         for filename in files:
             fname = os.path.join(path, filename)
@@ -64,21 +64,41 @@ def get_images_list_from_folder():
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
-      f = request.files['video_file']
-      f.save(secure_filename(f.filename))
-      print(f.filename,request.form.get('classesList'))
-      classesList = request.form.get('classesList').split(",")
-      classesListIndexes = []
-      for i in range(len(classesList)):
-          classesListIndexes.append(class_names.index(classesList[i])) 
-      # conf_thres=0.75 important good conf
-      detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-      ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//images',name='yes'
-      ,imgsz=(384,640))
-      #copy_tree('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//runs//detect//exp22//crops//', 'C://Users//liat//GitHub//graphic_lab//client//my-app//public//assets//')
-      print(77)
-      return 200,'file uploaded and convert to classes successfully'
+    res = {} 
+    i = 0
+    images_from_folder = []
+    if request.method == 'POST':
+        f = request.files['video_file']
+        f.save(secure_filename(f.filename))
+        print(f.filename,request.form.get('classesList'))
+        classesList = request.form.get('classesList').split(",")
+        classesListIndexes = []
+        for i in range(len(classesList)):
+            classesListIndexes.append(class_names.index(classesList[i])) 
+        # conf_thres=0.75 important good conf
+        detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
+        ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//images',name='yes'
+        ,imgsz=(384,640))
+
+        for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
+            for subdir in subdirs:
+                src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
+                dest_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'+subdir
+                shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
+
+        for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
+                for filename in files:
+                    fname = os.path.join(path, filename)
+                    if fname.endswith('.jpg'):
+                        print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
+                        images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
+                        i+=1
+    #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
+    #print(files)
+    res['images_from_folder'] = images_from_folder
+    return res
+    #return Response("file uploaded and convert to classes successfully!", status=200, mimetype='application/json')
+    #return 200,'file uploaded and convert to classes successfully'
 
 
 if __name__ == '__main__':

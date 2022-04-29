@@ -22,6 +22,17 @@ export default class ImageList extends PureComponent {
     this.handleSelectStart = this.handleSelectStart.bind(this);
   }
   // On file upload (click the upload button)
+  copyImagesToAssets = (e) => {
+    e.preventDefault();
+    console.log("refresh prevented");
+    axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+
+      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+      this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
+      console.log(this.state.imagesFromFolder)
+         
+     });
+  };
   showImagesFromAssets = (e) => {
     e.preventDefault();
     console.log("refresh prevented");
@@ -34,15 +45,12 @@ export default class ImageList extends PureComponent {
      });
   };
   componentWillMount(){
-    // images =getAssets().list("images");
-    //listImages = new ArrayList<String>(Arrays.asList(images));
-   axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
+   /*axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
 
-   //imagesFromFolder = [...useState(resp.data.images_from_folder)]
    this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
    console.log(this.state.imagesFromFolder)
       
-  });
+  });*/
   }
   componentDidMount() {
     document.addEventListener("keyup", this.handleKeyUp, false);
@@ -152,8 +160,8 @@ export default class ImageList extends PureComponent {
   render() {
 
     return  (<div>
-    <button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
-    <button  onClick={this.copyImagesToAssets}>get images till now!</button>
+    {/*<button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
+    <button  onClick={this.copyImagesToAssets}>get images till now!</button>*/}
 
     <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
 

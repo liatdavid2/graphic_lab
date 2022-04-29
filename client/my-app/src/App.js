@@ -160,6 +160,7 @@ class App extends Component {
 
           <Grid item xs={12}>
           <ImageList/>
+          {/*<ImagesInFolderEditor/>*/}
             </Grid>
             <Grid item xs={12}><button style={{marginTop: "10px",marginBottom: "0px"}}>
             Select</button>          
