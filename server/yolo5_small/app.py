@@ -1,11 +1,13 @@
 #from flask import Flask
 #Import necessary libraries
+from cv2 import split
 from flask import Flask, render_template, Response, request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from distutils.dir_util import copy_tree
 import splitfolders
+from PIL import Image
 import shutil
 import os
 import cv2
@@ -30,6 +32,34 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
 
 app = Flask(__name__, static_url_path = '/static')
 CORS(app)
+
+
+# define a function that rotates images in the current directory
+# given the rotation in degrees as a parameter
+def rotateImages(rotationAmt):
+    # for each image in the current directory
+    for path, subdirs, files in os.walk(r'C:\Users\liat\GitHub\graphic_lab\data'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg'):
+                # open the image
+                img = Image.open(fname)
+                # rotate and save the image with the same filename
+                splitPath = fname.split("\\")
+                print("//".join(splitPath[:-1]))
+                print("//".join(splitPath[:-1])+"//rotate_"+splitPath[-1])
+                #print("//".join(splitPath)[0:-1])
+                img.rotate(rotationAmt).save('rotate_'+fname)
+                # close the image
+                img.close()
+
+@app.route('/data_augmentation')
+def data_augmentation(): 
+    # examples of use
+    rotateImages(90)
+    rotateImages(180)
+    rotateImages(270)
+    return True
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      
