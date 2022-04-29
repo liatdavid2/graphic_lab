@@ -21,13 +21,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import './App.css';
 import axios from 'axios';
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 class App extends Component {
   
@@ -39,7 +32,16 @@ class App extends Component {
     Upload_disable:false,
     classesList:[],
     imagesFromFolder: [],
-    value: [50,70, 80]
+    value: [50,70, 80],
+    classes_names : ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+        'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+        'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
+        'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
+        'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+        'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+        'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 
+        'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 
+        'teddy bear', 'hair drier', 'toothbrush']
   };
   
   // On file select (from the pop up)
@@ -155,7 +157,10 @@ class App extends Component {
                <input type="file" style={{marginTop: "12px"}} onChange={this.onFileChange} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <ClassesList parentCallback={this.handleCallback}/>
+           
+            <ClassesList classes_names={this.state.classes_names} parentCallback={this.handleCallback}/>
+
+        
             </Grid>
             <Grid item xs={12} md={1}>            
                 <button variant="contained"
@@ -213,7 +218,7 @@ class App extends Component {
             </Grid>
             
            <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
-           </Grid>
+          </Grid>
           </CardContent>
           </Card>
           </Grid>

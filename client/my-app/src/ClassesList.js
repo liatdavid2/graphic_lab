@@ -13,7 +13,7 @@ export default function ClassesList(props) {
         
           props.parentCallback(value);}} // prints the selected value
         id="tags-standard"
-        options={classes_names}
+        options={props.classes_names}
         getOptionLabel={(option) => option}
         renderInput={(params) => (
           <TextField
@@ -26,7 +26,7 @@ export default function ClassesList(props) {
     </Stack>
   );
 }
-const classes_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+/*const classes_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
         'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
@@ -34,5 +34,5 @@ const classes_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bu
         'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
         'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 
         'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 
-        'teddy bear', 'hair drier', 'toothbrush'];
+        'teddy bear', 'hair drier', 'toothbrush'];*/
 
