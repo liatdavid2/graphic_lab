@@ -174,7 +174,7 @@ class App extends Component {
           </Grid>
           </CardContent></Card>
 
-          <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",borderRadius: 0,padding:'0px',height:"425px"}} >
+          <Card style={{marginRight: "10px",marginLeft: "10px",marginTop: "10px",marginBottom: "10px",borderRadius: 0,padding:'0px',height:"425px"}} >
           <CardContent>
           <Grid container spacing={0}>
           <Grid item xs={12}>
@@ -205,8 +205,7 @@ class App extends Component {
           <Grid item xs={12}><h4> Train, Validation, Test split: </h4> </Grid>
           <Grid item xs={12}>
           <Slider style={{color: '#080862'}}
-            getAriaLabel={() => 'Temperature range'}
-            valueLabelDisplay="auto"
+         
             value={this.state.value}
             onChange={this.handleChange}
             getAriaValueText={this.valuetext}  /></Grid>
