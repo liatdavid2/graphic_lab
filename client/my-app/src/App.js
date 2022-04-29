@@ -33,6 +33,7 @@ class App extends Component {
     classesList:[],
     imagesFromFolder: [],
     value: [50,70, 80],
+    data_augmentation_types :['Rotate','scale'],
     classes_names : ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
@@ -156,14 +157,15 @@ class App extends Component {
             <Grid item xs={12} md={3}>
                <input type="file" style={{marginTop: "12px"}} onChange={this.onFileChange} />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={8}>
            
-            <ClassesList classes_names={this.state.classes_names} parentCallback={this.handleCallback}/>
+            <ClassesList classes_names={this.state.classes_names} parentCallback={this.handleCallback}
+            />
 
         
             </Grid>
             <Grid item xs={12} md={1}>            
-                <button variant="contained"
+                <button variant="contained" style={{marginLeft:'10px'}}
                 disabled={this.state.selectedFile === null || this.state.classesList.length === 0}
                  onClick={this.onFileUpload}>
                 Upload!
@@ -218,6 +220,11 @@ class App extends Component {
             </Grid>
             
            <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
+           <Grid item xs={12}>
+           <ClassesList classes_names={this.state.data_augmentation_types} parentCallback={this.handleCallback}/>
+
+            </Grid>
+
           </Grid>
           </CardContent>
           </Card>
