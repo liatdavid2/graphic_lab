@@ -62,13 +62,7 @@ def get_images_list_from_folder():
     res['images_from_folder'] = images_from_folder
     return res
 
-@app.route('/')
-def myapp():
-    """
-    Returns a random image directly through send_file
-    """
-    image = random_image()
-    return send_file(image, mimetype='image/png')
+
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
@@ -85,21 +79,21 @@ def upload_file():
             classesListIndexes.append(class_names.index(classesList[i])) 
         # conf_thres=0.75 important good conf
         detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-        ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//images',name='yes'
+        ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
         ,imgsz=(384,640))
 
-        for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'):
+        """for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
             for subdir in subdirs:
                 src_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\images\\'+subdir
                 dest_dir = 'C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'+subdir
-                shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)
+                shutil.copytree(src_dir, dest_dir, dirs_exist_ok=True)"""
 
-        for path, subdirs, files in os.walk('C:\\Users\\liat\\GitHub\\graphic_lab\\client\\my-app\\public\\assets\\'):
+        for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
                 for filename in files:
                     fname = os.path.join(path, filename)
                     if fname.endswith('.jpg'):
                         print(777,fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
-                        images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
+                        images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                         i+=1
         #files = glob.glob('C:/Users/liat/GitHub/graphic_lab/client/my-app/public/assets/person/**/*.jpg')
         #print(files)
