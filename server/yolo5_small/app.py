@@ -61,7 +61,7 @@ def crop_split_to_folders():
                     #shutil.copy(img, './VAL/'+ CLASS.upper() + '/' + FILE_NAME)"""
     
     splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
-    output="C://Users//liat//GitHub//graphic_lab//statics", 
+    output="C://Users//liat//GitHub//graphic_lab//data", 
     seed=1337, ratio=(0.7, 0.2,0.1)) 
     return 'split_to_folders colmplete!'
         

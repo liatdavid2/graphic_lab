@@ -1,2 +1,3 @@
 server/yolo5_small/runs/detect/
-server/yolo5_small/static
+server/yolo5_small/static/
+data/
