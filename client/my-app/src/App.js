@@ -260,7 +260,10 @@ class App extends Component {
             <Divider />
             </Grid>
             
-           <Grid item xs={12}><h4> Image data augmentation: </h4> </Grid>
+           <Grid item xs={12} style={{marginTop: '8px'}}>
+           <div className='number'>4</div>
+             <h4 style={{display: "inline"}}> Image data augmentation: </h4> 
+             </Grid>
            <Grid item xs={12}>
            <ClassesList classes_names={this.state.data_augmentation_types} parentCallback={this.handleCallback}/>
 
