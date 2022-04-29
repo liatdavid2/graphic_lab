@@ -98,6 +98,20 @@ def crop_split_to_folders():
     splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
     output="C://Users//liat//GitHub//graphic_lab//data", 
     seed=1337, ratio=(float(train), float(validation),float(test))) 
+    # loop through the list of folders
+    #for sub_dir in content_list:  
+    """for path, subdirs, files in os.walk('test'):
+        for sub_dir in subdirs:
+            # loop through the contents of the
+            # list of folders
+            #for contents in content_list[sub_dir]:  
+            # make the path of the content to move 
+            path_to_content = sub_dir + "/" + contents    
+            # make the path with the current folder
+            dir_to_move = os.path.join(current_folder, path_to_content )
+    
+            # move the file
+            shutil.move(dir_to_move, merge_folder_path)"""
     return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
         
 
