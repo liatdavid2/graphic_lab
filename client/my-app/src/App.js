@@ -56,7 +56,10 @@ class App extends Component {
     this.setState({classesList: childData})
 }
   Split = () => {
-    
+    axios.get("http://127.0.0.1:5000/crop_split_to_folders"
+    , { params: { train: 80/100 ,validation:10/100,test:10/100} }).then(resp => {
+
+    })
   }
   // On file upload (click the upload button)
   onFileUpload = () => {

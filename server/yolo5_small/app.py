@@ -32,10 +32,15 @@ app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
 @app.route('/crop_split_to_folders')
-def crop_split_to_folders():       
+def crop_split_to_folders():      
+    train = request.args.get('train') 
+    validation = request.args.get('validation') 
+    test = request.args.get('test') 
+    print(train)
+    # the ratio to split. e.g. for train/val/test 
     splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
     output="C://Users//liat//GitHub//graphic_lab//data", 
-    seed=1337, ratio=(0.7, 0.2,0.1)) 
+    seed=1337, ratio=(float(train), float(validation),float(test))) 
     return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
         
 
