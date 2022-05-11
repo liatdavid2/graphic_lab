@@ -89,6 +89,10 @@ def delete_selected():
         return img_list_from_vid()
         #return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
+@app.route('/stop')
+def stop():
+    detect.stop()
+    return img_list_from_vid()
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders():      

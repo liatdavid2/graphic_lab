@@ -46,6 +46,8 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
 
+toStop = False
+
 
 @torch.no_grad()
 def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
@@ -179,6 +181,8 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
 
             # Save results (image with detections)
             if save_img:
+                global toStop
+                if toStop == True:return
                 if dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
                 else:  # 'video' or 'stream'
@@ -208,6 +212,9 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
     if update:
         strip_optimizer(weights)  # update model (to fix SourceChangeWarning)
 
+def stop():
+    global toStop
+    toStop = True
 
 def parse_opt():
     parser = argparse.ArgumentParser()
