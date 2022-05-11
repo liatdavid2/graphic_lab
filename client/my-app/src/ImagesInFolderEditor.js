@@ -18,9 +18,12 @@ export default class ImagesInFolderEditor extends Component {
             imagesFromFolder: [],
           };
     }
-    componentWillReceiveProps(nextProps) {
+    
+    componentWillUpdate(nextProps) {
+      console.log(nextProps)
       // You don't have to do this check first, but it can help prevent an unneeded render
       if (nextProps.imagesFromFolder !== this.state.imagesFromFolder) {
+        // console.log(nextProps.imagesFromFolder ,this.state.imagesFromFolder)
         console.log(nextProps.imagesFromFolder,this.state.imagesFromFolder)
         this.setState({ imagesFromFolder: nextProps.imagesFromFolder });
       }
@@ -73,7 +76,7 @@ export default class ImagesInFolderEditor extends Component {
     // console.log(this.state.imagesFromFolder);
   return (
       
-    this.state.imagesFromFolder && this.state.imagesFromFolder.length > 0 ?
+    this.state.imagesFromFolder.length > 0 ?
       <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
           <button style={{marginTop: "10px",marginBottom: "0px"}}
           onClick={this.DeleteSelected}>

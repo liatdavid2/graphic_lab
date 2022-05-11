@@ -24,27 +24,28 @@ import axios from 'axios';
 
 class App extends Component {
   
-  
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedFile: null,
+      Upload_disable:false,
+      classesList:[],
+      data_augmentation_types_selected:[],
+      imagesFromFolder: [],
+      value: [50,70, 80],
+      data_augmentation_types :['Rotate','scale','Rotate2','scale2','Rotate3','scale3'],
+      classes_names : ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+          'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+          'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
+          'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
+          'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+          'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+          'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 
+          'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 
+          'teddy bear', 'hair drier', 'toothbrush']
+    };
+  }
 
-    // Initially, no file is selected
-    selectedFile: null,
-    Upload_disable:false,
-    classesList:[],
-    data_augmentation_types_selected:[],
-    imagesFromFolder: [],
-    value: [50,70, 80],
-    data_augmentation_types :['Rotate','scale','Rotate2','scale2','Rotate3','scale3'],
-    classes_names : ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
-        'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
-        'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
-        'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
-        'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
-        'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-        'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 
-        'cell phone', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 
-        'teddy bear', 'hair drier', 'toothbrush']
-  };
   
   // On file select (from the pop up)
   onFileChange = event => {
@@ -211,14 +212,9 @@ class App extends Component {
             </Grid>
 
           <Grid item xs={12}>
-          {/*this.state.imagesFromFolder.length > 0 ?
-          <ImageList  imagesFromFolder={this.state.imagesFromFolder} />:null}
-              <Grid item xs={12}>
-                <button style={{marginTop: "10px",marginBottom: "0px"}}>
-            Delete selected</button>          
-          </Grid>*/}
         {this.state.imagesFromFolder.length > 0 ? 
-        <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : null}
+        <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : <div><CircularProgress />
+        <span>Make data from video images</span></div>}
             </Grid>
      
           </Grid>
