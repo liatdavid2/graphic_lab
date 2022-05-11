@@ -39,7 +39,9 @@ CORS(app)
 # given the rotation in degrees as a parameter
 def rotateImages(rotationAmt):
     # for each image in the current directory
-    for path, subdirs, files in os.walk(r'C:\Users\liat\GitHub\graphic_lab\data'):
+    
+    #os.makedirs('C:\\Users\\liat\\GitHub\\graphic_lab\\data', exist_ok = True)
+    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
             if fname.endswith('.jpg'):
@@ -57,13 +59,17 @@ def rotateImages(rotationAmt):
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
+    data_path= 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
     if request.method == 'POST':
+        if os.path.exists(data_path): 
+            shutil.rmtree(data_path)
         #types_selected = request.args.getlist("types_selected") 
         types_selected = request.form.get('types_selected')
         types_selected = types_selected.split(',')
         
         print(types_selected)
         if 'Rotate' in types_selected:
+
             rotateImages(5)
             rotateImages(10)
             rotateImages(15)
@@ -151,9 +157,9 @@ def upload_file():
         ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
         ,imgsz=(384,640))
 
-        return img_list_from_vid()
+        #return img_list_from_vid()
 
-        """for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
+        for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
                 for filename in files:
                     fname = os.path.join(path, filename)
                     if fname.endswith('.jpg'):
@@ -161,7 +167,7 @@ def upload_file():
                         images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                         i+=1
         res['images_from_folder'] = images_from_folder
-        return res"""
+        return res
         #return Response(images_from_folder, status=200, mimetype='application/json')
         #return 200,'file uploaded and convert to classes successfully'
 
