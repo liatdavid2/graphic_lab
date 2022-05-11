@@ -40,7 +40,6 @@ CORS(app)
 def rotateImages(rotationAmt):
     # for each image in the current directory
     
-    #os.makedirs('C:\\Users\\liat\\GitHub\\graphic_lab\\data', exist_ok = True)
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
@@ -59,10 +58,7 @@ def rotateImages(rotationAmt):
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
-    data_path= 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
     if request.method == 'POST':
-        if os.path.exists(data_path): 
-            shutil.rmtree(data_path)
         #types_selected = request.args.getlist("types_selected") 
         types_selected = request.form.get('types_selected')
         types_selected = types_selected.split(',')
