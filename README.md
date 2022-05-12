@@ -13,3 +13,7 @@
 # motivation
 1. Nowadays for a classification problem you have to manually search for a lot of pictures to train the model and I take out a lot of pictures in an automatic video process.
 2. It is easy to see end cases of the YOLO5 model (which extracts images from video) and improve the model - for example YOLO5 classifies a monkey as a person - if you train YOLO5 on a monkey category he will not classify a monkey as a person.
+# How to install
+1. install node.js , python3 and anaconda.
+2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
+3. 
