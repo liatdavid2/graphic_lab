@@ -21,11 +21,11 @@
 
 # How to use
 
-1. open http://localhost:3000/ and select video file and classname and click "Upload!" button. 
+1. Open http://localhost:3000/ and select video file and classname (for example "person") and click "Upload!" button. 
 <img src="https://user-images.githubusercontent.com/11797397/168041594-48eb3300-28b2-4b8d-816d-98c37f358f82.png" width=50% height=50%>
-2. now you can see the video playing<br />
-<img src="https://user-images.githubusercontent.com/11797397/168043328-47ab5943-7ac5-41b7-ab5a-74c8eb16d82b.png" width=50% height=50%>
-<img src="https://user-images.githubusercontent.com/11797397/168044063-19fae0ef-5392-4849-8fab-f008b210682d.png" width=50% height=50%>
+2. Now you can see the video finds all persons.<br />
+<span><img src="https://user-images.githubusercontent.com/11797397/168043328-47ab5943-7ac5-41b7-ab5a-74c8eb16d82b.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/11797397/168044063-19fae0ef-5392-4849-8fab-f008b210682d.png" width=30% height=30%></span>
 
 
 
