@@ -26,8 +26,10 @@
 <span><img src="https://user-images.githubusercontent.com/11797397/168043328-47ab5943-7ac5-41b7-ab5a-74c8eb16d82b.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/11797397/168044063-19fae0ef-5392-4849-8fab-f008b210682d.png" width=30% height=30%></span><br/>
 <b>Step 2:</b> select all images not in class (not baby JJ) and click "Delete selected".<br/>
-<img src="https://user-images.githubusercontent.com/11797397/168046864-1ddc088c-515c-48df-9f56-150a5e45b70a.png" width=30% height=30%><br/>
+<img src="https://user-images.githubusercontent.com/11797397/168047320-647eb10c-5c73-455e-9a58-46965a1717ff.png" width=50% height=50%><br/>
+
 <b>Step 3:</b> Select how to split the images collected from video to Train, Validation, Test splits and click "split".<br/>
+<img src="https://user-images.githubusercontent.com/11797397/168046864-1ddc088c-515c-48df-9f56-150a5e45b70a.png" width=30% height=30%><br/>
 
 
 
