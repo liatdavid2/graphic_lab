@@ -170,7 +170,7 @@ shouldComponentUpdate() {
         <IconButton edge="start"  color="inherit" aria-label="menu">         
            </IconButton>
        
-        <Grid item xs={7} >
+        <Grid item xs={10} >
 
           <Typography variant="h6" >
           Video to Classified data!
