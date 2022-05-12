@@ -25,7 +25,7 @@ step 1: Open http://localhost:3000/ and select video file and classname (for exa
  Now you can see the video finds all persons.<br />
 <span><img src="https://user-images.githubusercontent.com/11797397/168043328-47ab5943-7ac5-41b7-ab5a-74c8eb16d82b.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/11797397/168044063-19fae0ef-5392-4849-8fab-f008b210682d.png" width=30% height=30%></span><br/>
-step 2: select all images not in class and click "Delete selected"<br/>
+step 2: select all images not in class (not baby JJ) and click "Delete selected"<br/>
 <img src="https://user-images.githubusercontent.com/11797397/168045256-66d5f471-b393-4bdc-af20-c90197cb09c5.png" width=50% height=50%>
 
 
