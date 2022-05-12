@@ -39,7 +39,10 @@
 # Proof of concept
 Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not baby JJ.<br/>
 ![image](https://user-images.githubusercontent.com/11797397/168063981-d2c3fbe7-f39f-4fd0-8f1d-ca4a48c5ed28.png)
-
+# Technologies
+1. Client side - React + MUI.
+2. Server side - python flask.
+3. Deep learning - yolo5 video object detection model.
 
 
 # Project challenges
