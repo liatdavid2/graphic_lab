@@ -20,6 +20,7 @@
 5. go to server\yolo5_small\ run python app.py
 
 # How to use
-1. open http://localhost:3000/ and you see:
+1. open http://localhost:3000/ and select video file and classname and click "Upload!" button 
+2. ![image](https://user-images.githubusercontent.com/11797397/168041594-48eb3300-28b2-4b8d-816d-98c37f358f82.png)
 
 # Project challenges
