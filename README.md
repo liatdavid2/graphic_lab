@@ -16,7 +16,7 @@
 1. install node.js , python3 and anaconda.
 2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
 3. go to client\my-app run npm install , after he finish run npm start
-4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas.
+4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas...
 5. go to server\yolo5_small\ run python app.py
 6. now open http://localhost:3000/ and you see:
 
