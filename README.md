@@ -36,11 +36,9 @@
 # Motivation
 1. Nowadays for a classification problem you have to manually search for a lot of pictures to train the model and I take out a lot of pictures in an automatic video process that collect enormous amount of photos in a short time.
 2. It is easy to see end cases of the YOLO5 model (which extracts images from video) and improve the model - for example YOLO5 classifies a monkey as a person - if you train YOLO5 on a monkey category he will not classify a monkey as a person.
-
-
-
-
-
+# Proof of concept
+Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not baby JJ.<br/>
+![image](https://user-images.githubusercontent.com/11797397/168063981-d2c3fbe7-f39f-4fd0-8f1d-ca4a48c5ed28.png)
 
 
 
