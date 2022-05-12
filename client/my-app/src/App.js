@@ -64,6 +64,9 @@ class App extends Component {
     }
     
 }
+shouldComponentUpdate() {
+  return true;
+}
   selectDataAugmentation= () => {
     const formData = new FormData();
     formData.append(
@@ -84,7 +87,7 @@ class App extends Component {
   }
   // On file upload (click the upload button)
   onFileUpload = () => {
-  
+    this.setState({imagesFromFolder:[]})
     // Create an object of formData
     const formData = new FormData();
   
@@ -147,6 +150,13 @@ class App extends Component {
   };
   valuetext(value) {
     return `${value}°C`;
+  }
+  make = () => {
+   
+    return <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/>
+   
+      
+        
   }
   render() {
   
@@ -212,9 +222,14 @@ class App extends Component {
             </Grid>
 
           <Grid item xs={12}>
-        {this.state.imagesFromFolder.length > 0 ? 
-        <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> : <div><CircularProgress />
-        <span>Make data from video images</span></div>}
+            { this.make()}
+
+        {/*
+         
+        this.state.imagesFromFolder.length > 0 && 
+      
+    <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/>*/}
+        {/*<ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> */}
             </Grid>
      
           </Grid>

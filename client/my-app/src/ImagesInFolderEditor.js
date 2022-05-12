@@ -20,25 +20,30 @@ export default class ImagesInFolderEditor extends Component {
     }
     
     componentWillUpdate(nextProps) {
-      console.log(nextProps)
+      console.log(nextProps,this.props)
       // You don't have to do this check first, but it can help prevent an unneeded render
-      if (nextProps.imagesFromFolder !== this.state.imagesFromFolder) {
+      if (nextProps.imagesFromFolder !== this.props.imagesFromFolder) {
         // console.log(nextProps.imagesFromFolder ,this.state.imagesFromFolder)
         console.log(nextProps.imagesFromFolder,this.state.imagesFromFolder)
         this.setState({ imagesFromFolder: nextProps.imagesFromFolder });
       }
     }
- 
+    shouldComponentUpdate() {
+      return true;
+    }
+    componentDidUpdate(prevProps) {
+      console.log(prevProps,this.props)
+      if (prevProps.imagesFromFolder !== this.props.imagesFromFolder) {
+        this.setState({ imagesFromFolder: this.props.imagesFromFolder });
+      }
+      //this.setState({ imagesFromFolder: this.props.imagesFromFolder });
+      
+    }
     componentWillMount(){
-      // images =getAssets().list("images");
-      //listImages = new ArrayList<String>(Arrays.asList(images));
-     /*axios.get('http://localhost:5000/get_images_list_from_folder').then(resp => {
-
-     //imagesFromFolder = [...useState(resp.data.images_from_folder)]
-     this.setState({imagesFromFolder:[...resp.data.images_from_folder]})
-     console.log(this.state.imagesFromFolder)
-        
-    });*/
+      console.log(this.props)
+        // this.setState({ imagesFromFolder: [] });
+     
+        this.setState({ imagesFromFolder: this.props.imagesFromFolder })
     }
     handleChange(e) {
       console.log(e.target.name)
@@ -68,29 +73,26 @@ export default class ImagesInFolderEditor extends Component {
  
         this.setState({imagesFromFolder:resp.data.images_from_folder})
         console.log(this.state.imagesFromFolder)
-        
- 
       })
     }
-  render() {
-    // console.log(this.state.imagesFromFolder);
-  return (
-      
-    this.state.imagesFromFolder.length > 0 ?
-      <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
+    componentWillUnmount() {
+      this.setState({ imagesFromFolder:[] });
+    }
+    renderImages(){
+      return ( <Box sx={{ width: '100%', overflowY: 'regular' }} style={{paddingTop: "0px"}}>
           <button style={{marginTop: "10px",marginBottom: "0px"}}
           onClick={this.DeleteSelected}>
             Delete selected</button> 
         <ImageList sx={{  height: 280 }} cols={8} rowHeight={80}
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
-        {this.state.imagesFromFolder.map((item, index) => (
+        { this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={index}>
             <img
                 src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
                 srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.label}
-                loading="lazy"
+                loading='eager'
             />
             <ImageListItemBar
               sx={{
@@ -113,7 +115,12 @@ export default class ImagesInFolderEditor extends Component {
             
         ))}
         </ImageList>
-    </Box>:null
+    </Box>)}
+  render() {
+    // console.log(this.state.imagesFromFolder);
+  return (
+      
+    this.renderImages()
   );
  }
 }

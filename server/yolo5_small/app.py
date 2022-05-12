@@ -1,20 +1,12 @@
-#from flask import Flask
 #Import necessary libraries
-from cv2 import split
-from flask import Flask, render_template, Response, request
+from flask import Flask, Response, request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from werkzeug.datastructures import  FileStorage
-from distutils.dir_util import copy_tree
-import skimage
 import splitfolders
 from PIL import Image
 import shutil
 import os
-import cv2
 import detect
-import torch
-import glob
 import os  
 
 # number of classes
@@ -43,7 +35,8 @@ def rotateImages(rotationAmt):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg'):
+            if fname.endswith('.jpg') and "rotate_" not in filename :
+                print(filename)
                 # open the image
                 img = Image.open(fname)
                 #gimg = skimage.util.random_noise(img, mode="gaussian")
@@ -65,10 +58,9 @@ def data_augmentation():
         
         print(types_selected)
         if 'Rotate' in types_selected:
-
-            rotateImages(5)
-            rotateImages(10)
-            rotateImages(15)
+            #rotateImages(25)
+            rotateImages(35)
+            #rotateImages(45)
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 
