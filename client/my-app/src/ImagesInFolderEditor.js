@@ -7,7 +7,6 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
 export default class ImagesInFolderEditor extends Component {
@@ -56,9 +55,6 @@ export default class ImagesInFolderEditor extends Component {
           return selectedImage !== e.target.name 
       })});
       }
-      
-      // let isChecked = e.target.checked;
-      // do whatever you want with isChecked value
     }
     DeleteSelected= () => {
       const formData = new FormData();
@@ -87,7 +83,7 @@ export default class ImagesInFolderEditor extends Component {
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
         { this.state.imagesFromFolder.map((item, index) => (
-            <ImageListItem key={index}>
+            <ImageListItem key={item.image}>
             <img
                 src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
                 srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
