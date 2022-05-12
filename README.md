@@ -16,4 +16,6 @@
 # How to install
 1. install node.js , python3 and anaconda.
 2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
-3. 
+3. go to client\my-app run npm install , after he finish run npm start
+4. go to server\yolo5_small\ run python app.py
+5. now open http://localhost:3000/ and you see:
