@@ -9,16 +9,6 @@
 27.4.22   8 hours of arranging the code and preparing for the meeting. <br /><br/>
 6.5.22    17 hours of make all ui responsive ( fit to mobile, tablet, leptop and big screen). <br /><br/>
 12.5.22   22 hours of bulid client and server functionality - Delete all images not in class and Train, Validation, Test split and Image data augmentation.
-# Motivation
-1. Nowadays for a classification problem you have to manually search for a lot of pictures to train the model and I take out a lot of pictures in an automatic video process that collect enormous amount of photos in a short time.
-2. It is easy to see end cases of the YOLO5 model (which extracts images from video) and improve the model - for example YOLO5 classifies a monkey as a person - if you train YOLO5 on a monkey category he will not classify a monkey as a person.
-# How to install
-1. install node.js , python3 and anaconda.
-2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
-3. go to client\my-app run npm install , after he finish run npm start
-4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas...
-5. go to server\yolo5_small\ run python app.py
-
 # How to use
 <b>Step 1:</b> Open http://localhost:3000/ and select video file and classname (for example "person") and click "Upload!" button. 
 <img src="https://user-images.githubusercontent.com/11797397/168041594-48eb3300-28b2-4b8d-816d-98c37f358f82.png" width=50% height=50%><br/>
@@ -34,6 +24,17 @@
 <b>Step 4:</b> Select Image data augmentation types and click "Select Data Augmentation Types". Example of rotate Image data augmentation type <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168048876-f9d54c14-7e3d-40e1-9749-247d016ee475.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%><br/>
+
+# Motivation
+1. Nowadays for a classification problem you have to manually search for a lot of pictures to train the model and I take out a lot of pictures in an automatic video process that collect enormous amount of photos in a short time.
+2. It is easy to see end cases of the YOLO5 model (which extracts images from video) and improve the model - for example YOLO5 classifies a monkey as a person - if you train YOLO5 on a monkey category he will not classify a monkey as a person.
+# How to install
+1. install node.js , python3 and anaconda.
+2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
+3. go to client\my-app run npm install , after he finish run npm start
+4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas...
+5. go to server\yolo5_small\ run python app.py
+
 
 
 
