@@ -85,7 +85,7 @@ export default class ImagesInFolderEditor extends Component {
         { this.state.imagesFromFolder.map((item, index) => (
             <ImageListItem key={item.image}>
             <img
-                src={`${item.image}?w=50&h=50&fit=crop&auto=format`}
+            
                 srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.label}
                 loading='eager'
