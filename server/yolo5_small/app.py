@@ -87,7 +87,10 @@ def stop():
     return img_list_from_vid()
 
 @app.route('/crop_split_to_folders')
-def crop_split_to_folders():      
+def crop_split_to_folders(): 
+    data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
+    if os.path.exists(data_folder_path): 
+        shutil.rmtree(data_folder_path)
     train = request.args.get('train') 
     validation = request.args.get('validation') 
     test = request.args.get('test') 
