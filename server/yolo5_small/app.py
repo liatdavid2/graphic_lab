@@ -58,21 +58,35 @@ def pencilSketchImages(k_size=7):
                 # open the image
                 #img = Image.open(fname)
                 img = cv2.imread(fname)
-                # Convert to Grey Image
-                gray=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-                # Invert Image
-                invert_img=cv2.bitwise_not(gray)
-                #invert_img=255-grey_img
-
-                gblur_img=cv2.GaussianBlur(invert_img,(25,25),sigmaX=0,sigmaY=0)
-                dodged_img=cv2.divide(gray,255-gblur_img,scale=256)
-                final_image= 255-cv2.divide(255-dodged_img, 255-gblur_img, scale=256)
-
                 splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1]))
-                stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], stylize)
+                """stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], stylize)"""
+                # ok
+                """hdr = cv2.detailEnhance(img, sigma_s=12, sigma_r=0.15)
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], hdr)"""
+                #colour quantization
+                #k value determines the number of colours in the image
+                total_color = 8
+                k=total_color
+                # Transform the image
+                data = np.float32(img).reshape((-1, 3))
+                # Determine criteria
+                criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
+                # Implementing K-Means
+                """ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+                center = np.uint8(center)
+                result = center[label.flatten()]
+                result = result.reshape(img.shape)
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], result)"""
+                gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                blur_img = cv2.GaussianBlur(gray_img, (3,3), 0)
+                img_edges = cv2.Canny(image=blur_img, threshold1=50, threshold2=155)
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_edges)
+                # obtaining a horizontal and vertical Sobel filtering of the image
+            
+
+                #cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_sobelxy)
+
 
 
 def sharpenImages():
