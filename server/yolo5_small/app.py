@@ -37,7 +37,7 @@ def rotateImages(rotationAmt):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
                 img = Image.open(fname)
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
@@ -55,7 +55,7 @@ def colorQuantizationImages(total_color=7):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")               
                 #colour quantization
@@ -128,7 +128,7 @@ def paintImages(k_size=7):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename) 
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
                 stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
@@ -143,7 +143,7 @@ def sharpenImages():
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1]))

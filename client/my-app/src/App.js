@@ -29,7 +29,7 @@ class App extends Component {
       data_augmentation_types_selected: [],
       imagesFromFolder: [],
       value: [50, 70, 80],
-      data_augmentation_types: ['Rotate', 'Sharpen', 'Paint', 'ColorQuantization', 'NoiseImages', 'scale3'],
+      data_augmentation_types: ['Rotate', 'Sharpen', 'Paint', 'ColorQuantization', 'NoiseImages'],
       classes_names: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
