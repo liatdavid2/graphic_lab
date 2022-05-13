@@ -26,8 +26,9 @@ I made new data augmentation styles from skratch with opencv2 like:sharpen,<br/>
 <span><img src="https://user-images.githubusercontent.com/11797397/168252614-9061ef5c-671c-430f-9638-7e7510f10f45.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168268562-ad5fdd19-8a20-45ce-903d-240e66e0717d.png" width=19.5% height=19.5%>
 <img src="https://user-images.githubusercontent.com/11797397/168262679-8a78e889-8d73-48bc-9c73-368f585985e1.png" width=20.7% height=20.7%>
-<img src="https://user-images.githubusercontent.com/11797397/168294969-65e1284f-3600-40e7-a706-c0ffed34edd9.png" width=19.5% height=19.5%></span>
-
+<img src="https://user-images.githubusercontent.com/11797397/168294969-65e1284f-3600-40e7-a706-c0ffed34edd9.png" width=19.5% height=19.5%>
+<img src="https://user-images.githubusercontent.com/11797397/168295300-cf5b2f2c-7048-4995-8a7e-ac4ff513d37f.png" width=19.5% height=19.5%>
+<img src="https://user-images.githubusercontent.com/11797397/168297010-fb6085fe-7fe7-4ada-9a17-b74c6e280313.png" width=19.5% height=19.5%></span>
 
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
 <span><img src="https://user-images.githubusercontent.com/11797397/168056839-5a2cdd51-d352-4e09-bda3-e157122b5cd2.png" width=40% height=40%>
