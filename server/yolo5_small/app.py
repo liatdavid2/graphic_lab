@@ -10,6 +10,7 @@ import detect
 import os  
 import cv2
 import numpy as np
+import random
 
 # number of classes
 nc: 80
@@ -37,14 +38,10 @@ def rotateImages(rotationAmt):
         for filename in files:
             fname = os.path.join(path, filename)
             if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
-                print(filename)
-                # open the image
                 img = Image.open(fname)
                 splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1]))
                 print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
                 img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
-                # close the image
                 img.close()
 
 #defining a function
@@ -60,8 +57,7 @@ def colorQuantizationImages(total_color=7):
             fname = os.path.join(path, filename)
             if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
-                splitPath = fname.split("\\")
-                
+                splitPath = fname.split("\\")               
                 #colour quantization
                 #k value determines the number of colours in the image
                 k=total_color
@@ -76,6 +72,56 @@ def colorQuantizationImages(total_color=7):
                 result = result.reshape(img.shape)
                 print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
                 cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
+def add_noise(img):
+ 
+    # Getting the dimensions of the image
+    #row,col,_ = img.shape
+    dimensions= img.shape
+    row = dimensions[0]
+    col = dimensions[1]
+    # Randomly pick some pixels in the
+    # image for coloring them white
+    # Pick a random number between 300 and 10000
+    number_of_pixels = random.randint(300, 10000)
+    for i in range(number_of_pixels):
+       
+        # Pick a random y coordinate
+        y_coord=random.randint(0, row - 1)
+         
+        # Pick a random x coordinate
+        x_coord=random.randint(0, col - 1)
+         
+        # Color that pixel to white
+        img[y_coord][x_coord] = 255
+         
+    # Randomly pick some pixels in
+    # the image for coloring them black
+    # Pick a random number between 300 and 10000
+    number_of_pixels = random.randint(300 , 10000)
+    for i in range(number_of_pixels):
+       
+        # Pick a random y coordinate
+        y_coord=random.randint(0, row - 1)
+         
+        # Pick a random x coordinate
+        x_coord=random.randint(0, col - 1)
+         
+        # Color that pixel to black
+        img[y_coord][x_coord] = 0
+    return img
+
+def noiseImages():    
+    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
+                img = cv2.imread(fname)
+                splitPath = fname.split("\\")
+                print("//".join(splitPath[:-1])+"//hdr_"+splitPath[-1])
+                noise_img = add_noise(img)
+                cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
+
+
 
 def paintImages(k_size=7):
     # for each image in the current directory    
@@ -88,51 +134,8 @@ def paintImages(k_size=7):
                 stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
                 print("//".join(splitPath[:-1])+"//paint_"+splitPath[-1])
                 cv2.imwrite("//".join(splitPath[:-1])+"//paint_"+splitPath[-1], stylize)
-                # ok
-                """hdr = cv2.detailEnhance(img, sigma_s=12, sigma_r=0.15)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], hdr)"""
-                #colour quantization
-                #k value determines the number of colours in the image
-                """total_color = 8
-                k=total_color
-                # Transform the image
-                data = np.float32(img).reshape((-1, 3))
-                # Determine criteria
-                criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
-                # Implementing K-Means
-                ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-                center = np.uint8(center)
-                result = center[label.flatten()]
-                result = result.reshape(img.shape)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], result)"""
-                """gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                blur_img = cv2.GaussianBlur(gray_img, (3,3), 0)
-                img_edges = cv2.Canny(image=blur_img, threshold1=50, threshold2=155)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_edges)"""
+ 
 
-                """# summer
-                increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
-                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
-                blue_channel, green_channel,red_channel  = cv2.split(img)
-                red_channel = cv2.LUT(red_channel, increaseLookupTable).astype(np.uint8)
-                blue_channel = cv2.LUT(blue_channel, decreaseLookupTable).astype(np.uint8)
-                sum= cv2.merge((blue_channel, green_channel, red_channel ))
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], sum)"""
-                """# summer
-                increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
-                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
-                blue_channel, green_channel,red_channel  = cv2.split(img)
-                red_channel = cv2.LUT(red_channel, increaseLookupTable).astype(np.uint8)
-                blue_channel = cv2.LUT(blue_channel, decreaseLookupTable).astype(np.uint8)
-                sum= cv2.merge((blue_channel, green_channel, red_channel ))
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], sum)"""
-                """increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
-                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
-                blue_channel, green_channel,red_channel = cv2.split(img)
-                red_channel = cv2.LUT(red_channel, decreaseLookupTable).astype(np.uint8)
-                blue_channel = cv2.LUT(blue_channel, increaseLookupTable).astype(np.uint8)
-                win= cv2.merge((blue_channel, green_channel, red_channel))
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], win)"""
 
 
 
@@ -165,6 +168,8 @@ def data_augmentation():
             paintImages(20)
         if 'ColorQuantization'  in types_selected:
             colorQuantizationImages(12)
+        if 'NoiseImages'  in types_selected:
+            noiseImages()
             
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
@@ -204,20 +209,6 @@ def crop_split_to_folders():
     splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
     output="C://Users//liat//GitHub//graphic_lab//data", 
     seed=1337, ratio=(float(train), float(validation),float(test))) 
-    # loop through the list of folders
-    #for sub_dir in content_list:  
-    """for path, subdirs, files in os.walk('test'):
-        for sub_dir in subdirs:
-            # loop through the contents of the
-            # list of folders
-            #for contents in content_list[sub_dir]:  
-            # make the path of the content to move 
-            path_to_content = sub_dir + "/" + contents    
-            # make the path with the current folder
-            dir_to_move = os.path.join(current_folder, path_to_content )
-    
-            # move the file
-            shutil.move(dir_to_move, merge_folder_path)"""
     return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
         
 
