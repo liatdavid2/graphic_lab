@@ -20,7 +20,7 @@
 For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168048876-f9d54c14-7e3d-40e1-9749-247d016ee475.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
-<img src="https://user-images.githubusercontent.com/11797397/168242662-ae69a017-d8a0-4b5a-9051-12e872631340.png" width=20% height=20%><br/>
+<img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
 
 
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
