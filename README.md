@@ -23,7 +23,8 @@ For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
 <img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
 I made new data augmentation style from skratch with opencv2 like:sharpen,<br/>
-<span><img src="https://user-images.githubusercontent.com/11797397/168252614-9061ef5c-671c-430f-9638-7e7510f10f45.png" width=20% height=20%></span>
+<span><img src="https://user-images.githubusercontent.com/11797397/168252614-9061ef5c-671c-430f-9638-7e7510f10f45.png" width=20% height=20%>
+<img src="https://user-images.githubusercontent.com/11797397/168255779-2acfe296-2eb3-4219-9fc4-ddd45b523ffc.png" width=20% height=20%></span>
 
 
 
