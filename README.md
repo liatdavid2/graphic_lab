@@ -28,7 +28,9 @@ I made new data augmentation styles from skratch with opencv2 like:sharpen,<br/>
 <img src="https://user-images.githubusercontent.com/11797397/168262679-8a78e889-8d73-48bc-9c73-368f585985e1.png" width=20.7% height=20.7%>
 <img src="https://user-images.githubusercontent.com/11797397/168294969-65e1284f-3600-40e7-a706-c0ffed34edd9.png" width=19.5% height=19.5%>
 <img src="https://user-images.githubusercontent.com/11797397/168295300-cf5b2f2c-7048-4995-8a7e-ac4ff513d37f.png" width=19.5% height=19.5%>
-<img src="https://user-images.githubusercontent.com/11797397/168297010-fb6085fe-7fe7-4ada-9a17-b74c6e280313.png" width=19.5% height=19.5%></span>
+<img src="https://user-images.githubusercontent.com/11797397/168297010-fb6085fe-7fe7-4ada-9a17-b74c6e280313.png" width=19.5% height=19.5%>
+ <img src="https://user-images.githubusercontent.com/11797397/168297875-3024dffa-b319-4cad-a3eb-5629d34eb2cc.png" width=19.5% height=19.5%>
+</span>
 
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
 <span><img src="https://user-images.githubusercontent.com/11797397/168056839-5a2cdd51-d352-4e09-bda3-e157122b5cd2.png" width=40% height=40%>
