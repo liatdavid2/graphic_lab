@@ -34,17 +34,12 @@ CORS(app)
 
 # define a function that rotates images in the current directory
 # given the rotation in degrees as a parameter
-def rotateImages(rotationAmt):
-    # for each image in the current directory    
-    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
-        for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
-                img = Image.open(fname)
-                splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
-                img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
-                img.close()
+def rotateImages(fname,rotationAmt):
+    img = Image.open(fname)
+    splitPath = fname.split("\\")
+    print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
+    img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
+    img.close()
 
 
 
@@ -145,17 +140,13 @@ def paintImages(k_size=7):
 
 
 
-def sharpenImages():  
-    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
-        for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
-                img = cv2.imread(fname)
-                splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1]))
-                kernel = np.array([[-1, -1, -1], [-1, 9.5, -1], [-1, -1, -1]])
-                new_img = cv2.filter2D(img, -1, kernel)
-                cv2.imwrite("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1], new_img)
+def sharpenImages(fname):  
+    img = cv2.imread(fname)
+    splitPath = fname.split("\\")
+    print("//".join(splitPath[:-1]))
+    kernel = np.array([[-1, -1, -1], [-1, 9.5, -1], [-1, -1, -1]])
+    new_img = cv2.filter2D(img, -1, kernel)
+    cv2.imwrite("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1], new_img)
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
@@ -165,7 +156,18 @@ def data_augmentation():
             types_selected = types_selected.split(',')
             
             print(types_selected)
-            if 'Rotate' in types_selected:
+            for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
+                for filename in files:
+                    fname = os.path.join(path, filename)
+                    if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
+                        #img = Image.open(fname)
+                        splitPath = fname.split("\\")
+                        if 'Rotate' in types_selected:
+                            rotateImages(fname,25)
+                            rotateImages(fname,-35)
+                        if  'Sharpen' in types_selected:
+                            sharpenImages(fname)
+            """if 'Rotate' in types_selected:
                 rotateImages(25)
                 rotateImages(-35)
                 rotateImages(45)
@@ -176,7 +178,7 @@ def data_augmentation():
             if 'ColorQuantization'  in types_selected:
                 colorQuantizationImages(12)
             if 'NoiseImages'  in types_selected:
-                noiseImages()            
+                noiseImages()    """        
             return make_response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
     except Exception as e:
             return make_response(str(e), 500)
