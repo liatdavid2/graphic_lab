@@ -36,7 +36,7 @@ def rotateImages(rotationAmt):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
                 print(filename)
                 # open the image
                 img = Image.open(fname)
