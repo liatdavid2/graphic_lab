@@ -8,6 +8,8 @@ import shutil
 import os
 import detect
 import os  
+import cv2
+import numpy as np
 
 # number of classes
 nc: 80
@@ -30,8 +32,7 @@ CORS(app)
 # define a function that rotates images in the current directory
 # given the rotation in degrees as a parameter
 def rotateImages(rotationAmt):
-    # for each image in the current directory
-    
+    # for each image in the current directory    
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
@@ -39,28 +40,44 @@ def rotateImages(rotationAmt):
                 print(filename)
                 # open the image
                 img = Image.open(fname)
-                #gimg = skimage.util.random_noise(img, mode="gaussian")
-                # rotate and save the image with the same filename
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1]))
-                print("//".join(splitPath[:-1])+"//rotate_"+splitPath[-1])
-                #print("//".join(splitPath)[0:-1])
-                img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+splitPath[-1])
+                print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
+                img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
+                # close the image
+                img.close()
+
+def sharpenImages():
+    # for each image in the current directory    
+    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg') and "rotate_" not in filename :
+                print(filename)
+                # open the image
+                img = Image.open(fname)
+                splitPath = fname.split("\\")
+                print("//".join(splitPath[:-1]))
+                kernel = np.array([[-1, -1, -1], [-1, 9.5, -1], [-1, -1, -1]])
+                new_img = cv2.filter2D(img, -1, kernel)
+                img.rotate(new_img).save("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1])
                 # close the image
                 img.close()
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
     if request.method == 'POST':
-        #types_selected = request.args.getlist("types_selected") 
         types_selected = request.form.get('types_selected')
         types_selected = types_selected.split(',')
         
         print(types_selected)
         if 'Rotate' in types_selected:
-            #rotateImages(25)
-            rotateImages(35)
-            #rotateImages(45)
+            rotateImages(25)
+            rotateImages(-35)
+            rotateImages(45)
+        if 'Sharpen'  in types_selected:
+            sharpenImages()
+            
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
 
