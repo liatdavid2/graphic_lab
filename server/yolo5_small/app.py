@@ -11,6 +11,8 @@ import os
 import cv2
 import numpy as np
 import random
+import json
+from flask import jsonify, make_response
 
 # number of classes
 nc: 80
@@ -238,29 +240,24 @@ def img_list_from_vid():
 
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
-    res = {} 
     i = 0
-    images_from_folder = []
-    if request.method == 'POST':
-        f = request.files['video_file']
-        f.save(secure_filename(f.filename))
-        print(f.filename,request.form.get('classesList'))
-        classesList = request.form.get('classesList').split(",")
-        classesListIndexes = []
-        for i in range(len(classesList)):
-            classesListIndexes.append(class_names.index(classesList[i]))
-        folder_path = 'C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static//yes'
-        if os.path.exists(folder_path): 
-            shutil.rmtree(folder_path)
-        # conf_thres=0.75 important good conf
-        detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
-        ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
-        ,imgsz=(384,640))
-
-        return img_list_from_vid()
-
-        #return Response(img_list_from_vid(), 200, img_list_from_vid())
-        #return 200,'file uploaded and convert to classes successfully'
+    classesListIndexes = []
+    try:
+        if request.method == 'POST':
+            f = request.files['video_file']
+            f.save(secure_filename(f.filename))
+            classesList = request.form.get('classesList').split(",")
+            for i in range(len(classesList)):
+                classesListIndexes.append(class_names.index(classesList[i]))
+            folder_path = 'C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static//yes'
+            if os.path.exists(folder_path): 
+                shutil.rmtree(folder_path)
+            detect.run(source=f.filename,save_crop=True,classes= classesListIndexes,conf_thres=0.5
+            ,save_txt=False,view_img=True,project='C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static',name='yes'
+            ,imgsz=(384,640))
+            return make_response(jsonify(img_list_from_vid()), 200)
+    except Exception as e:
+            return make_response(str(e), 500)
 
 
 if __name__ == '__main__':
