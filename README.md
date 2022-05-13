@@ -17,8 +17,12 @@
 <span><img src="https://user-images.githubusercontent.com/11797397/168046864-1ddc088c-515c-48df-9f56-150a5e45b70a.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168049360-3b4fed3e-f73a-4d7b-a3fa-136c4b70c039.png" width=10% height=10%></span><br/>
 <b>Step 4:</b> Select Image data augmentation types and click "Select Data Augmentation Types". Example of rotate Image data augmentation. <br/>
+For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168048876-f9d54c14-7e3d-40e1-9749-247d016ee475.png" width=20% height=20%>
-<img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%><br/>
+<img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
+
+
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
 <span><img src="https://user-images.githubusercontent.com/11797397/168056839-5a2cdd51-d352-4e09-bda3-e157122b5cd2.png" width=40% height=40%>
 <img src="https://user-images.githubusercontent.com/11797397/168057051-b7db5b94-f806-4143-8052-4885dc594574.png" width=40% height=40%></span><br/>
