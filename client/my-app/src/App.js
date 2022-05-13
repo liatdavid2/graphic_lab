@@ -8,8 +8,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
-import ImageList from './ImageList';
-import ImagesList from './ImagesList';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -150,13 +148,7 @@ class App extends Component {
   valuetext(value) {
     return `${value}°C`;
   }
-  make = () => {
 
-    return <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder} />
-
-
-
-  }
   render() {
 
     return (
