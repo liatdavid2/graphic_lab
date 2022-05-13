@@ -47,12 +47,40 @@ def rotateImages(rotationAmt):
                 # close the image
                 img.close()
 
+
+def pencilSketchImages(k_size=7):
+    # for each image in the current directory    
+    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg') and "pencilSketch_" not in filename :
+                print(filename)
+                # open the image
+                #img = Image.open(fname)
+                img = cv2.imread(fname)
+                # Convert to Grey Image
+                gray=cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+                # Invert Image
+                invert_img=cv2.bitwise_not(gray)
+                #invert_img=255-grey_img
+
+                gblur_img=cv2.GaussianBlur(invert_img,(25,25),sigmaX=0,sigmaY=0)
+                dodged_img=cv2.divide(gray,255-gblur_img,scale=256)
+                final_image= 255-cv2.divide(255-dodged_img, 255-gblur_img, scale=256)
+
+                splitPath = fname.split("\\")
+                print("//".join(splitPath[:-1]))
+                stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], stylize)
+
+
 def sharpenImages():
     # for each image in the current directory    
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and "rotate_" not in filename :
+            if fname.endswith('.jpg') and "sharpen_" not in filename :
                 print(filename)
                 # open the image
                 #img = Image.open(fname)
@@ -77,6 +105,8 @@ def data_augmentation():
             rotateImages(45)
         if 'Sharpen'  in types_selected:
             sharpenImages()
+        if 'PencilSketch'  in types_selected:
+            pencilSketchImages(20)
             
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 

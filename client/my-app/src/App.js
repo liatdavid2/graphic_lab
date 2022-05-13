@@ -29,7 +29,7 @@ class App extends Component {
       data_augmentation_types_selected: [],
       imagesFromFolder: [],
       value: [50, 70, 80],
-      data_augmentation_types: ['Rotate', 'Sharpen', 'Rotate2', 'scale2', 'Rotate3', 'scale3'],
+      data_augmentation_types: ['Rotate', 'Sharpen', 'PencilSketch', 'scale2', 'Rotate3', 'scale3'],
       classes_names: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   };
   handleCallback = (childData) => {
-    if (childData.includes('Rotate') || childData.includes('Sharpen')) {
+    if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('PencilSketch')) {
       console.log(childData)
       this.setState({ data_augmentation_types_selected: childData })
     } else {
