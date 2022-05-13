@@ -43,29 +43,25 @@ def rotateImages(fname,rotationAmt):
 
 
 
-def colorQuantizationImages(total_color=7):  
-    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
-        for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
-                img = cv2.imread(fname)
-                splitPath = fname.split("\\")               
-                #colour quantization
-                #k value determines the number of colours in the image
-                k=total_color
-                # Transform the image
-                data = np.float32(img).reshape((-1, 3))
-                # Determine criteria
-                criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
-                # Implementing K-Means
-                ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-                center = np.uint8(center)
-                result = center[label.flatten()]
-                result = result.reshape(img.shape)
-                print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
-                cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
-def add_noise(img):
- 
+def colorQuantizationImages(fname,total_color=7):  
+    img = cv2.imread(fname)
+    splitPath = fname.split("\\")               
+    #colour quantization
+    #k value determines the number of colours in the image
+    k=total_color
+    # Transform the image
+    data = np.float32(img).reshape((-1, 3))
+    # Determine criteria
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
+    # Implementing K-Means
+    ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+    center = np.uint8(center)
+    result = center[label.flatten()]
+    result = result.reshape(img.shape)
+    print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
+    cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
+
+def add_noise(img): 
     # Getting the dimensions of the image
     #row,col,_ = img.shape
     dimensions= img.shape
@@ -75,66 +71,49 @@ def add_noise(img):
     # image for coloring them white
     # Pick a random number between 300 and 10000
     number_of_pixels = random.randint(7000, 8000)
-    for i in range(number_of_pixels):
-       
+    for i in range(number_of_pixels):      
         # Pick a random y coordinate
-        y_coord=random.randint(0, row - 1)
-         
+        y_coord=random.randint(0, row - 1)         
         # Pick a random x coordinate
-        x_coord=random.randint(0, col - 1)
-         
+        x_coord=random.randint(0, col - 1)        
         # Color that pixel to white
-        img[y_coord][x_coord] = 255
-         
+        img[y_coord][x_coord] = 255         
     # Randomly pick some pixels in
     # the image for coloring them black
     # Pick a random number between 300 and 10000
     number_of_pixels = random.randint(7000, 8000)
-
-    for i in range(number_of_pixels):
-       
+    for i in range(number_of_pixels):       
         # Pick a random y coordinate
-        y_coord=random.randint(0, row - 1)
-         
+        y_coord=random.randint(0, row - 1)         
         # Pick a random x coordinate
-        x_coord=random.randint(0, col - 1)
-         
+        x_coord=random.randint(0, col - 1)        
         # Color that pixel to black
         img[y_coord][x_coord] = 0
     return img
 
-def noiseImages():    
-    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
-        for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise",] if(ele in filename)]) != True:
-                img = cv2.imread(fname)
-                splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1])+"//noise_"+splitPath[-1])
-                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                noise_img = add_noise(gray)
-                cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
-                # Generate Gaussian noise
-                gauss = np.random.normal(0,1,img.size)
-                gauss = gauss.reshape(img.shape[0],img.shape[1],img.shape[2]).astype('uint8')
-                # Add the Gaussian noise to the image
-                img_gauss = cv2.add(img,gauss)
-                cv2.imwrite("//".join(splitPath[:-1])+"//noiseg_"+splitPath[-1], img_gauss)
+def noiseImages(fname):    
+    img = cv2.imread(fname)
+    splitPath = fname.split("\\")
+    print("//".join(splitPath[:-1])+"//noise_"+splitPath[-1])
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    noise_img = add_noise(gray)
+    cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
+    # Generate Gaussian noise
+    gauss = np.random.normal(0,1,img.size)
+    gauss = gauss.reshape(img.shape[0],img.shape[1],img.shape[2]).astype('uint8')
+    # Add the Gaussian noise to the image
+    img_gauss = cv2.add(img,gauss)
+    cv2.imwrite("//".join(splitPath[:-1])+"//noiseg_"+splitPath[-1], img_gauss)
 
 
 
 
-def paintImages(k_size=7):
-    # for each image in the current directory    
-    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
-        for filename in files:
-            fname = os.path.join(path, filename) 
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
-                img = cv2.imread(fname)
-                splitPath = fname.split("\\")
-                stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
-                print("//".join(splitPath[:-1])+"//paint_"+splitPath[-1])
-                cv2.imwrite("//".join(splitPath[:-1])+"//paint_"+splitPath[-1], stylize)
+def paintImages(fname,k_size=7):
+    img = cv2.imread(fname)
+    splitPath = fname.split("\\")
+    stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
+    print("//".join(splitPath[:-1])+"//paint_"+splitPath[-1])
+    cv2.imwrite("//".join(splitPath[:-1])+"//paint_"+splitPath[-1], stylize)
  
 
 
@@ -167,18 +146,12 @@ def data_augmentation():
                             rotateImages(fname,-35)
                         if  'Sharpen' in types_selected:
                             sharpenImages(fname)
-            """if 'Rotate' in types_selected:
-                rotateImages(25)
-                rotateImages(-35)
-                rotateImages(45)
-            if 'Sharpen'  in types_selected:
-                sharpenImages()
-            if 'Paint'  in types_selected:
-                paintImages(20)
-            if 'ColorQuantization'  in types_selected:
-                colorQuantizationImages(12)
-            if 'NoiseImages'  in types_selected:
-                noiseImages()    """        
+                        if 'Paint' in types_selected:
+                            paintImages(fname,20)
+                        if 'ColorQuantization'  in types_selected:
+                            colorQuantizationImages(fname,12)
+                        if 'NoiseImages'  in types_selected:
+                            noiseImages(fname)
             return make_response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
     except Exception as e:
             return make_response(str(e), 500)
