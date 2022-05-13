@@ -187,20 +187,22 @@ def data_augmentation():
 
 @app.route('/delete_selected', methods = ['POST'])
 def delete_selected(): 
-    if request.method == 'POST':
-        selectedImages = request.form.get('selectedImages')
-        selectedImages = selectedImages.split(',')        
-        for img in selectedImages:
-            splitPath = img.split("/")
-            print(img)
-            
-            imgPath = 'C:/Users/liat/GitHub/graphic_lab/server/yolo5_small/static' +'/'+ splitPath[-2]+'/'+splitPath[-1]
-            print(imgPath)
-            if os.path.exists(imgPath):
-                os.remove(imgPath)
-            #print(selectedImages)
-        return img_list_from_vid()
-        #return Response('delete selected colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+    try:
+        if request.method == 'POST':
+            selectedImages = request.form.get('selectedImages')
+            selectedImages = selectedImages.split(',')        
+            for img in selectedImages:
+                splitPath = img.split("/")
+                print(img)
+                
+                imgPath = 'C:/Users/liat/GitHub/graphic_lab/server/yolo5_small/static' +'/'+ splitPath[-2]+'/'+splitPath[-1]
+                print(imgPath)
+                if os.path.exists(imgPath):
+                    os.remove(imgPath)
+            #return img_list_from_vid()
+            return make_response(jsonify(img_list_from_vid()), 200)
+    except Exception as e:
+            return make_response(str(e), 500)
 
 @app.route('/stop')
 def stop():
@@ -209,18 +211,20 @@ def stop():
 
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders(): 
-    data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
-    if os.path.exists(data_folder_path): 
-        shutil.rmtree(data_folder_path)
-    train = request.args.get('train') 
-    validation = request.args.get('validation') 
-    test = request.args.get('test') 
-    print(train)
-    # the ratio to split. e.g. for train/val/test 
-    splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
-    output="C://Users//liat//GitHub//graphic_lab//data", 
-    seed=1337, ratio=(float(train), float(validation),float(test))) 
-    return 'split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !'
+    try:
+        data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
+        if os.path.exists(data_folder_path): 
+            shutil.rmtree(data_folder_path)
+        train = request.args.get('train') 
+        validation = request.args.get('validation') 
+        test = request.args.get('test') 
+        # the ratio to split. e.g. for train/val/test 
+        splitfolders.ratio('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static', 
+        output="C://Users//liat//GitHub//graphic_lab//data", 
+        seed=1337, ratio=(float(train), float(validation),float(test))) 
+        return make_response('split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
+    except Exception as e:
+            return make_response(str(e), 500)
         
 
 def img_list_from_vid():
