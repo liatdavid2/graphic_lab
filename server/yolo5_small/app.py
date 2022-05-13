@@ -46,11 +46,6 @@ def rotateImages(rotationAmt):
                 img.rotate(rotationAmt).save("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
                 img.close()
 
-#defining a function
-from scipy.interpolate import UnivariateSpline
-def LookupTable(x, y):
-  spline = UnivariateSpline(x, y)
-  return spline(range(256))
 
 
 def colorQuantizationImages(total_color=7):  
@@ -164,25 +159,27 @@ def sharpenImages():
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
-    if request.method == 'POST':
-        types_selected = request.form.get('types_selected')
-        types_selected = types_selected.split(',')
-        
-        print(types_selected)
-        if 'Rotate' in types_selected:
-            rotateImages(25)
-            rotateImages(-35)
-            rotateImages(45)
-        if 'Sharpen'  in types_selected:
-            sharpenImages()
-        if 'Paint'  in types_selected:
-            paintImages(20)
-        if 'ColorQuantization'  in types_selected:
-            colorQuantizationImages(12)
-        if 'NoiseImages'  in types_selected:
-            noiseImages()
+    try:
+        if request.method == 'POST':
+            types_selected = request.form.get('types_selected')
+            types_selected = types_selected.split(',')
             
-    return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
+            print(types_selected)
+            if 'Rotate' in types_selected:
+                rotateImages(25)
+                rotateImages(-35)
+                rotateImages(45)
+            if 'Sharpen'  in types_selected:
+                sharpenImages()
+            if 'Paint'  in types_selected:
+                paintImages(20)
+            if 'ColorQuantization'  in types_selected:
+                colorQuantizationImages(12)
+            if 'NoiseImages'  in types_selected:
+                noiseImages()            
+            return make_response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
+    except Exception as e:
+            return make_response(str(e), 500)
 
 
 @app.route('/delete_selected', methods = ['POST'])
@@ -199,7 +196,6 @@ def delete_selected():
                 print(imgPath)
                 if os.path.exists(imgPath):
                     os.remove(imgPath)
-            #return img_list_from_vid()
             return make_response(jsonify(img_list_from_vid()), 200)
     except Exception as e:
             return make_response(str(e), 500)
