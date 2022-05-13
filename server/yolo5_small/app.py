@@ -82,7 +82,7 @@ def add_noise(img):
     # Randomly pick some pixels in the
     # image for coloring them white
     # Pick a random number between 300 and 10000
-    number_of_pixels = random.randint(300, 10000)
+    number_of_pixels = random.randint(7000, 8000)
     for i in range(number_of_pixels):
        
         # Pick a random y coordinate
@@ -97,7 +97,8 @@ def add_noise(img):
     # Randomly pick some pixels in
     # the image for coloring them black
     # Pick a random number between 300 and 10000
-    number_of_pixels = random.randint(300 , 10000)
+    number_of_pixels = random.randint(7000, 8000)
+
     for i in range(number_of_pixels):
        
         # Pick a random y coordinate
@@ -114,12 +115,19 @@ def noiseImages():
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise",] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1])+"//noise_"+splitPath[-1])
-                noise_img = add_noise(img)
+                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                noise_img = add_noise(gray)
                 cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
+                # Generate Gaussian noise
+                gauss = np.random.normal(0,1,img.size)
+                gauss = gauss.reshape(img.shape[0],img.shape[1],img.shape[2]).astype('uint8')
+                # Add the Gaussian noise to the image
+                img_gauss = cv2.add(img,gauss)
+                cv2.imwrite("//".join(splitPath[:-1])+"//noiseg_"+splitPath[-1], img_gauss)
 
 
 
@@ -251,16 +259,7 @@ def upload_file():
 
         return img_list_from_vid()
 
-        """for path, subdirs, files in os.walk('C://Users//liat//GitHub//graphic_lab//server//yolo5_small//static'):
-                for filename in files:
-                    fname = os.path.join(path, filename)
-                    if fname.endswith('.jpg'):
-                        print(777,'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
-                        images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
-                        i+=1
-        res['images_from_folder'] = images_from_folder
-        return res"""
-        #return Response(images_from_folder, status=200, mimetype='application/json')
+        #return Response(img_list_from_vid(), 200, img_list_from_vid())
         #return 200,'file uploaded and convert to classes successfully'
 
 
