@@ -117,9 +117,10 @@ def noiseImages():
             if fname.endswith('.jpg') and bool([ele for ele in ["paint","rotate","sharpen","cq","noise"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
-                print("//".join(splitPath[:-1])+"//hdr_"+splitPath[-1])
+                print("//".join(splitPath[:-1])+"//noise_"+splitPath[-1])
                 noise_img = add_noise(img)
                 cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
+
 
 
 
