@@ -57,9 +57,6 @@ class App extends Component {
     }
 
   }
-  shouldComponentUpdate() {
-    return true;
-  }
   selectDataAugmentation = () => {
     const formData = new FormData();
     formData.append(
@@ -105,49 +102,17 @@ class App extends Component {
     // Send formData object
     axios.post("http://127.0.0.1:5000/upload_video", formData).then(resp => {
       console.log(resp)
-      //imagesFromFolder = [...useState(resp.data.images_from_folder)]
-      this.setState({ imagesFromFolder: [] });
       this.setState({ imagesFromFolder: resp.data.images_from_folder })
       console.log(this.state.imagesFromFolder)
 
     });
   };
 
-  // File content to be displayed after
-  // file upload is complete
-  fileData = () => {
 
-    if (this.state.selectedFile) {
-
-      return (
-        <div>
-          <h2>File Details:</h2>
-
-          <p>File Name: {this.state.selectedFile.name}</p>
-          <p>File Type: {this.state.selectedFile.type}</p>
-          <p>
-            Last Modified:{" "}
-            {this.state.selectedFile.lastModifiedDate.toDateString()}
-          </p>
-
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <br />
-          <h4>Choose before Pressing the Upload button</h4>
-        </div>
-      );
-    }
-  };
   handleChange = (event, newValue) => {
-    // setValue(newValue);
     this.setState({ value: newValue })
   };
-  valuetext(value) {
-    return `${value}°C`;
-  }
+
 
   render() {
 
@@ -238,7 +203,7 @@ class App extends Component {
 
                       value={this.state.value}
                       onChange={this.handleChange}
-                      getAriaValueText={this.valuetext} /></Grid>
+                       /></Grid>
                   <Grid item xs={12}>
                     Train: {this.state.value[0]}, Validation: {this.state.value[1] - this.state.value[0]}
                     , Test: {100 - (this.state.value[0] + (this.state.value[1] - this.state.value[0]))}
