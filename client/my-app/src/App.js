@@ -107,6 +107,7 @@ class App extends Component {
     axios.post("http://127.0.0.1:5000/upload_video", formData).then(resp => {
       console.log(resp)
       //imagesFromFolder = [...useState(resp.data.images_from_folder)]
+      this.setState({ imagesFromFolder: [] });
       this.setState({ imagesFromFolder: resp.data.images_from_folder })
       console.log(this.state.imagesFromFolder)
 
@@ -216,11 +217,11 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                  <ImagesList></ImagesList>
+                  
                   { this.state.imagesFromFolder.length > 0 && 
             <div>  
-             
-               <ImageList imagesFromFolder={this.state.imagesFromFolder}></ImageList>
+             {/*<ImagesList imagesFromFolder={this.state.imagesFromFolder} ></ImagesList>*/}
+  
               <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/></div> }
                     {/*<ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> */}
                   </Grid>

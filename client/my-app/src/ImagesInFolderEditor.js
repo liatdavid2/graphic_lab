@@ -24,6 +24,7 @@ export default class ImagesInFolderEditor extends Component {
       if (nextProps.imagesFromFolder !== this.props.imagesFromFolder) {
         // console.log(nextProps.imagesFromFolder ,this.state.imagesFromFolder)
         console.log(nextProps.imagesFromFolder,this.state.imagesFromFolder)
+        this.setState({ imagesFromFolder: [] });
         this.setState({ imagesFromFolder: nextProps.imagesFromFolder });
       }
     }
@@ -33,6 +34,7 @@ export default class ImagesInFolderEditor extends Component {
     componentDidUpdate(prevProps) {
       console.log(prevProps,this.props)
       if (prevProps.imagesFromFolder !== this.props.imagesFromFolder) {
+        this.setState({ imagesFromFolder: [] });
         this.setState({ imagesFromFolder: this.props.imagesFromFolder });
       }
       //this.setState({ imagesFromFolder: this.props.imagesFromFolder });
@@ -41,8 +43,11 @@ export default class ImagesInFolderEditor extends Component {
     componentWillMount(){
       console.log(this.props)
         // this.setState({ imagesFromFolder: [] });
-     
+        this.setState({ imagesFromFolder: [] });
         this.setState({ imagesFromFolder: this.props.imagesFromFolder })
+    }
+    handleImgChange(e) {
+      console.log(e.target.name)
     }
     handleChange(e) {
       console.log(e.target.name)
@@ -83,13 +88,9 @@ export default class ImagesInFolderEditor extends Component {
         gap={0}
         style={{width: "100%",marginTop: "10px"}}>
         { this.state.imagesFromFolder.map((item, index) => (
-            <ImageListItem key={item.image}>
-            <img
-            
-                srcSet={`${item.image}?w=50&h=50&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.label}
-                loading='eager'
-            />
+            <ImageListItem key={item.image} >
+            <img src={`${item.image}`} onChange={e => this.handleImgChange(e)} />
+           
             <ImageListItemBar
               sx={{
                 background:
@@ -100,7 +101,7 @@ export default class ImagesInFolderEditor extends Component {
               position="top"
               actionIcon={
                 <IconButton>
-                <Checkbox  key={index} name={item.image}
+                <Checkbox  key={item.id} name={item.image}
                   onChange={e => this.handleChange(e)}
                   style={{background:'#ffffff9e',color: '#080862'}}/>
                 </IconButton>

@@ -28,6 +28,7 @@ import argparse
 import os
 import sys
 from pathlib import Path
+from datetime import datetime
 
 import cv2
 import torch
@@ -170,7 +171,10 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         if save_crop:
-                            save_one_box(xyxy, imc, file=save_dir  / f'{p.stem}.jpg', BGR=True)
+                            now = datetime.now()
+                            # dd/mm/YY H:M:S
+                            dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
+                            save_one_box(xyxy, imc, file=save_dir  / f'{p.stem+"_"+ dt_string}.jpg', BGR=True)
                             #save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results

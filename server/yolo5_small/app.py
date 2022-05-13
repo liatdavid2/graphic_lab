@@ -122,7 +122,7 @@ def img_list_from_vid():
             fname = os.path.join(path, filename)
             if fname.endswith('.jpg'):
                 print(777,'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1])
-                images_from_folder.append({"label":fname.split('\\')[-1],"id":str(i),"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
+                images_from_folder.append({"label":fname.split('\\')[-1],"id":i,"image":'http://127.0.0.1:5000/static/'+fname.split('\\')[-2]+'/'+fname.split('\\')[-1]})
                 i+=1
     res['images_from_folder'] = images_from_folder
     return res
