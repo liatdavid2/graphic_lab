@@ -29,7 +29,7 @@ class App extends Component {
       data_augmentation_types_selected: [],
       imagesFromFolder: [],
       value: [50, 70, 80],
-      data_augmentation_types: ['Rotate', 'Sharpen', 'Paint', 'scale2', 'Rotate3', 'scale3'],
+      data_augmentation_types: ['Rotate', 'Sharpen', 'Paint', 'ColorQuantization', 'Rotate3', 'scale3'],
       classes_names: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   };
   handleCallback = (childData) => {
-    if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint')) {
+    if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint')|| childData.includes('ColorQuantization')) {
       console.log(childData)
       this.setState({ data_augmentation_types_selected: childData })
     } else {
@@ -232,7 +232,7 @@ class App extends Component {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Card style={{ marginRight: "10px", marginLeft: "10px", padding: '0px', borderRadius: 0, height: "520px" }} >
+            <Card style={{ marginRight: "10px", marginLeft: "10px", padding: '0px', borderRadius: 0, height: "508px" }} >
               <CardContent>
                 <Grid container style={{ marginRight: "10px", marginLeft: "0px" }}
                   spacing={0} >

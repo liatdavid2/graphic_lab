@@ -53,12 +53,36 @@ def LookupTable(x, y):
   spline = UnivariateSpline(x, y)
   return spline(range(256))
 
+
+def colorQuantizationImages(total_color=7):  
+    for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
+        for filename in files:
+            fname = os.path.join(path, filename)
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
+                img = cv2.imread(fname)
+                splitPath = fname.split("\\")
+                
+                #colour quantization
+                #k value determines the number of colours in the image
+                k=total_color
+                # Transform the image
+                data = np.float32(img).reshape((-1, 3))
+                # Determine criteria
+                criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
+                # Implementing K-Means
+                ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+                center = np.uint8(center)
+                result = center[label.flatten()]
+                result = result.reshape(img.shape)
+                print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
+                cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
+
 def paintImages(k_size=7):
     # for each image in the current directory    
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename) 
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
                 stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
@@ -112,17 +136,12 @@ def paintImages(k_size=7):
 
 
 
-def sharpenImages():
-    # for each image in the current directory    
+def sharpenImages():  
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
-                print(filename)
-                # open the image
-                #img = Image.open(fname)
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_","cq_"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
-
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1]))
                 kernel = np.array([[-1, -1, -1], [-1, 9.5, -1], [-1, -1, -1]])
@@ -144,6 +163,8 @@ def data_augmentation():
             sharpenImages()
         if 'Paint'  in types_selected:
             paintImages(20)
+        if 'ColorQuantization'  in types_selected:
+            colorQuantizationImages(12)
             
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
