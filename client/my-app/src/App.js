@@ -8,6 +8,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
+import ImageList from './ImageList';
+import ImagesList from './ImagesList';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -214,13 +216,12 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    {this.make()}
-
-                    {/*
-         
-        this.state.imagesFromFolder.length > 0 && 
-      
-    <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/>*/}
+                  <ImagesList></ImagesList>
+                  { this.state.imagesFromFolder.length > 0 && 
+            <div>  
+             
+               <ImageList imagesFromFolder={this.state.imagesFromFolder}></ImageList>
+              <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/></div> }
                     {/*<ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> */}
                   </Grid>
 

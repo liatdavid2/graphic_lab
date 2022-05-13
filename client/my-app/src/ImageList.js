@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { generateItems } from "./utils";
 import axios from 'axios';
+import { height } from "@mui/system";
 
 export default class ImageList extends PureComponent {
   constructor() {
@@ -11,7 +12,6 @@ export default class ImageList extends PureComponent {
       isShiftDown: false,
       selectedItems: [],
       lastSelectedItem: null,
-      imagesFromFolder: []
     };
 
     this.listEl = null;
@@ -115,13 +115,13 @@ export default class ImageList extends PureComponent {
     //console.log(this.props.images.filter(item =>selectedItems.includes(item.id)))
     console.log(this.props.imagesFromFolder)
     this.props.imagesFromFolder.map((item)  => {
-      const { id,image, label } = item;
+      const {label,id,image } = item;
       // console.log(image)
       return (
          <li key={id}>
            <h1>777</h1>
-          {console.log(image)
-          /*<input
+          {console.log(image)}
+         <input
             onChange={this.handleSelectItem}
             type="checkbox"
             checked={selectedItems.includes(id)}
@@ -132,7 +132,7 @@ export default class ImageList extends PureComponent {
           <img
                 src={`${image}?w=50&h=50&fit=crop&auto=format`}
                             
-            />*/}
+            />
         </li>
       
       );
@@ -140,13 +140,29 @@ export default class ImageList extends PureComponent {
   }
 
   render() {
+    
     return  (<div>
     {/*<button  onClick={this.showImagesFromAssets}>see images that created till now from video!</button>
     <button  onClick={this.copyImagesToAssets}>get images till now!</button>*/}
-    <img src="http://127.0.0.1:5000/static/yes/bus_2_second.jpg"></img>
-    <ul style={{display: "flex",width: "800px",overflowX: "scroll"}}
+    <ul style={{width: "800px",overflowX: "scroll"}}
 
-     ref={node => (this.listEl = node)}>{this.renderItems()
-     }</ul></div>);
+     ref={node => (this.listEl = node)}>{
+      this.props.imagesFromFolder && this.props.imagesFromFolder.map((item)  => {
+        const { selectedItems } = this.state.selectedItems;
+        const {label,id,image } = item;
+        // console.log(image)
+    
+           <li key={id}>
+             <h1>{item.image}</h1>
+        
+            <img style="height:'100px';width:'100px'"  src={`${item.image}`}   />
+           <input   onChange={this.handleSelectItem}  type="checkbox"     value={item.id} id={`item-${item.id}`} />
+            <label htmlFor={`item-${item.id}`}></label>
+            <img style="height:'100px';width:'100px'"
+                  src={`${item.image}?w=50&h=50&fit=crop&auto=format`} />
+          </li>
+        
+        
+      })}</ul></div>);
   }
 }
