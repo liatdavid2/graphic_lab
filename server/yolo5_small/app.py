@@ -36,7 +36,7 @@ def rotateImages(rotationAmt):
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and "rotate_" not in filename :
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
                 print(filename)
                 # open the image
                 img = Image.open(fname)
@@ -47,45 +47,68 @@ def rotateImages(rotationAmt):
                 # close the image
                 img.close()
 
+#defining a function
+from scipy.interpolate import UnivariateSpline
+def LookupTable(x, y):
+  spline = UnivariateSpline(x, y)
+  return spline(range(256))
 
-def pencilSketchImages(k_size=7):
+def paintImages(k_size=7):
     # for each image in the current directory    
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
-            fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and "pencilSketch_" not in filename :
-                print(filename)
-                # open the image
-                #img = Image.open(fname)
+            fname = os.path.join(path, filename) 
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
                 img = cv2.imread(fname)
                 splitPath = fname.split("\\")
-                """stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], stylize)"""
+                stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
+                print("//".join(splitPath[:-1])+"//paint_"+splitPath[-1])
+                cv2.imwrite("//".join(splitPath[:-1])+"//paint_"+splitPath[-1], stylize)
                 # ok
                 """hdr = cv2.detailEnhance(img, sigma_s=12, sigma_r=0.15)
                 cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], hdr)"""
                 #colour quantization
                 #k value determines the number of colours in the image
-                total_color = 8
+                """total_color = 8
                 k=total_color
                 # Transform the image
                 data = np.float32(img).reshape((-1, 3))
                 # Determine criteria
                 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
                 # Implementing K-Means
-                """ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+                ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
                 center = np.uint8(center)
                 result = center[label.flatten()]
                 result = result.reshape(img.shape)
                 cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], result)"""
-                gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                """gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                 blur_img = cv2.GaussianBlur(gray_img, (3,3), 0)
                 img_edges = cv2.Canny(image=blur_img, threshold1=50, threshold2=155)
-                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_edges)
-                # obtaining a horizontal and vertical Sobel filtering of the image
-            
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_edges)"""
 
-                #cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], img_sobelxy)
+                """# summer
+                increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
+                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
+                blue_channel, green_channel,red_channel  = cv2.split(img)
+                red_channel = cv2.LUT(red_channel, increaseLookupTable).astype(np.uint8)
+                blue_channel = cv2.LUT(blue_channel, decreaseLookupTable).astype(np.uint8)
+                sum= cv2.merge((blue_channel, green_channel, red_channel ))
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], sum)"""
+                """# summer
+                increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
+                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
+                blue_channel, green_channel,red_channel  = cv2.split(img)
+                red_channel = cv2.LUT(red_channel, increaseLookupTable).astype(np.uint8)
+                blue_channel = cv2.LUT(blue_channel, decreaseLookupTable).astype(np.uint8)
+                sum= cv2.merge((blue_channel, green_channel, red_channel ))
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], sum)"""
+                """increaseLookupTable = LookupTable([0, 64, 128, 256], [0, 80, 160, 256])
+                decreaseLookupTable = LookupTable([0, 64, 128, 256], [0, 50, 100, 256])
+                blue_channel, green_channel,red_channel = cv2.split(img)
+                red_channel = cv2.LUT(red_channel, decreaseLookupTable).astype(np.uint8)
+                blue_channel = cv2.LUT(blue_channel, increaseLookupTable).astype(np.uint8)
+                win= cv2.merge((blue_channel, green_channel, red_channel))
+                cv2.imwrite("//".join(splitPath[:-1])+"//pencilSketch_"+splitPath[-1], win)"""
 
 
 
@@ -94,7 +117,7 @@ def sharpenImages():
     for path, subdirs, files in os.walk(r'C:\\Users\\liat\\GitHub\\graphic_lab\\data'):
         for filename in files:
             fname = os.path.join(path, filename)
-            if fname.endswith('.jpg') and "sharpen_" not in filename :
+            if fname.endswith('.jpg') and bool([ele for ele in ["paint_","rotate_","sharpen_"] if(ele in filename)]) != True:
                 print(filename)
                 # open the image
                 #img = Image.open(fname)
@@ -119,8 +142,8 @@ def data_augmentation():
             rotateImages(45)
         if 'Sharpen'  in types_selected:
             sharpenImages()
-        if 'PencilSketch'  in types_selected:
-            pencilSketchImages(20)
+        if 'Paint'  in types_selected:
+            paintImages(20)
             
     return Response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', status=200, mimetype='application/json')
 
