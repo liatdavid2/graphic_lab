@@ -21,6 +21,8 @@ For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168048876-f9d54c14-7e3d-40e1-9749-247d016ee475.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
 <img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
+I made new data augmentation style from skratch with opencv2 like:sharpen,<br/>
+
 
 
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
