@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   };
   handleCallback = (childData) => {
-    if (childData.includes('Rotate')) {
+    if (childData.includes('Rotate') || childData.includes('Sharpen')) {
       console.log(childData)
       this.setState({ data_augmentation_types_selected: childData })
     } else {

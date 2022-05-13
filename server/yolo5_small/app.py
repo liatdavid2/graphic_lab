@@ -55,14 +55,14 @@ def sharpenImages():
             if fname.endswith('.jpg') and "rotate_" not in filename :
                 print(filename)
                 # open the image
-                img = Image.open(fname)
+                #img = Image.open(fname)
+                img = cv2.imread(fname)
+
                 splitPath = fname.split("\\")
                 print("//".join(splitPath[:-1]))
                 kernel = np.array([[-1, -1, -1], [-1, 9.5, -1], [-1, -1, -1]])
                 new_img = cv2.filter2D(img, -1, kernel)
-                img.rotate(new_img).save("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1])
-                # close the image
-                img.close()
+                cv2.imwrite("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1], new_img)
 
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
