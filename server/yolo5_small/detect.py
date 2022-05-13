@@ -172,10 +172,9 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         if save_crop:
                             now = datetime.now()
-                            # dd/mm/YY H:M:S
+                            # dd_mm_YY_H_M_S
                             dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
                             save_one_box(xyxy, imc, file=save_dir  / f'{p.stem+"_"+ dt_string}.jpg', BGR=True)
-                            #save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Stream results
             im0 = annotator.result()
