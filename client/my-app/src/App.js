@@ -72,8 +72,12 @@ class App extends Component {
     );
     axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
       console.log(resp)
-    }).catch(function (error) {
-      console.log(error.toJSON());
+      this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
+    }).catch((error) => {
+      if( error.response ){
+        console.log(error.response.data);
+        this.setState({showAlert:true,severityAlert:'error',errorAlert:error.response.data})
+    }
     });
   }
   Split = () => {
@@ -89,12 +93,9 @@ class App extends Component {
         this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
       }).catch((error) => {
         if( error.response ){
-          console.log(error.response.data); // => the response payload 
+          console.log(error.response.data);
           this.setState({showAlert:true,severityAlert:'error',errorAlert:error.response.data})
-
       }
-        //this.setState({showAlert:true,severityAlert:'error',errorAlert:error.toJSON()})
-      
       });
   }
   // On file upload (click the upload button)

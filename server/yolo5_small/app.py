@@ -154,7 +154,7 @@ def data_augmentation():
                             noiseImages(fname)
             return make_response('Data augmentation colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
     except Exception as e:
-            return make_response(str(e), 500)
+            return make_response('Server error in /data_augmentation: '+str(e), 500)
 
 
 @app.route('/delete_selected', methods = ['POST'])
@@ -183,7 +183,7 @@ def stop():
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders(): 
     try:
-        data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'+777+8
+        data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
         if os.path.exists(data_folder_path): 
             shutil.rmtree(data_folder_path)
         train = request.args.get('train') 
