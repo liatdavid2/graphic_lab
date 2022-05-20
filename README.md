@@ -56,7 +56,7 @@ Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not ba
 <img src="https://user-images.githubusercontent.com/11797397/169505032-617df0bc-5825-4405-8e9b-b93f8713a3c2.png" width=70% height=70%>
 <img src="https://user-images.githubusercontent.com/11797397/169505404-6bdd4a23-5f86-4773-ba2e-2f81551f0a15.png" width=70% height=70%>
 # Technologies
-1. Client side - React + MUI.
+1. Client side - React + Material ui + Axios(for http calls to flask api).
 2. Server side - python flask.
 3. Deep learning - yolo5 video object detection model.
 # Project challenges
