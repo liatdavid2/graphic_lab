@@ -183,7 +183,7 @@ def stop():
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders(): 
     try:
-        data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'
+        data_folder_path = 'C:\\Users\\liat\\GitHub\\graphic_lab\\data'+777+8
         if os.path.exists(data_folder_path): 
             shutil.rmtree(data_folder_path)
         train = request.args.get('train') 
@@ -195,7 +195,7 @@ def crop_split_to_folders():
         seed=1337, ratio=(float(train), float(validation),float(test))) 
         return make_response('split folders colmplete in C:\\Users\\liat\\GitHub\\graphic_lab\\data !', 200)
     except Exception as e:
-            return make_response(str(e), 500)
+            return make_response('Server error in /crop_split_to_folders: '+str(e), 500)
         
 
 def img_list_from_vid():

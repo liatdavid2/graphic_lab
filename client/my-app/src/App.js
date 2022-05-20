@@ -50,7 +50,7 @@ class App extends Component {
     this.setState({ selectedFile: event.target.files[0] });
   };
 
-  handleClose = event => {
+  handleAlertClose = event => {
     this.setState({showAlert:false})
   };
   changeSelectedClasses = (childData) => {
@@ -87,10 +87,14 @@ class App extends Component {
       }).then(resp => {
         console.log(resp);
         this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
-      }).catch(function (error) {
-        if (error.response) {
-        console.log(error);
-        }
+      }).catch((error) => {
+        if( error.response ){
+          console.log(error.response.data); // => the response payload 
+          this.setState({showAlert:true,severityAlert:'error',errorAlert:error.response.data})
+
+      }
+        //this.setState({showAlert:true,severityAlert:'error',errorAlert:error.toJSON()})
+      
       });
   }
   // On file upload (click the upload button)
@@ -133,8 +137,8 @@ class App extends Component {
 
     return (
       <div>
-       <Snackbar open={this.state.showAlert} autoHideDuration={3000} onClose={this.handleClose}>
-        <Alert onClose={this.handleClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
+       <Snackbar open={this.state.showAlert} autoHideDuration={3000} onClose={this.handleAlertClose}>
+        <Alert onClose={this.handleAlertClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
         {this.state.errorAlert}
         </Alert>
         </Snackbar>
