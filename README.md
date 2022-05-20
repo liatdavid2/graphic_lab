@@ -2,7 +2,7 @@
 1. install node.js , python3 and anaconda.
 2. clone this git repo https://github.com/liatdavid2/graphic_lab.git to your local git.
 3. go to client\my-app run npm install , after he finish run npm start
-4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas...
+4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas.
 5. go to server\yolo5_small\ run python app.py
 # How to use
 <b>Step 1:</b> Open http://localhost:3000/ and select video file and classname (for example "person") and click "Upload!" button. 
@@ -53,9 +53,10 @@ I made new data augmentation styles from skratch with opencv2 like:sharpen,<br/>
 2. It is easy to see end cases of the YOLO5 model (which extracts images from video) and improve the model - for example YOLO5 classifies a monkey as a person - if you train YOLO5 on a monkey category he will not classify a monkey as a person.
 # Proof of concept
 Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not baby JJ.<br/>
-![image](https://user-images.githubusercontent.com/11797397/168063981-d2c3fbe7-f39f-4fd0-8f1d-ca4a48c5ed28.png)
+<img src="https://user-images.githubusercontent.com/11797397/169505032-617df0bc-5825-4405-8e9b-b93f8713a3c2.png" width=70% height=70%>
+<img src="https://user-images.githubusercontent.com/11797397/169505404-6bdd4a23-5f86-4773-ba2e-2f81551f0a15.png" width=70% height=70%>
 # Technologies
-1. Client side - React + MUI.
+1. Client side - React + Material ui + Axios(for http calls to flask api).
 2. Server side - python flask.
 3. Deep learning - yolo5 video object detection model.
 # Project challenges
