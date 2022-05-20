@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
-
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -21,6 +22,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showAlert: false,
+      severityAlert:'',
+      errorAlert:'',
       selectedFile: null,
       Upload_disable: false,
       classesList: [],
@@ -45,6 +49,10 @@ class App extends Component {
   onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
+
+  handleClose = event => {
+    this.setState({showAlert:false})
+  };
   changeSelectedClasses = (childData) => {
     // Change Image data augmentation selected classes 
     if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint') ||
@@ -56,7 +64,7 @@ class App extends Component {
     }
 
   }
-  selectDataAugmentation = () => {
+  makDataAugmentation = () => {
     const formData = new FormData();
     formData.append(
       "types_selected",
@@ -64,7 +72,9 @@ class App extends Component {
     );
     axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
       console.log(resp)
-    })
+    }).catch(function (error) {
+      console.log(error.toJSON());
+    });
   }
   Split = () => {
     axios.get("http://127.0.0.1:5000/crop_split_to_folders"
@@ -75,7 +85,13 @@ class App extends Component {
           test: (100 - (this.state.value[0] + (this.state.value[1] - this.state.value[0]))) / 100
         }
       }).then(resp => {
-      })
+        console.log(resp);
+        this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
+      }).catch(function (error) {
+        if (error.response) {
+        console.log(error);
+        }
+      });
   }
   // On file upload (click the upload button)
   onFileUpload = () => {
@@ -117,6 +133,12 @@ class App extends Component {
 
     return (
       <div>
+       <Snackbar open={this.state.showAlert} autoHideDuration={3000} onClose={this.handleClose}>
+        <Alert onClose={this.handleClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
+        {this.state.errorAlert}
+        </Alert>
+        </Snackbar>
+        {/*this.state.showAlert?<Alert severity={this.state.severityAlert} >{this.state.errorAlert}</Alert>:null*/}
         <AppBar position="static" style={{ backgroundColor: "#080862", marginBottom: "10px" }} >
           <Toolbar>
             <Grid container>
@@ -224,8 +246,8 @@ class App extends Component {
                     <Grid item xs={12} md={12}>
                       <button variant="contained"
 
-                        onClick={this.selectDataAugmentation}>
-                        Select Data Augmentation Types
+                        onClick={this.makDataAugmentation}>
+                        Make Data Augmentation
                       </button>
                     </Grid>
                   </Grid>
