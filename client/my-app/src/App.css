@@ -40,7 +40,7 @@
   padding-bottom: 0 !important;
   padding-top: 0 !important;
 }
-button{
+button,.button{
     margin-bottom: 10px;
     padding: 10px;
     border: none;
