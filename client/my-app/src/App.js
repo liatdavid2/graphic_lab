@@ -41,20 +41,17 @@ class App extends Component {
   }
 
   
-  /*This method will change selected file .
-  :param file_name: The  of the text file that will be read
-  :return: list of sentences objects*/
-  // On file select (from the pop up)
+  /*This method On file select will change selected video file .*/
   onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
-  handleCallback = (childData) => {
+  changeSelectedClasses = (childData) => {
+    // Change Image data augmentation selected classes 
     if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint')|| 
     childData.includes('ColorQuantization') ||childData.includes('NoiseImages')  ) {
-      console.log(childData)
       this.setState({ data_augmentation_types_selected: childData })
     } else {
-      console.log(childData)
+      // Change video to image selected classes 
       this.setState({ classesList: childData })
     }
 
@@ -153,7 +150,7 @@ class App extends Component {
                     <input type="file" style={{ marginTop: "12px" }} onChange={this.onFileChange}  />
                   </Grid>
                   <Grid item xs={12} md={8}>
-                    <ClassesList classes_names={this.state.classes_names} parentCallback={this.handleCallback} />
+                    <ClassesList classes_names={this.state.classes_names} parentChangeSelectedClasses={this.changeSelectedClasses} />
 
 
                   </Grid>
@@ -222,7 +219,7 @@ class App extends Component {
                     <h4 style={{ display: "inline" }}> Image data augmentation: </h4>
                   </Grid>
                   <Grid item xs={12}>
-                    <ClassesList classes_names={this.state.data_augmentation_types} parentCallback={this.handleCallback} />
+                    <ClassesList classes_names={this.state.data_augmentation_types} parentChangeSelectedClasses={this.changeSelectedClasses} />
 
                   </Grid>
                   <Grid>

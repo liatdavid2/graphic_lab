@@ -12,7 +12,7 @@ export default function ClassesList(props) {
         multiple  sx={{ marginLeft:"20px" }}
         onChange={(event, value) => {console.log(value);
         
-          props.parentCallback(value);}} // prints the selected value
+          props.parentChangeSelectedClasses(value);}} // prints the selected value
         id="tags-standard"
         options={props.classes_names}
         getOptionLabel={(option) => option}
