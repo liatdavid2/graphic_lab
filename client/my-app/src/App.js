@@ -28,7 +28,7 @@ class App extends Component {
       imagesFromFolder: [],
       value: [50, 70, 80],
       data_augmentation_types: ['Rotate', 'Sharpen', 'Paint', 'ColorQuantization', 'NoiseImages'],
-      classes_names: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
+      yolo5_classes: ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
         'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
@@ -40,15 +40,15 @@ class App extends Component {
     };
   }
 
-  
+
   /*This method On file select will change selected video file .*/
   onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
   changeSelectedClasses = (childData) => {
     // Change Image data augmentation selected classes 
-    if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint')|| 
-    childData.includes('ColorQuantization') ||childData.includes('NoiseImages')  ) {
+    if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint') ||
+      childData.includes('ColorQuantization') || childData.includes('NoiseImages')) {
       this.setState({ data_augmentation_types_selected: childData })
     } else {
       // Change video to image selected classes 
@@ -147,10 +147,10 @@ class App extends Component {
                       Upload file and select at least one class:  </h4>
                   </Grid>
                   <Grid item xs={12} md={3}>
-                    <input type="file" style={{ marginTop: "12px" }} onChange={this.onFileChange}  />
+                    <input type="file" style={{ marginTop: "12px" }} onChange={this.onFileChange} />
                   </Grid>
                   <Grid item xs={12} md={8}>
-                    <ClassesList classes_names={this.state.classes_names} parentChangeSelectedClasses={this.changeSelectedClasses} />
+                    <ClassesList classes_names={this.state.yolo5_classes} parentChangeSelectedClasses={this.changeSelectedClasses} />
 
 
                   </Grid>
@@ -174,13 +174,11 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                  
-                  { this.state.imagesFromFolder.length > 0 && 
-            <div>  
-             {/*<ImagesList imagesFromFolder={this.state.imagesFromFolder} ></ImagesList>*/}
-  
-              <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/></div> }
-                    {/*<ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder}/> */}
+
+                    {this.state.imagesFromFolder.length > 0 &&
+                      <div>
+
+                        <ImagesInFolderEditor imagesFromFolder={this.state.imagesFromFolder} /></div>}
                   </Grid>
 
                 </Grid>
@@ -202,7 +200,7 @@ class App extends Component {
 
                       value={this.state.value}
                       onChange={this.handleChange}
-                       /></Grid>
+                    /></Grid>
                   <Grid item xs={12}>
                     Train: {this.state.value[0]}, Validation: {this.state.value[1] - this.state.value[0]}
                     , Test: {100 - (this.state.value[0] + (this.state.value[1] - this.state.value[0]))}
