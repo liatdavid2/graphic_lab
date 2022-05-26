@@ -14,10 +14,10 @@ import random
 import json
 from flask import jsonify, make_response
 
-# number of classes
+# coco128 dataset number of classes
 nc: 80
 
-# class names
+# coco128 dataset class names
 class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
         'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
         'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
@@ -31,10 +31,11 @@ class_names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'tra
 app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
-
-# define a function that rotates images in the current directory
-# given the rotation in degrees as a parameter
-def rotateImages(fname,rotationAmt):
+"""
+description: get image and angle and rotate her by angle
+input:fname - file name and rotationAmt:rotation in degrees
+"""
+def rotateImage(fname,rotationAmt):
     img = Image.open(fname)
     splitPath = fname.split("\\")
     print("//".join(splitPath[:-1])+"//rotate_"+str(rotationAmt)+'deg'+splitPath[-1])
@@ -60,7 +61,11 @@ def colorQuantizationImages(fname,total_color=7):
     result = result.reshape(img.shape)
     print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
     cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
-
+"""
+description: get image and angle and rotate her by angle
+input:fname - file name and rotationAmt:rotation in degrees
+output:
+"""
 def add_noise(img): 
     # Getting the dimensions of the image
     #row,col,_ = img.shape
@@ -142,8 +147,8 @@ def data_augmentation():
                         #img = Image.open(fname)
                         splitPath = fname.split("\\")
                         if 'Rotate' in types_selected:
-                            rotateImages(fname,25)
-                            rotateImages(fname,-35)
+                            rotateImage(fname,25)
+                            rotateImage(fname,-35)
                         if  'Sharpen' in types_selected:
                             sharpenImages(fname)
                         if 'Paint' in types_selected:
