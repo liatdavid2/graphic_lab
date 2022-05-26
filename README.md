@@ -48,7 +48,7 @@ I made new data augmentation styles from skratch with opencv2 like:sharpen,<br/>
 27.4.22   8 hours of arranging the code and preparing for the meeting. <br /><br/>
 5.5.22-6.5.22    17 hours of make all ui responsive ( fit to mobile, tablet, leptop and big screen). <br /><br/>
 10.5.22-12.5.22   22 hours of bulid client and server functionality - Delete all images not in class and Train, Validation, Test split and Image data augmentation. <br /><br/>
-19.5.22-19.5.22   16 hours of bulid client and server error handling. <br /><br/>
+19.5.22-20.5.22   16 hours of bulid client and server error handling. <br /><br/>
 25.5.22-26.5.22   14 hours of order all the files for submission . <br /><br/>
 # Motivation
 1. Nowadays for a classification problem you have to manually search for a lot of pictures to train the model and I take out a lot of pictures in an automatic video process that collect enormous amount of photos in a short time.
