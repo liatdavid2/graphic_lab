@@ -67,9 +67,9 @@ Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not ba
 2. The project uses 3 different technologies, each with its own world react, flask python and deepl learning.
 3. Train the VGG-16 cnn o classify photos to 2 categories: baby JJ / not baby JJ.
 # Error handling
-The app alert you with info and error message. one exemple of error and info handling <br/>
+The app alert you with success, info and error message. one exemple of success, error and info handling (Circular Progress when make images from video). <br/>
 <img src="https://user-images.githubusercontent.com/11797397/170486593-69d6e8ea-8685-4e24-92c3-4abb4b0b1ede.png" width=50% height=50%><br/>
 <img src="https://user-images.githubusercontent.com/11797397/170487100-68de6683-7f74-4b1f-9c44-35b4298b2b50.png" width=50% height=50%><br/>
-
+<img src="https://user-images.githubusercontent.com/11797397/170489481-ca9127b4-7aa8-4a62-be13-afb845f55422.png" width=50% height=50%><br/>
 
 
