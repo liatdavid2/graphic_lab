@@ -71,5 +71,11 @@ The app alert you with success, info and error message. one exemple of success, 
 <img src="https://user-images.githubusercontent.com/11797397/170486593-69d6e8ea-8685-4e24-92c3-4abb4b0b1ede.png" width=50% height=50%><br/>
 <img src="https://user-images.githubusercontent.com/11797397/170487100-68de6683-7f74-4b1f-9c44-35b4298b2b50.png" width=50% height=50%><br/>
 <img src="https://user-images.githubusercontent.com/11797397/170489481-ca9127b4-7aa8-4a62-be13-afb845f55422.png" width=50% height=50%><br/>
-
+# Tooltips
+For better user experience I added tooltip that explains what to do in each step. <br/>
+<span><img src="https://user-images.githubusercontent.com/11797397/170491554-597dd4b4-ea95-4edf-a344-95b65cee9cb7.png" width=25% height=25%>
+<img src="https://user-images.githubusercontent.com/11797397/170491937-dab8dc30-c415-4054-a746-665ae6b3a9f0.png" width=25% height=25%>
+<img src="https://user-images.githubusercontent.com/11797397/170492084-ff7b6946-a549-4409-bc63-2529166cfe4c.png" width=25% height=25%>
+ <img src="https://user-images.githubusercontent.com/11797397/170492351-cb30eb93-fea5-4b3a-b15d-1ae65bd4434b.png" width=25% height=25%>
+</span><br/>
 
