@@ -261,7 +261,10 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <div className='number'>4</div>
+                  <Tooltip title="Step 4: Select Image data augmentation types and click Select Data Augmentation Types.
+                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\data" arrow>                      
+                      <div className='number'>4</div>                     
+                    </Tooltip>
                     <h4 style={{ display: "inline" }}> Image data augmentation: </h4>
                   </Grid>
                   <Grid item xs={12}>
