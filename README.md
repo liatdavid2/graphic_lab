@@ -4,7 +4,8 @@
 3. go to client\my-app run npm install , after he finish run npm start
 4. open anaconda on server\yolo5_small\ and pip install all python project dependencies: flask,flask_cors,werkzeug.utils,splitfolders,PIL,shutil,os,cv2,torch,pandas.
 5. go to server\yolo5_small\ run python app.py
-# How to use
+# How to use 
+<b>Example task: we want to train CNN classifier to detect if baby JJ in the picture or not from "cocomelon" videos automaticly.</b><br/>
 <b>Step 1:</b> Open http://localhost:3000/ and select video file and classname (for example "person") and click "Upload!" button. 
 <img src="https://user-images.githubusercontent.com/11797397/168041594-48eb3300-28b2-4b8d-816d-98c37f358f82.png" width=50% height=50%><br/>
  Now you can see the video finds all persons.<br />
