@@ -7,6 +7,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CircularProgress from '@mui/material/CircularProgress';
 import ClassesList from './ClassesList';
 import ImagesInFolderEditor from './ImagesInFolderEditor';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,6 +23,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      autoHideDuration: 3000,
+      showCircularProgress: false,
       showAlert: false,
       severityAlert:'',
       errorAlert:'',
@@ -100,6 +103,7 @@ class App extends Component {
   }
   // On file upload (click the upload button)
   onFileUpload = () => {
+    this.setState({showAlert:true,showCircularProgress:true,autoHideDuration:400000,severityAlert:'info',errorAlert:'Creating images from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes'})
     this.setState({ imagesFromFolder: [] })
     // Create an object of formData
     const formData = new FormData();
@@ -124,7 +128,12 @@ class App extends Component {
       console.log(resp)
       this.setState({ imagesFromFolder: resp.data.images_from_folder })
       console.log(this.state.imagesFromFolder)
-
+      this.setState({showAlert:true,severityAlert:'info',showCircularProgress:false,autoHideDuration:3000,errorAlert:'Images created from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes'})
+    }).catch((error) => {
+      if( error.response ){
+        console.log(error.response.data);
+        this.setState({showAlert:true,severityAlert:'error',errorAlert:'Error: ' + error.response.data})
+    }
     });
   };
 
@@ -138,9 +147,10 @@ class App extends Component {
 
     return (
       <div>
-       <Snackbar open={this.state.showAlert} autoHideDuration={3000} onClose={this.handleAlertClose}>
+       <Snackbar open={this.state.showAlert} autoHideDuration={this.state.autoHideDuration} onClose={this.handleAlertClose}>
         <Alert onClose={this.handleAlertClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
         {this.state.errorAlert}
+        {this.state.showCircularProgress === true?<CircularProgress />:null}
         </Alert>
         </Snackbar>
         {/*this.state.showAlert?<Alert severity={this.state.severityAlert} >{this.state.errorAlert}</Alert>:null*/}
