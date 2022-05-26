@@ -182,7 +182,8 @@ class App extends Component {
               <CardContent>
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <Tooltip title="Step 1: select video file and class name and click Upload!" arrow>                      
+                    <Tooltip title="Step 1: select video file and class name and click Upload!
+                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\server\yolo5_small\static\" arrow>                      
                       <div className='number'>1</div>                     
                     </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>
@@ -236,7 +237,10 @@ class App extends Component {
                 <Grid container style={{ marginRight: "10px", marginLeft: "0px" }}
                   spacing={0} >
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <div className='number'>3</div>
+                  <Tooltip title="Step 3: Select how to split the images collected from video to Train, Validation, Test splits and click split.
+                  The split will be in new C:\Users\liat\GitHub\graphic_lab\data folder." arrow>                      
+                      <div className='number'>3</div>                     
+                    </Tooltip>
                     <h4 style={{ display: "inline" }}> Train, Validation, Test split: </h4>
                   </Grid>
                   <Grid item xs={12}>
