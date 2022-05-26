@@ -150,7 +150,8 @@ class App extends Component {
        <Snackbar open={this.state.showAlert} autoHideDuration={this.state.autoHideDuration} onClose={this.handleAlertClose}>
         <Alert onClose={this.handleAlertClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
         {this.state.errorAlert}
-        {this.state.showCircularProgress === true?<CircularProgress />:null}
+        {this.state.showCircularProgress === true?<CircularProgress 
+        style={{width:'18px',height:'10px', marginLeft:'10px'}} />:null}
         </Alert>
         </Snackbar>
         {/*this.state.showAlert?<Alert severity={this.state.severityAlert} >{this.state.errorAlert}</Alert>:null*/}
