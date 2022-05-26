@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
@@ -52,7 +51,7 @@ class App extends Component {
 
   //description: This method On video select will change selected video file .
   //input:event 
-   onFileChange = event => {
+  onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
   //description: Close alert.
@@ -198,8 +197,8 @@ class App extends Component {
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
                     <Tooltip title="Step 1: select video file and class name and click Upload!
-                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\server\yolo5_small\static\" arrow>                      
-                      <div className='number'>1</div>                     
+                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\server\yolo5_small\static\" arrow>
+                      <div className='number'>1</div>
                     </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>
                       Upload file and select at least one class:  </h4>
@@ -226,8 +225,8 @@ class App extends Component {
               <CardContent>
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                  <Tooltip title="Step 2: select all images not in class and click Delete selected." arrow>                      
-                      <div className='number'>2</div>                     
+                    <Tooltip title="Step 2: select all images not in class and click Delete selected." arrow>
+                      <div className='number'>2</div>
                     </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>  Delete all images not in class:  </h4>
 
@@ -252,9 +251,9 @@ class App extends Component {
                 <Grid container style={{ marginRight: "10px", marginLeft: "0px" }}
                   spacing={0} >
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                  <Tooltip title="Step 3: Select how to split the images collected from video to Train, Validation, Test splits and click split.
-                  The split will be in new C:\Users\liat\GitHub\graphic_lab\data folder." arrow>                      
-                      <div className='number'>3</div>                     
+                    <Tooltip title="Step 3: Select how to split the images collected from video to Train, Validation, Test splits and click split.
+                  The split will be in new C:\Users\liat\GitHub\graphic_lab\data folder." arrow>
+                      <div className='number'>3</div>
                     </Tooltip>
                     <h4 style={{ display: "inline" }}> Train, Validation, Test split: </h4>
                   </Grid>
@@ -276,9 +275,9 @@ class App extends Component {
                   </Grid>
 
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                  <Tooltip title="Step 4: Select Image data augmentation types and click Select Data Augmentation Types.
-                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\data" arrow>                      
-                      <div className='number'>4</div>                     
+                    <Tooltip title="Step 4: Select Image data augmentation types and click Select Data Augmentation Types.
+                    The images will be in folder: C:\Users\liat\GitHub\graphic_lab\data" arrow>
+                      <div className='number'>4</div>
                     </Tooltip>
                     <h4 style={{ display: "inline" }}> Image data augmentation: </h4>
                   </Grid>
