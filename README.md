@@ -24,7 +24,7 @@ For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
 <img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
 <b>I made new data augmentation styles from skratch with opencv2 like:sharpen,black and white noise, gray noise...</b><br/>
-<img src="https://user-images.githubusercontent.com/11797397/170497260-a270b938-d9ab-493a-b8df-4eab39500cc4.png" width=70% height=70%>
+<img src="https://user-images.githubusercontent.com/11797397/170497260-a270b938-d9ab-493a-b8df-4eab39500cc4.png" width=50% height=50%>
 # Fully responsive user interface supports mobile, tablet, laptop and large screen
 <span><img src="https://user-images.githubusercontent.com/11797397/168056839-5a2cdd51-d352-4e09-bda3-e157122b5cd2.png" width=40% height=40%>
 <img src="https://user-images.githubusercontent.com/11797397/168057051-b7db5b94-f806-4143-8052-4885dc594574.png" width=40% height=40%></span><br/>
