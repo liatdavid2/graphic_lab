@@ -32,7 +32,7 @@ app = Flask(__name__, static_url_path = '/static')
 CORS(app)
 
 """
-description: get image and angle and rotate her by angle
+description: get image and angle and rotate her by angle and save as new image
 input:fname - file name and rotationAmt:rotation in degrees
 """
 def rotateImage(fname,rotationAmt):
@@ -43,7 +43,11 @@ def rotateImage(fname,rotationAmt):
     img.close()
 
 
-
+"""
+description: get image and add her colorQuantization (kmeans) and save as new image
+of total_color 
+input:fname - file name and total_color: number of k colors for image
+"""
 def colorQuantizationImages(fname,total_color=7):  
     img = cv2.imread(fname)
     splitPath = fname.split("\\")               
@@ -55,20 +59,19 @@ def colorQuantizationImages(fname,total_color=7):
     # Determine criteria
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 20, 0.001)
     # Implementing K-Means
-    ret, label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+    _ , label, center = cv2.kmeans(data, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
     center = np.uint8(center)
     result = center[label.flatten()]
     result = result.reshape(img.shape)
     print("//".join(splitPath[:-1])+"//cq_"+splitPath[-1])
     cv2.imwrite("//".join(splitPath[:-1])+"//cq_"+splitPath[-1], result)
 """
-description: get image and angle and rotate her by angle
-input:fname - file name and rotationAmt:rotation in degrees
-output:
+description: get image and add salt_n_pepper_noise
+input:img 
+output:img with salt_n_pepper_noise
 """
-def add_noise(img): 
+def add_salt_n_pepper_noise(img): 
     # Getting the dimensions of the image
-    #row,col,_ = img.shape
     dimensions= img.shape
     row = dimensions[0]
     col = dimensions[1]
@@ -95,13 +98,16 @@ def add_noise(img):
         # Color that pixel to black
         img[y_coord][x_coord] = 0
     return img
-
+"""
+description: get image and add her gray Salt_n_pepper_noise & Gaussian noise
+input:fname- image file path
+"""
 def noiseImages(fname):    
     img = cv2.imread(fname)
     splitPath = fname.split("\\")
     print("//".join(splitPath[:-1])+"//noise_"+splitPath[-1])
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    noise_img = add_noise(gray)
+    noise_img = add_salt_n_pepper_noise(gray)
     cv2.imwrite("//".join(splitPath[:-1])+"//noise_"+splitPath[-1], noise_img)
     # Generate Gaussian noise
     gauss = np.random.normal(0,1,img.size)
@@ -112,8 +118,11 @@ def noiseImages(fname):
 
 
 
-
-def paintImages(fname,k_size=7):
+"""
+description: get image and add her paint style and save as new image
+input:fname- image file path
+"""
+def paintImages(fname):
     img = cv2.imread(fname)
     splitPath = fname.split("\\")
     stylize = cv2.stylization(img, sigma_s=60, sigma_r=0.07)
@@ -121,9 +130,10 @@ def paintImages(fname,k_size=7):
     cv2.imwrite("//".join(splitPath[:-1])+"//paint_"+splitPath[-1], stylize)
  
 
-
-
-
+"""
+description: get image and add her sharpen her and save as new image
+input:fname- image file path
+"""
 def sharpenImages(fname):  
     img = cv2.imread(fname)
     splitPath = fname.split("\\")
@@ -132,6 +142,13 @@ def sharpenImages(fname):
     new_img = cv2.filter2D(img, -1, kernel)
     cv2.imwrite("//".join(splitPath[:-1])+"//sharpen_"+splitPath[-1], new_img)
 
+"""
+description: post get data_augmentation selected types,
+loop on every image in train and valid folders and add them data_augmentations by selected types 
+input:post data_augmentation selected types
+output: response object if success: 'Data augmentation colmplete' str,200 
+                        if error: str(error),500
+"""
 @app.route('/data_augmentation', methods = ['POST'])
 def data_augmentation(): 
     try:
@@ -161,7 +178,12 @@ def data_augmentation():
     except Exception as e:
             return make_response('Server error in /data_augmentation: '+str(e), 500)
 
-
+"""
+description: post get selectedImages to delete and delete them.
+input:post selectedImages to delete (not belong to class)
+output: response object if success: new images after delete non relevant images,200 
+                        if error: str(error),500
+"""
 @app.route('/delete_selected', methods = ['POST'])
 def delete_selected(): 
     try:
@@ -180,11 +202,16 @@ def delete_selected():
     except Exception as e:
             return make_response(str(e), 500)
 
-@app.route('/stop')
+"""@app.route('/stop')
 def stop():
     detect.stop()
-    return img_list_from_vid()
+    return img_list_from_vid()"""
 
+"""
+description: split images to folders train,test,valid
+output: response object if success: 'split folders colmplete' str,200 
+                        if error: str(error),500
+"""
 @app.route('/crop_split_to_folders')
 def crop_split_to_folders(): 
     try:
@@ -202,7 +229,10 @@ def crop_split_to_folders():
     except Exception as e:
             return make_response('Server error in /crop_split_to_folders: '+str(e), 500)
         
-
+"""
+description: return image that made from video
+output: images made from video
+"""
 def img_list_from_vid():
     res = {} 
     i = 0
@@ -217,7 +247,12 @@ def img_list_from_vid():
     res['images_from_folder'] = images_from_folder
     return res
 
-
+"""
+description: upload video make images from video and return all the images path 
+in server to client.
+input: post video file and class list
+output: images made from video
+"""
 @app.route('/upload_video', methods = ['GET', 'POST'])
 def upload_file():
     i = 0
