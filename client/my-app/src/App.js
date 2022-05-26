@@ -182,7 +182,7 @@ class App extends Component {
               <CardContent>
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <Tooltip title="Delete" arrow>                      
+                    <Tooltip title="Step 1: select video file and class name and click Upload!" arrow>                      
                       <div className='number'>1</div>                     
                     </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>
@@ -210,7 +210,9 @@ class App extends Component {
               <CardContent>
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <div className='number'>2</div>
+                  <Tooltip title="Step 2: select all images not in class and click Delete selected." arrow>                      
+                      <div className='number'>2</div>                     
+                    </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>  Delete all images not in class:  </h4>
 
                   </Grid>
