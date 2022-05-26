@@ -50,14 +50,19 @@ class App extends Component {
   }
 
 
-  /*This method On file select will change selected video file .*/
-  onFileChange = event => {
+  //description: This method On video select will change selected video file .
+  //input:event 
+   onFileChange = event => {
     this.setState({ selectedFile: event.target.files[0] });
   };
-
+  //description: Close alert.
+  //input:event 
   handleAlertClose = event => {
     this.setState({ showAlert: false })
   };
+  //description: change Selected Classes in 
+  //            multiselection video classes selected or data_augmentation_types_selected.
+  //input:child component classlist Data of selected multiselection list values
   changeSelectedClasses = (childData) => {
     // Change Image data augmentation selected classes 
     if (childData.includes('Rotate') || childData.includes('Sharpen') || childData.includes('Paint') ||
@@ -69,6 +74,10 @@ class App extends Component {
     }
 
   }
+  //description: call post to server to makDataAugmentation by   
+  //            multiselection data_augmentation_types_selected.
+  //output:if success: Alert 'success'
+  //       if error: Alert error.response.data
   makDataAugmentation = () => {
     const formData = new FormData();
     formData.append(
@@ -85,6 +94,9 @@ class App extends Component {
       }
     });
   }
+  //description: call get to server to split folders to train,test,valid  
+  //output:if success: Alert 'success' and folder path with  split folders to train,test,valid
+  //       if error: Alert error.response.data
   Split = () => {
     axios.get("http://127.0.0.1:5000/crop_split_to_folders"
       , {
@@ -103,7 +115,10 @@ class App extends Component {
         }
       });
   }
-  // On file upload (click the upload button)
+  //description: when click upload button post call to server 
+  //             make images from video
+  //output:if success: Alert 'success' and images from video folder path 
+  //       if error: Alert error.response.data
   onFileUpload = () => {
     this.setState({ showAlert: true, showCircularProgress: true, autoHideDuration: 400000, severityAlert: 'info', errorAlert: 'Creating images from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes' })
     this.setState({ imagesFromFolder: [] })
@@ -139,8 +154,8 @@ class App extends Component {
     });
   };
 
-
-  handleChange = (event, newValue) => {
+  //description: change Train, Validation, Test split values in slider
+  handleSliderTrainTestValChange = (event, newValue) => {
     this.setState({ value: newValue })
   };
 
@@ -247,7 +262,7 @@ class App extends Component {
                     <Slider style={{ color: '#080862' }}
 
                       value={this.state.value}
-                      onChange={this.handleChange}
+                      onChange={this.handleSliderTrainTestValChange}
                     /></Grid>
                   <Grid item xs={12}>
                     Train: {this.state.value[0]}, Validation: {this.state.value[1] - this.state.value[0]}
