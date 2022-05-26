@@ -61,7 +61,7 @@ Results of train VGG-16 cnn to classify photos to 2 categories: baby JJ / not ba
 # Technologies
 1. Client side - React + Material ui + Axios(for http calls to flask api).
 2. Server side - python flask.
-3. Deep learning - yolo5 video object detection model.
+3. Deep learning - yolo5 video object detection model and vgg-16 CNN model that I trained.
 # Project challenges
 1. Innovation - There is no such product today (currently collecting images manually) - there was a risk that it would not work, so before building the system I did programming tests in google colab.
 2. The project uses 3 different technologies, each with its own world react, flask python and deepl learning.
