@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
 import Alert from '@mui/material/Alert';
@@ -26,8 +28,8 @@ class App extends Component {
       autoHideDuration: 3000,
       showCircularProgress: false,
       showAlert: false,
-      severityAlert:'',
-      errorAlert:'',
+      severityAlert: 'info',
+      errorAlert: '',
       selectedFile: null,
       Upload_disable: false,
       classesList: [],
@@ -54,7 +56,7 @@ class App extends Component {
   };
 
   handleAlertClose = event => {
-    this.setState({showAlert:false})
+    this.setState({ showAlert: false })
   };
   changeSelectedClasses = (childData) => {
     // Change Image data augmentation selected classes 
@@ -75,12 +77,12 @@ class App extends Component {
     );
     axios.post("http://127.0.0.1:5000/data_augmentation", formData).then(resp => {
       console.log(resp)
-      this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
+      this.setState({ showAlert: true, severityAlert: 'success', errorAlert: resp.data })
     }).catch((error) => {
-      if( error.response ){
+      if (error.response) {
         console.log(error.response.data);
-        this.setState({showAlert:true,severityAlert:'error',errorAlert:error.response.data})
-    }
+        this.setState({ showAlert: true, severityAlert: 'error', errorAlert: error.response.data })
+      }
     });
   }
   Split = () => {
@@ -93,17 +95,17 @@ class App extends Component {
         }
       }).then(resp => {
         console.log(resp);
-        this.setState({showAlert:true,severityAlert:'info',errorAlert:resp.data})
+        this.setState({ showAlert: true, severityAlert: 'success', errorAlert: resp.data })
       }).catch((error) => {
-        if( error.response ){
+        if (error.response) {
           console.log(error.response.data);
-          this.setState({showAlert:true,severityAlert:'error',errorAlert:error.response.data})
-      }
+          this.setState({ showAlert: true, severityAlert: 'error', errorAlert: error.response.data })
+        }
       });
   }
   // On file upload (click the upload button)
   onFileUpload = () => {
-    this.setState({showAlert:true,showCircularProgress:true,autoHideDuration:400000,severityAlert:'info',errorAlert:'Creating images from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes'})
+    this.setState({ showAlert: true, showCircularProgress: true, autoHideDuration: 400000, severityAlert: 'info', errorAlert: 'Creating images from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes' })
     this.setState({ imagesFromFolder: [] })
     // Create an object of formData
     const formData = new FormData();
@@ -128,12 +130,12 @@ class App extends Component {
       console.log(resp)
       this.setState({ imagesFromFolder: resp.data.images_from_folder })
       console.log(this.state.imagesFromFolder)
-      this.setState({showAlert:true,severityAlert:'info',showCircularProgress:false,autoHideDuration:3000,errorAlert:'Images created from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes'})
+      this.setState({ showAlert: true, severityAlert: 'success', showCircularProgress: false, autoHideDuration: 3000, errorAlert: 'Images created from video! in C:\\Users\\liat\\GitHub\\graphic_lab\\server\\yolo5_small\\static\\yes' })
     }).catch((error) => {
-      if( error.response ){
+      if (error.response) {
         console.log(error.response.data);
-        this.setState({showAlert:true,severityAlert:'error',errorAlert:'Error: ' + error.response.data})
-    }
+        this.setState({ showAlert: true, severityAlert: 'error', errorAlert: 'Error: ' + error.response.data })
+      }
     });
   };
 
@@ -147,12 +149,12 @@ class App extends Component {
 
     return (
       <div>
-       <Snackbar open={this.state.showAlert} autoHideDuration={this.state.autoHideDuration} onClose={this.handleAlertClose}>
-        <Alert onClose={this.handleAlertClose} severity={this.state.severityAlert} sx={{ width: '100%' }}>
-        {this.state.errorAlert}
-        {this.state.showCircularProgress === true?<CircularProgress 
-        style={{width:'18px',height:'10px', marginLeft:'10px'}} />:null}
-        </Alert>
+        <Snackbar open={this.state.showAlert} autoHideDuration={this.state.autoHideDuration} onClose={this.handleAlertClose}>
+          <Alert onClose={this.handleAlertClose} severity={this.state.severityAlert} sx={{ width: '700px' }}>
+            {this.state.errorAlert}
+            {this.state.showCircularProgress === true ? <CircularProgress
+              style={{ width: '18px', height: '10px', marginLeft: '10px' }} /> : null}
+          </Alert>
         </Snackbar>
         {/*this.state.showAlert?<Alert severity={this.state.severityAlert} >{this.state.errorAlert}</Alert>:null*/}
         <AppBar position="static" style={{ backgroundColor: "#080862", marginBottom: "10px" }} >
@@ -180,7 +182,9 @@ class App extends Component {
               <CardContent>
                 <Grid container spacing={0}>
                   <Grid item xs={12} style={{ marginTop: '8px' }}>
-                    <div className='number'>1</div>
+                    <Tooltip title="Delete" arrow>                      
+                      <div className='number'>1</div>                     
+                    </Tooltip>
                     <h4 style={{ marginTop: "8px", marginBottom: "8px", display: "inline" }}>
                       Upload file and select at least one class:  </h4>
                   </Grid>
