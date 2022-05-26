@@ -22,10 +22,10 @@ For example 3 Rotates increase the images number * 3.   <br/>
 <img src="https://user-images.githubusercontent.com/11797397/168048876-f9d54c14-7e3d-40e1-9749-247d016ee475.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168055850-f786ae92-f243-429e-a9bf-c2e1bc1b66b2.png" width=50% height=50%>
 <img src="https://user-images.githubusercontent.com/11797397/168243151-e6287950-cee0-40ba-b415-cebfe885c2b6.png" width=20% height=20%><br/>
-I made new data augmentation styles from skratch with opencv2 like:sharpen,<br/>
+I made new data augmentation styles from skratch with opencv2 like:sharpen,black and white noise, gray noise...<br/>
 <span><img src="https://user-images.githubusercontent.com/11797397/168252614-9061ef5c-671c-430f-9638-7e7510f10f45.png" width=20% height=20%>
 <img src="https://user-images.githubusercontent.com/11797397/168268562-ad5fdd19-8a20-45ce-903d-240e66e0717d.png" width=19.5% height=19.5%>
-<img src="https://user-images.githubusercontent.com/11797397/168262679-8a78e889-8d73-48bc-9c73-368f585985e1.png" width=20.7% height=20.7%>
+<img src="https://user-images.githubusercontent.com/11797397/168262679-8a78e889-8d73-48bc-9c73-368f585985e1.png" width=19.5% height=18.5%>
 <img src="https://user-images.githubusercontent.com/11797397/168294969-65e1284f-3600-40e7-a706-c0ffed34edd9.png" width=19.5% height=19.5%>
 <img src="https://user-images.githubusercontent.com/11797397/168318503-d63ecb9f-4aa6-4f80-94dd-5bacd9f1ad0d.png" width=19.8% height=19.8%>
 <img src="https://user-images.githubusercontent.com/11797397/168297010-fb6085fe-7fe7-4ada-9a17-b74c6e280313.png" width=19.5% height=19.5%>
