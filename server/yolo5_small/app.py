@@ -169,7 +169,7 @@ def data_augmentation():
                         if  'Sharpen' in types_selected:
                             sharpenImages(fname)
                         if 'Paint' in types_selected:
-                            paintImages(fname,20)
+                            paintImages(fname)
                         if 'ColorQuantization'  in types_selected:
                             colorQuantizationImages(fname,12)
                         if 'NoiseImages'  in types_selected:
